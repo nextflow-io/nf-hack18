@@ -28,3 +28,7 @@
 | 17.00 - 17.30 | Final remarks             |
 | 17.30 - open  | Beer session :)           |  
 |               |                           |
+
+##### Nextflow for beginners
+
+A hands-on course for beginners will be offered on the 22nd of November  2018 in the morning. A hackathon organized on the second day will give the attendees the ability to participate and practically contribute to the development of reference genomic analysis workflows along with Nextflow expert developers. Participants will learn how to write a workflow application with Nextflow, how to handle dependencies with containers (Docker and Singularity), to manage software versions with GitHub and how to deploy the computation across different platforms (HPC cluster, AWS cloud).
