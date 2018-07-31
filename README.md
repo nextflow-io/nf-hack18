@@ -11,6 +11,10 @@ Centre for Genomic regulation (CRG), [PRBB building](https://www.google.es/maps/
 
 The preliminary schedule is available [here](schedule.md).
 
+### Abstracts 
+
+The presentation abstracts are available at [this link](abstracts.md).
+
 ### Event chat
 
 We will use the following Gitter [channel](https://gitter.im/nextflow-io/nf-hack18) during the workshop activities. Feel free to register and use it for any question about logistic, problems, doubts during the hackathon, etc. 
