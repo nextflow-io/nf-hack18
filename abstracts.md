@@ -90,14 +90,6 @@ A current effort is emerging inside the IARC to enable researchers to produce ac
 
 I am currently working at the Section of Genetics, International Agency for Research on Cancer, in the Genetics Cancer Susceptibility Group. I am a PhD candidate trying to decipher cancer genomics issues using computational/statistical methods.
 
-## Agile pipelines with Nextflow: how to go from development to production without pain
-
-**Francesco Strozzi**, *Bioinformatics Head	Enterome Bioscience, France* 
-
-Nextflow allows creating pipelines in a very agile way, starting from simple blocks and processes to test new software and parameters. Once a single block of the pipeline works as expected and there are no errors, the developer can simply add a new process and start exploring and testing a new layer of the pipeline. The main Nextflow features allowing this agile development are the data flow model, jobs traceability and the possibility to resume workflows, without the need to re-run unchanged and already completed steps. The advanced logging and reporting system that Nextflow offers are also critical features helping with jobs profiling and monitoring. Finally, the support for multiple executors and the transparent use of software containers allow to prototype pipelines locally and then to port them in production on large HPC systems or on the cloud.
-In this talk, agile pipelines development with Nextflow will be presented from the point of view of Enterome Bioscience, a biotech company working on the human gut microbiome. In the company, cutting-edge bioinformatics pipelines are central to support the development of diagnostics and therapeutics on this innovative field. The ensemble of Nextflow features allows the Bioinformatics Team to transition without pain from a development stage, where pipelines are designed locally or on very small datasets, to a production phase where full datasets are processed with complete pipeline versions on the AWS cloud. A perspective on pipeline unit testing will be also presented, as a topic of possible broader interest for the Nextflow community.
-
-**Bio**: Bioinformatics Head at Enterome Bioscience, with more than 14 years of experience in bioinformatics and with the management of bioinformatic teams across the fields of genomics, biotechnology and biomedicine. In my career I focused on the development of data analysis pipelines, data architecture strategies, and the application of computational methods to support and drive research projects and production platforms. I have more than 6 years of experience with metagenomics and computational microbiology to characterise single microorganisms and complex communities, including the human gut, soil and rumen microbiome.
 
 ## QCloud: A web-based quality control system for mass spectrometry-based proteomics laboratories
 
