@@ -1,5 +1,22 @@
 # Abstracts
 
+## Scaling genomics in the AWS cloud
+
+**Brendan Bouffler**, *Global Lead, AWS Research Cloud Program, UK*
+
+An update on all the latest technical developments from AWS's Engineering team that we’re building for the research and engineering community. We’ll deep dive on some that are particularly relevant to to Nextflow's users and developers and ask for input from the audience to help us understand what other things we can engineer with the advice and insights from people in the audience.
+
+#### Bio
+
+Brendan Bouffler has 25 years of experience in the global tech industry creating very large systems for high performance environments. In the late 90’s he helped co-found an Australian dot-com start-up in New York to apply extreme computing to streaming media for broadcast video environments. The company was successfully acquired by Apple in 2004.
+
+He has since been responsible for designing and building hundreds of HPC systems for researchers as well as commercial and defense organizations, all around the world. Quite a number of his efforts are listed in the top500, including some that placed in the top 5.
+
+After leading the HPC Organization in Asia for a hardware maker, Brendan joined Amazon in 2014 when it became clear to him that cloud would become the exceptional computing tool the global research community needed to accelerate discoveries and change the world for us all. The AWS Research Cloud program he leads is tasked with that mission.
+
+He holds a degree in physics and is the principle author of the Researcher’s Handbook (the “missing manual” for research workloads on AWS). He is based in London.
+
+
 ## nf-core: A community effort to collect curated Nextflow pipelines
 
 **Philip Ewels**, *Head of Genomics Applications Development at SciLifeLab National Genomics Infrastructure, Sweden*
