@@ -26,4 +26,4 @@ We will use the following Gitter [channel](https://gitter.im/nextflow-io/nf-hack
 ### Sponsors 
 
 
-<img src="img/AWS_logo_CMYK.png" alt="AWS Cloud Logo" width="150pt"/>
+<img src="img/AWS_logo_CMYK.png" alt="AWS Cloud Logo" width="200pt"/>
