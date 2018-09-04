@@ -22,3 +22,8 @@ We will use the following Gitter [channel](https://gitter.im/nextflow-io/nf-hack
 ### Poster 
 
 ![Nextflow hackathon 2018 poster](img/nfhack18-poster.jpg)
+
+### Sponsors 
+
+
+<img src="img/AWS_logo_CMYK.png" alt="AWS Cloud Logo" width="150pt"/>
