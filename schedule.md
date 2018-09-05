@@ -23,7 +23,7 @@
 | 11.00 - 11.30 | Coffee break              |
 | 11.30 - 13.00 | Hackathon + Poster session|
 | 13.00 - 14.00 | Lunch                     |
-| 14.00 - 16.00 | Hackton                   |
+| 14.00 - 16.00 | Hackathon                 |
 | 16.30 - 17.00 | Coffee break              |
 | 17.00 - 17.30 | Final remarks             |
 | 17.30 - open  | Beer session :)           |  
