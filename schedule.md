@@ -39,4 +39,10 @@
 | 17.00 - 17.30 | Final remarks             |
 | 17.30 - open  | Beer session :)           |
 
+## Registration 
+
+For details and registration check [this link](http://www.crg.eu/en/event/coursescrg-nextflow-reproducible-silico-genomics-0).
+
+
+
 
