@@ -118,7 +118,7 @@ In this talk, agile pipelines development with Nextflow will be presented from t
 
 ## QCloud: A web-based quality control system for mass spectrometry-based proteomics laboratories
 
-**Roger Olivella**, *Proteomics Unit, CRG, Spain*
+**Roger Olivella**, *Proteomics Unit, Center for Genomic Regulation (CRG), Spain*
 
 [QCloud](http://qcloud.crg.eu) is a web-based system to support proteomics laboratories in daily quality assessment using a user-friendly interface, easy setup, automated data processing and archiving, and unbiased instrument evaluation. QCloud supports the most common targeted and untargeted proteomics workflows, it accepts data formats from different vendors and it enables a user-selected vocabulary to report incidences and annotate the acquired data.
 
@@ -136,3 +136,15 @@ We present a Nextflow pipeline which exploits paired-end RNA-Seq reads for seque
 #### Bio 
 
 I'm a bioinformatician by training and am currently in the second year of my PhD. My PhD project is conducted at Boehringer Ingelheim under the supervision of Prof. Kay Nieselt at University Tuebingen.
+
+## The state of Nextflow 
+
+**Paolo Di Tommaso**, *Research Software engineer, Center for Genomic Regulation (CRG), Spain*
+
+This presentation will give an overview of the current state of Nextflow technology, the achived 
+milestones, the upcoming changes and the open challenges facing the reproducibility of 
+of in-silico genomic data analysis. 
+
+#### Bio 
+
+Paolo Di Tommaso is a computer scientist and bioinformaticians. He has 20 years long experience as software developer and architect. His main interests are parallel programming, HPC, cloud computing and containerisation technologies. He is an open source advocate and he is the creator and project leader of the Nextflow workflow framework.
