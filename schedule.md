@@ -1,4 +1,4 @@
-## Schedule
+## Nextflow hackathon 2018 Programme
 
 #### Thursday, 22 November
 
@@ -21,7 +21,6 @@
 | 16.30 - 17.00 | Coffee break              |
 | 17.00 - 18.30 | Hackathon + Poster session|
 | 20.00 - open  | Social dinner             |
-|              |                            |
 
 #### Friday, 23 November
 
@@ -38,7 +37,6 @@
 | 14.00 - 14.30 | [Brendan Bouffler: Scaling genomics in the AWS cloud](https://github.com/nextflow-io/nf-hack18/blob/master/abstracts.md#scaling-genomics-in-the-aws-cloud) | 
 | 14.30 - 17.00 | Hackathon                 |
 | 17.00 - 17.30 | Final remarks             |
-| 17.30 - open  | Beer session :)           |  
-|               |                           |
+| 17.30 - open  | Beer session :)           |
 
 
