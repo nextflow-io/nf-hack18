@@ -9,8 +9,7 @@
 | 11.00 - 11.30 | Coffee break              |
 | 11.30 - 13.00 | Nextflow for beginners (2)|
 | 13.00 - 14.15 | Lunch                     |
-| 14.15 - 14.20 | Damjana Kastelic, Welcome | 
-| 14.20 - 14.50 | [Cedric Notreme, Paolo Di Tommaso: The state of Nextflow](https://github.com/nextflow-io/nf-hack18/blob/master/abstracts.md#the-state-of-nextflow) | 
+| 14.15 - 14.50 | [Cedric Notreme, Paolo Di Tommaso: The state of Nextflow](https://github.com/nextflow-io/nf-hack18/blob/master/abstracts.md#the-state-of-nextflow) | 
 | 14.50 - 15.20 | [Luke Goodsell: Industrial Personalised Immunotherapy Pipeline Development with Nextflow](https://github.com/nextflow-io/nf-hack18/blob/master/abstracts.md#industrial-personalised-immunotherapy-pipeline-development-with-nextflow) | 
 | 15.20 - 15.50 | [Philip Ewels: NF-Core, A community effort to collect curated Nextflow pipelines](https://github.com/nextflow-io/nf-hack18/blob/master/abstracts.md#nf-core-a-community-effort-to-collect-curated-nextflow-pipelines) |
 | 15.50 - 16.00 | [Alessia Visconti: Nextflow on the go](https://github.com/nextflow-io/nf-hack18/blob/master/abstracts.md#nextflow-on-the-go) |
