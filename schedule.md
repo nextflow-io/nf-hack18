@@ -4,9 +4,8 @@
 
 |<img width=150/>|                            |
 |------------- |----------------------------|
-| 8.30 - 8.55  | Registration               |
-| 8.55 - 9.00  | Welcome                    |
-| 9.00 - 11.00 | Nextflow for beginners     |
+| 8.30 - 9.00  | Registration               |
+| 9.00 - 11.00 | Nextflow for beginners (1) |
 | 11.00 - 11.30 | Coffee break              |
 | 11.30 - 13.00 | Nextflow for beginners (2)|
 | 13.00 - 14.15 | Lunch                     |
@@ -19,7 +18,7 @@
 | 16.10 - 16.20 | [Tiffany Delhomme: IARC nextflow pipelines: towards efficient cancer genomics analyses](https://github.com/nextflow-io/nf-hack18/blob/master/abstracts.md#iarc-nextflow-pipelines-towards-efficient-cancer-genomics-analyses) | 
 | 16.20 - 16.30 | [Diogo Nuno Silva: FlowCraft, A modular, extensible and flexible tool to build, monitor and report nextflow pipelines](https://github.com/nextflow-io/nf-hack18/blob/master/abstracts.md#flowcraft-a-modular-extensible-and-flexible-tool-to-build-monitor-and-report-nextflow-pipelines) | 
 | 16.30 - 17.00 | Coffee break              |
-| 17.00 - 18.30 | Hackathon + Poster session|
+| 17.00 - 18.30 | Hackathon                 |
 | 20.00 - open  | Social dinner             |
 
 #### Friday, 23 November
@@ -32,12 +31,12 @@
 | 10.40 - 10.50 | [Francesco Strozzi: Agile pipelines with Nextflow: how to go from development to production without pain](https://github.com/nextflow-io/nf-hack18/blob/master/abstracts.md#agile-pipelines-with-nextflow-how-to-go-from-development-to-production-without-pain) |
 | 10.50 - 11.00 | Evan Floden: Nextflow support and enhancements |
 | 11.00 - 11.30 | Coffee break              |
-| 11.30 - 13.00 | Hackathon + Poster session|
+| 11.30 - 13.00 | Hackathon                 |
 | 13.00 - 14.00 | Lunch                     |
 | 14.00 - 14.30 | [Brendan Bouffler: Scaling genomics in the AWS cloud](https://github.com/nextflow-io/nf-hack18/blob/master/abstracts.md#scaling-genomics-in-the-aws-cloud) | 
 | 14.30 - 17.00 | Hackathon                 |
 | 17.00 - 17.30 | Final remarks             |
-| 17.30 - open  | Beer session :)           |
+| 17.30 - open  | Farewell drink            |
 
 ## Registration 
 
