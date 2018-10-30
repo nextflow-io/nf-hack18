@@ -124,7 +124,7 @@ In this talk, agile pipelines development with Nextflow will be presented from t
 
 #### Bio 
 
-I graduated at the Universitat Autònoma de Barcelona in Physics. Then I worked as a software engineer in several research centers untill I started to work as a bioinformatician at the IRB in 2013. I finally moved to the Proteomics Unit at the CRG in 2015 until today.
+I graduated at the Universitat Autònoma de Barcelona in Physics. Then I worked as a software engineer in several research centers until I started to work as a bioinformatician at the IRB in 2013. I finally moved to the Proteomics Unit at the CRG in 2015 until today.
 
 ## Exploiting orthology and de novo transcriptome assembly to refine target sequence information
 
