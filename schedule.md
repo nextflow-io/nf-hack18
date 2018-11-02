@@ -1,4 +1,4 @@
-## Nextflow hackathon 2018 Programme
+## Nextflow workshop 2018 Programme
 
 #### Thursday, 22 November
 
