@@ -1,6 +1,6 @@
-# Nextflow hackathon 2018  
+# Nextflow workshop 2018  
 
-Project repository for the Nextflow hackathon that 
+Project repository for the Nextflow workshop that 
 will take on 22-23 November 2018 in Barcelona. 
 
 ### Location 
@@ -17,11 +17,11 @@ The presentation abstracts are available at [this link](abstracts.md).
 
 ### Event chat
 
-We will use the following Gitter [channel](https://gitter.im/nextflow-io/nf-hack18) during the workshop activities. Feel free to register and use it for any question about logistic, problems, doubts during the hackathon, etc. 
+We will use the following Gitter [channel](https://gitter.im/nextflow-io/nf-hack18) during the workshop activities. Feel free to register and use it for any question about logistic, problems, doubts during the workshop, etc. 
 
 ### Poster 
 
-![Nextflow hackathon 2018 poster](img/nfhack18-poster.jpg)
+![Nextflow workshop 2018 poster](img/nfhack18-poster.jpg)
 
 ### Sponsors 
 
