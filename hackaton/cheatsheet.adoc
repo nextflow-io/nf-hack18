@@ -1,0 +1,21 @@
+= Nextflow Workshop {year} Cheatsheet
+:sectnums:
+:hide-uri-scheme:
+:nofooter:
+:icons: font
+ifeval::["{backend}" == "html5"]
+:stylesdir: ./css
+:stylesheet: crg.css
+:linkcss:
+endif::[]
+:year: 2017
+
+:leveloffset: +1
+
+include::linux-commands.adoc[]
+
+include::files.adoc[tags=header;nano]
+
+// include::cluster.adoc[]
+
+:leveloffset: -1

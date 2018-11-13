@@ -1,0 +1,30 @@
+= Problem 12
+
+
+.Solution
+----
+process '6C_ASE_knownSNPs' {
+  tag "$sampleId"
+  publishDir "$params.results/$sampleId"
+
+  input:
+      file genome from genome_file
+      file index from genome_index_ch
+      file dict from genome_dict_ch
+      set sampleId, file(vcf), file(bam), file(bai) from grouped_vcf_bam_bai_ch
+
+  output:
+      file "ASE.tsv"
+
+  script:
+  """
+  echo "${bam.join('\n')}" > bam.list
+
+  java -jar $GATK -R ${genome} \
+                  -T ASEReadCounter \
+                  -o ASE.tsv \
+                  -I bam.list \
+                  -sites ${vcf}
+  """
+}
+----

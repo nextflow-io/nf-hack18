@@ -1,0 +1,145 @@
+// tag::header[]
+= Writing and editing files
+:experimental:
+// end::header[]
+// tag::vim[]
+:vim-beginners-guide: http://www.howtogeek.com/102468/a-beginners-guide-to-editing-text-files-with-vi
+// end::vim[]
+
+// tag::intro[]
+There are several ways to write and edit files.
+The most commonly used text editors are `vi`, `emacs` and `gedit`.
+
+// end::intro[]
+
+// tag::gedit[]
+== Gedit
+
+Gedit is a text editor with graphical user interface. To create a new file in the current folder just call `gedit` with the name of the file:
+
+[source,bash]
+----
+gedit file.txt
+----
+
+When you are done, save the file (by pressing kbd:[Ctrl+S] or by selecting menu:File[Save]) and close Gedit.
+// end::gedit[]
+
+// tag::vim[]
+== Vi
+
+Vi is a text editor with a command mode interface. See {vim-beginners-guide}[this article^] for a beginner's guide.
+
+To create a new file in the current folder just call `vi` with the name of the file:
+
+[source,bash]
+----
+vi file.txt
+----
+
+Vi has several modes which are specified in the bottom part of screen.
+When you just open the editor you cannot write on the file, because it is the command mode.
+To start writing, press kbd:[i], and you will notice that the status in the bottom of the screen changed to `INSERT`.
+Now you can paste the text by right-click with the mouse and paste, or by pressing kbd:[SHIFT+Insert].
+To go back to command mode press kbd:[ESC].
+To save, make sure you are in command mode and type:
+
+[source,vim]
+----
+:wq
+----
+
+To undo, press kbd:[u] when you are in command mode.
+// end::vim[]
+
+// tag::nano[]
+== GNU nano
+
+GNU nano is a text editor for Unix-like operating systems using a command line interface. The following sections describe the commands used for opening, editing and saving files using nano.
+
+=== File Control
+
+[cols="^,1*3"]
+|===
+| `nano main.nf`
+| Open or create the file `main.nf`
+| kbd:[Ctrl+o] kbd:[Enter]
+| Save changes
+// | kbd:[Ctrl+r] kbd:[Alt+f]
+// | Open a new file with a new buffer
+// | kbd:[Alt+>]
+// | Switch to the next file buffer
+// | kbd:[Alt+<]
+// | Switch to the previous file buffer
+| kbd:[Ctrl+x]
+| Quit
+|===
+
+=== Navigating through file contents
+
+[cols="^,1*3"]
+|===
+| kbd:[Ctrl+a]
+| Move to the beginning of the current line
+| kbd:[Ctrl+e]
+| Move to the end of the current line
+| kbd:[Ctrl+v]
+| Move down one page
+| kbd:[Ctrl+y]
+| Move up one page
+| kbd:[Ctrl+w] kbd:[Ctrl+y]
+| Go to the beginning of the file
+| kbd:[Ctrl+w] kbd:[Ctrl+v]
+| Go to the end of the file
+// | kbd:[Alt+\]
+// | Go to the beginning of the file
+// | kbd:[Alt+/]
+// | Go to the end of the file
+// | kbd:[Alt+g]
+// | Go to a target line number
+// | kbd:[Alt+&#x005d;]
+// | Jump to matching open/close symbol
+// | kbd:[Alt+a] kbd:[Alt+}]
+// | Select a block and indent the block
+// | kbd:[Alt+a] kbd:[Alt+{]
+// | Select a block and outden the block
+|===
+
+=== Copy and Paste
+
+[cols="^,1*3"]
+|===
+// | kbd:[Alt+a]
+// | To select a block for copy or cut operation, do kbd:[Alt+a] again to unselect
+// | kbd:[Alt+a] kbd:[Alt+^]
+// | Copy a highlighted block to the clipboard
+// | kbd:[Alt+a] kbd:[Ctrl+k]
+// | Cut a highlighted block to the clipboard
+| kbd:[Ctrl+c] (Mac kbd:[Cmd+c])
+| Copy the current selection to the clipboard
+| kbd:[Ctrl+v] (Mac kbd:[Cmd+c])
+| Paste the contents from the clipboard at the current cursor position
+| kbd:[Ctrl+k]
+| Cut from the current cursor position to the end of the current line
+| kbd:[Ctrl+d]
+| Delete the character at the current cursor position
+// | kbd:[Ctrl+Shit+6] kbd:[Ctrl+w] kbd:[Ctrl+v] kbd:[Ctrl+k]
+// | Cut from the cursor position to the end of the file
+// | kbd:[Alt+t]
+// | Cut from the cursor position to the end of the file
+// | kbd:[Ctrl+u]
+// | Paste the contents from the clipboard at the current cursor position
+|===
+
+=== Search and Replace
+
+[cols="^,1*3"]
+|===
+| kbd:[Ctrl+w]
+| Search for a target string
+// | kbd:[Alt+w]
+// | Repeat the last search
+// | kbd:[Alt+r]
+// | Search and replace
+|===
+// end::nano[]

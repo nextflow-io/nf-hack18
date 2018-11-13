@@ -1,0 +1,25 @@
+= Problem 3
+
+.Solution
+----
+/*
+ * Process 1B: Create a FASTA genome sequence dictionary with Picard for GATK
+ */
+
+process '1B_prepare_genome_picard' {
+
+  input:
+      file genome from genome_file <1>
+  output:
+      file "${genome.baseName}.dict" into genome_dict_ch <2>
+
+  script:
+  """
+  PICARD=`which picard.jar`
+  java -jar \$PICARD CreateSequenceDictionary R= $genome O= ${genome.baseName}.dict
+  """
+}
+----
+
+<1> Take as input the `genome` file from `genome_file`  
+<2> Give as output the file `${genome.baseName}.dict` and adds it to the channel `genome_dict_ch`

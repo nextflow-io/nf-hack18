@@ -1,0 +1,26 @@
+= Nextflow 2018 Workshop Hackaton Solutions
+:hide-uri-scheme:
+:nofooter:
+:icons: font
+:toclevels: 3
+:stylesdir: ../css
+:stylesheet: crg.css
+:linkcss:
+:source-highlighter: highlight.js
+:highlightjs-theme: github
+
+:sectnums:
+
+<<anxious_advice.adoc#, Problem 1>>::
+<<busy_building.adoc#, Problem 2>>::
+<<cooing_clock.adoc#, Problem 3>>::
+<<discreet_direction.adoc#, Problem 4>>::
+<<expensive_ear.adoc#, Problem 5>>::
+<<fat_floor.adoc#, Problem 6>>::
+<<gentle_garden.adoc#, Problem 7>>::
+<<hulking_hospital.adoc#, Problem 8>>::
+<<imported_iron.adoc#, Problem 9>>::
+<<jumping_jack.adoc#, Problem 10>>::
+<<kind_koala.adoc#, Problem 11>>::
+<<laughing_lynx.adoc#, Problem 12>>::
+

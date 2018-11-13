@@ -1,0 +1,79 @@
+= Basic Linux Commands
+:awk: http://www.grymoire.com/Unix/Awk.html
+:awk-examples: http://www.tutorialspoint.com/awk/awk_basic_examples.htm
+
+== Browse the directory structure
+
+[cols="^l,1*"]
+|===
+| pwd               | tell you where you are
+| ls                | list the content of the current directory
+| ls <directory>    | list the content of a directory
+| cd <directory>    | go to the specified directory
+| cd ~ (or cd)      | go to your home directory
+| cd  ..            | go to the parent directory
+| tree <directory>  | list the content of a directory in a tree-like format
+| mkdir <directory> | create the specified directory
+|===
+
+== View the content of a file
+
+[cols="^l,1*"]
+|===
+| less, more | view text with paging
+| head       | print first lines of a file
+| tail       | print last lines of a file
+| cat        | print the content of a file to the screen
+| zcat       | print the content of a `gzip` compressed file to the screen
+|===
+
+== File manipulations
+
+[cols="^l,1*"]
+|===
+| rm <file>          | remove `file`
+| cp <file1> <file2> | copy `file1` to `file2`
+| mv <file1> <file2> | rename `file1` to `file2`
+|===
+
+== Some other useful commands
+
+[cols="^l,1*"]
+|===
+| find <folder>/ -type f     | recursively find all files in a specific folder
+| find . -name '<pattern>'   | recursively find anything whose name contains <pattern> in the current folder
+													     ([red]#Single quotes must be used in order to avoid wildcard expansion by the shell#)
+| grep <pattern>             | show lines of text containing a given pattern
+| grep -v <pattern>          | show lines of text not containing a given pattern
+| sort                       | sort lines of text files
+| wc                         | count words, lines and characters
+| > (output redirection)     | allow to redirect the output to a file
+| \| (pipe)                  | allow to send the output from one program to another
+| cut                        | extract selected portion of each line from one or more files
+| echo                       | input a line of text and display it on standard output
+|===
+
+== AWK programming
+
+**AWK** - UNIX shell programming language. A fast and stable tool for processing
+text files.
+
+[cols="^l,1*"]
+|===
+| awk '/www/ { print $0 }' <file> | search for the pattern `www` in each line of the file
+| awk '$3=="www"' <file>          | search for the exact match of `www` in the third column of the file
+| awk 'length($0) > 80' <file>    | print every line in the file that is longer than 80 characters
+| awk 'NR % 2 == 0' <file>        | print even-numbered lines of the file
+|===
+
+=== Some built-in variables
+
+[cols="^l,1*"]
+|===
+| NR  | Number of records
+| NF  | Number of fields
+| FS  | Field separator character
+| OFS | Output field separator character
+|===
+
+NOTE: See {awk}[^] and {awk-examples}[^] for more information

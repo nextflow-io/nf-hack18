@@ -1,0 +1,28 @@
+= Problem 2
+
+.Solution
+----
+/*
+ * Process 1A: Create a FASTA genome index with samtools
+ */
+
+process '1A_prepare_genome_samtools' { 
+
+  input:
+      file genome from genome_file <1>
+
+  output:
+      file "${genome}.fai" into genome_index_ch 
+
+  script:
+  """
+  samtools faidx ${genome}
+  """
+}
+----
+
+
+
+<1> The solution is to use the
+**`genome_file`** channel we created in the previous step.
+

@@ -1,0 +1,36 @@
+= Problem 5
+
+.Solution
+----
+/*
+ * Process 1D: Create a file containing the filtered and recoded set of variants
+ */
+
+process '1D_prepare_vcf_file' {
+
+  input: 
+      file(variantsFile) from variants_file <1>
+      file(blacklisted) from blacklist_file <2>
+
+  output:
+      set file("${variantsFile.baseName}.filtered.recode.vcf.gz"), \
+          file("${variantsFile.baseName}.filtered.recode.vcf.gz.tbi") into prepared_vcf_ch <3>
+  
+  script:  
+  """
+  vcftools --gzvcf $variantsFile -c \
+           --exclude-bed ${blacklisted} \
+           --recode | bgzip -c \
+           > ${variantsFile.baseName}.filtered.recode.vcf.gz <4>
+
+  tabix ${variantsFile.baseName}.filtered.recode.vcf.gz <5>
+  """
+}
+----
+
+<1> Take as input the variants file, assigning the name `${variantsFile}`. 
+<2> Take as input the blacklisted file, assigning the name `${blacklisted}`.
+<3> Out a tuple (or set) of two files into the `prepared_vcf_ch` channel.
+<4> Defines the name of the first output file.
+<5> Generates the secound output file (with `.tbi` suffix).
+
