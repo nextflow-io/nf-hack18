@@ -1,7 +1,7 @@
 # Nextflow workshop 2018  
 
 Project repository for the Nextflow workshop that 
-will take on 22-23 November 2018 in Barcelona. 
+will take place on 22-23 November 2018 in Barcelona. 
 
 ### Location 
 
