@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.6.1">
+<title>Nextflow Workshop 2017 Cheatsheet</title>
+<link rel="stylesheet" href="./css/crg.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Nextflow Workshop 2017 Cheatsheet</h1>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_basic_linux_commands">1. Basic Linux Commands</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_browse_the_directory_structure">1.1. Browse the directory structure</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre> pwd</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tell you where you are</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre> ls</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">list the content of the current directory</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre> ls &lt;directory&gt;</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">list the content of a directory</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre> cd &lt;directory&gt;</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">go to the specified directory</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre> cd ~ (or cd)</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">go to your home directory</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre> cd  ..</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">go to the parent directory</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre> tree &lt;directory&gt;</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">list the content of a directory in a tree-like format</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre> mkdir &lt;directory&gt;</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">create the specified directory</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_view_the_content_of_a_file">1.2. View the content of a file</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre> less, more</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">view text with paging</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre> head</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">print first lines of a file</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre> tail</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">print last lines of a file</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre> cat</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">print the content of a file to the screen</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre> zcat</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">print the content of a <code>gzip</code> compressed file to the screen</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_file_manipulations">1.3. File manipulations</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre> rm &lt;file&gt;</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">remove <code>file</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre> cp &lt;file1&gt; &lt;file2&gt;</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">copy <code>file1</code> to <code>file2</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre> mv &lt;file1&gt; &lt;file2&gt;</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">rename <code>file1</code> to <code>file2</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_some_other_useful_commands">1.4. Some other useful commands</h3>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre> find &lt;folder&gt;/ -type f</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">recursively find all files in a specific folder</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre> find . -name '&lt;pattern&gt;'</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">recursively find anything whose name contains &lt;pattern&gt; in the current folder
+													     (<span class="red">Single quotes must be used in order to avoid wildcard expansion by the shell</span>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre> grep &lt;pattern&gt;</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">show lines of text containing a given pattern</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre> grep -v &lt;pattern&gt;</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">show lines of text not containing a given pattern</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre> sort</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sort lines of text files</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre> wc</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">count words, lines and characters</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre> &gt; (output redirection)</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">allow to redirect the output to a file</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre> | (pipe)</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">allow to send the output from one program to another</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre> cut</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">extract selected portion of each line from one or more files</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre> echo</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">input a line of text and display it on standard output</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_awk_programming">1.5. AWK programming</h3>
+<div class="paragraph">
+<p><strong>AWK</strong> - UNIX shell programming language. A fast and stable tool for processing
+text files.</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre> awk '/www/ { print $0 }' &lt;file&gt;</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">search for the pattern <code>www</code> in each line of the file</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre> awk '$3=="www"' &lt;file&gt;</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">search for the exact match of <code>www</code> in the third column of the file</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre> awk 'length($0) &gt; 80' &lt;file&gt;</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">print every line in the file that is longer than 80 characters</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre> awk 'NR % 2 == 0' &lt;file&gt;</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">print even-numbered lines of the file</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect3">
+<h4 id="_some_built_in_variables">1.5.1. Some built-in variables</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre> NR</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number of records</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre> NF</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number of fields</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre> FS</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Field separator character</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><div class="literal"><pre> OFS</pre></div></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Output field separator character</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+See <a href="http://www.grymoire.com/Unix/Awk.html" class="bare" target="_blank" rel="noopener">www.grymoire.com/Unix/Awk.html</a> and <a href="http://www.tutorialspoint.com/awk/awk_basic_examples.htm" class="bare" target="_blank" rel="noopener">www.tutorialspoint.com/awk/awk_basic_examples.htm</a> for more information
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_writing_and_editing_files">2. Writing and editing files</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_gnu_nano">2.1. GNU nano</h3>
+<div class="paragraph">
+<p>GNU nano is a text editor for Unix-like operating systems using a command line interface. The following sections describe the commands used for opening, editing and saving files using nano.</p>
+</div>
+<div class="sect3">
+<h4 id="_file_control">2.1.1. File Control</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><code>nano main.nf</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Open or create the file <code>main.nf</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="keyseq"><kbd>Ctrl</kbd>+<kbd>o</kbd></span> <kbd>Enter</kbd></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Save changes</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="keyseq"><kbd>Ctrl</kbd>+<kbd>x</kbd></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Quit</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_navigating_through_file_contents">2.1.2. Navigating through file contents</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="keyseq"><kbd>Ctrl</kbd>+<kbd>a</kbd></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Move to the beginning of the current line</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="keyseq"><kbd>Ctrl</kbd>+<kbd>e</kbd></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Move to the end of the current line</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="keyseq"><kbd>Ctrl</kbd>+<kbd>v</kbd></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Move down one page</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="keyseq"><kbd>Ctrl</kbd>+<kbd>y</kbd></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Move up one page</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="keyseq"><kbd>Ctrl</kbd>+<kbd>w</kbd></span> <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>y</kbd></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Go to the beginning of the file</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="keyseq"><kbd>Ctrl</kbd>+<kbd>w</kbd></span> <span class="keyseq"><kbd>Ctrl</kbd>+<kbd>v</kbd></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Go to the end of the file</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_copy_and_paste">2.1.3. Copy and Paste</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="keyseq"><kbd>Ctrl</kbd>+<kbd>c</kbd></span> (Mac <span class="keyseq"><kbd>Cmd</kbd>+<kbd>c</kbd></span>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Copy the current selection to the clipboard</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="keyseq"><kbd>Ctrl</kbd>+<kbd>v</kbd></span> (Mac <span class="keyseq"><kbd>Cmd</kbd>+<kbd>c</kbd></span>)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Paste the contents from the clipboard at the current cursor position</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="keyseq"><kbd>Ctrl</kbd>+<kbd>k</kbd></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cut from the current cursor position to the end of the current line</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="keyseq"><kbd>Ctrl</kbd>+<kbd>d</kbd></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Delete the character at the current cursor position</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_search_and_replace">2.1.4. Search and Replace</h4>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-center valign-top"><p class="tableblock"><span class="keyseq"><kbd>Ctrl</kbd>+<kbd>w</kbd></span></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Search for a target string</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

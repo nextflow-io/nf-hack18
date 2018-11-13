@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.6.1">
+<title>Problem 8</title>
+<link rel="stylesheet" href="../css/crg.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Problem 8</h1>
+</div>
+<div id="content">
+<div class="listingblock">
+<div class="title">Solution</div>
+<div class="content">
+<pre>process '4_rnaseq_gatk_recalibrate' {
+  tag "$replicateId" <i class="conum" data-value="1"></i><b>(1)</b>
+
+  input:
+      file genome from genome_file <i class="conum" data-value="2"></i><b>(2)</b>
+      file index from genome_index_ch <i class="conum" data-value="3"></i><b>(3)</b>
+      file dict from genome_dict_ch <i class="conum" data-value="4"></i><b>(4)</b>
+      set replicateId, file(bam), file(bai) from splitted_bam_ch <i class="conum" data-value="5"></i><b>(5)</b>
+      set file(variants_file), file(variants_file_index) from prepared_vcf_ch <i class="conum" data-value="6"></i><b>(6)</b>
+
+  output:
+      set sampleId, file("${replicateId}.final.uniq.bam"), file("${replicateId}.final.uniq.bam.bai") into (final_output_ch, bam_for_ASE_ch) <i class="conum" data-value="7"></i><b>(7)</b>
+
+  script:
+  sampleId = replicateId.replaceAll(/[12]$/,'')
+  """
+  # Indel Realignment and Base Recalibration
+  java -jar $GATK -T BaseRecalibrator \
+                  --default_platform illumina \
+                  -cov ReadGroupCovariate \
+                  -cov QualityScoreCovariate \
+                  -cov CycleCovariate \
+                  -knownSites ${variants_file} \
+                  -cov ContextCovariate \
+                  -R ${genome} -I ${bam} \
+                  --downsampling_type NONE \
+                  -nct ${task.cpus} \
+                  -o final.rnaseq.grp
+
+  java -jar $GATK -T PrintReads \
+                  -R ${genome} -I ${bam} \
+                  -BQSR final.rnaseq.grp \
+                  -nct ${task.cpus} \
+                  -o final.bam
+
+  # Select only unique alignments, no multimaps
+  (samtools view -H final.bam; samtools view final.bam| grep -w 'NH:i:1') \
+  |samtools view -Sb -  &gt; ${replicateId}.final.uniq.bam <i class="conum" data-value="8"></i><b>(8)</b>
+
+  # Index BAM files
+  samtools index ${replicateId}.final.uniq.bam <i class="conum" data-value="9"></i><b>(9)</b>
+  """
+}</pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><a href="https://www.nextflow.io/docs/latest/process.html#tag"><code>tag</code></a> line with the using the replicate id as the tag.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>the genome fasta file.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>the genome index from the <code>genome_index_ch</code> channel created in the process <code>1A_prepare_genome_samtools</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>the genome dictionary from the <code>genome_dict_ch</code> channel created in the process <code>1B_prepare_genome_picard</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>the set containing the split reads from the <code>splitted_bam_ch</code> channel created in the process <code>3_rnaseq_gatk_splitNcigar</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>the set containing the filtered/recoded VCF file and the tab index (TBI) file from the <code>prepared_vcf_ch</code> channel created in the process <code>1D_prepare_vcf_file</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>the set containing the replicate id, the unique bam file and the unique bam index file which goes into two channels.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td>line specifying the filename of the output bam file
+&lt;9&gt;</td>
+</tr>
+</table>
+</div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
+</body>
+</html>

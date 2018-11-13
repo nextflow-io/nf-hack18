@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.6.1">
+<title>Problem 9</title>
+<link rel="stylesheet" href="../css/crg.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Problem 9</h1>
+</div>
+<div id="content">
+<div class="listingblock">
+<div class="title">Solution</div>
+<div class="content">
+<pre>process '5_rnaseq_call_variants' {
+  tag "$sampleId" <i class="conum" data-value="1"></i><b>(1)</b>
+
+  input:
+      file genome from genome_file <i class="conum" data-value="2"></i><b>(2)</b>
+      file index from genome_index_ch <i class="conum" data-value="3"></i><b>(3)</b>
+      file dict from genome_dict_ch <i class="conum" data-value="4"></i><b>(4)</b>
+      set sampleId, file(bam), file(bai) from final_output_ch.groupTuple() <i class="conum" data-value="5"></i><b>(5)</b>
+
+  output:
+      set sampleId, file('final.vcf') into vcf_files <i class="conum" data-value="6"></i><b>(6)</b>
+
+  script:
+  """
+  echo "${bam.join('\n')}" &gt; bam.list
+
+  # Variant calling
+  java -jar $GATK -T HaplotypeCaller \
+                  -R $genome -I bam.list \
+                  -dontUseSoftClippedBases \
+                  -stand_call_conf 20.0 \
+                  -o output.gatk.vcf.gz
+
+  # Variant filtering
+  java -jar $GATK -T VariantFiltration \
+                  -R $genome -V output.gatk.vcf.gz \
+                  -window 35 -cluster 3 \
+                  -filterName FS -filter "FS &gt; 30.0" \
+                  -filterName QD -filter "QD &lt; 2.0" \
+                  -o final.vcf <i class="conum" data-value="7"></i><b>(7)</b>
+  """
+}</pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><a href="https://www.nextflow.io/docs/latest/process.html#tag"><code>tag</code></a> line with the using the sample id as the tag.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>the genome fasta file.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>the genome index from the <code>genome_index_ch</code> channel created in the process <code>1A_prepare_genome_samtools</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>the genome dictionary from the <code>genome_dict_ch</code> channel created in the process <code>1B_prepare_genome_picard</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>the sets grouped by sampleID from the <code>final_output_ch</code> channel created in the process <code>4_rnaseq_gatk_recalibrate</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>the set containing the sample ID and final VCF file.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>the line specifing the name resulting final vcf file.</td>
+</tr>
+</table>
+</div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
+</body>
+</html>

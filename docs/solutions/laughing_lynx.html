@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.6.1">
+<title>Problem 12</title>
+<link rel="stylesheet" href="../css/crg.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Problem 12</h1>
+</div>
+<div id="content">
+<div class="listingblock">
+<div class="title">Solution</div>
+<div class="content">
+<pre>process '6C_ASE_knownSNPs' {
+  tag "$sampleId"
+  publishDir "$params.results/$sampleId"
+
+  input:
+      file genome from genome_file
+      file index from genome_index_ch
+      file dict from genome_dict_ch
+      set sampleId, file(vcf), file(bam), file(bai) from grouped_vcf_bam_bai_ch
+
+  output:
+      file "ASE.tsv"
+
+  script:
+  """
+  echo "${bam.join('\n')}" &gt; bam.list
+
+  java -jar $GATK -R ${genome} \
+                  -T ASEReadCounter \
+                  -o ASE.tsv \
+                  -I bam.list \
+                  -sites ${vcf}
+  """
+}</pre>
+</div>
+</div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
+</body>
+</html>

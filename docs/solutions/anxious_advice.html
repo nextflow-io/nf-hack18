@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.6.1">
+<title>Problem 1</title>
+<link rel="stylesheet" href="../css/crg.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Problem 1</h1>
+</div>
+<div id="content">
+<div class="listingblock">
+<div class="title">Solution</div>
+<div class="content">
+<pre>/*
+ *  Parse the input parameters
+ */
+
+genome_file     =  file(params.genome) <i class="conum" data-value="1"></i><b>(1)</b>
+variants_file   =  file(params.variants) <i class="conum" data-value="1"></i><b>(1)</b>
+blacklist_file  =  file(params.blacklist) <i class="conum" data-value="1"></i><b>(1)</b>
+reads_ch        =  Channel.fromFilePairs(params.reads) <i class="conum" data-value="2"></i><b>(2)</b>
+GATK            =  params.gatk <i class="conum" data-value="3"></i><b>(3)</b></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Specifiy file objects/file handles using <code>file()</code>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Create a channel using <a href="https://www.nextflow.io/docs/latest/channel.html#fromfilepairs">fromFilePairs()</a>.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>A basic Nextflow variable can be simply defined.</td>
+</tr>
+</table>
+</div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
+</body>
+</html>

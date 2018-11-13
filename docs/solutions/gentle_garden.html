@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.6.1">
+<title>Problem 7</title>
+<link rel="stylesheet" href="../css/crg.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Problem 7</h1>
+</div>
+<div id="content">
+<div class="listingblock">
+<div class="title">Solution</div>
+<div class="content">
+<pre>process '3_rnaseq_gatk_splitNcigar' {
+  tag "$replicateId" <i class="conum" data-value="1"></i><b>(1)</b>
+
+  input:
+      file genome from genome_file  <i class="conum" data-value="2"></i><b>(2)</b>
+      file index from genome_index_ch  <i class="conum" data-value="3"></i><b>(3)</b>
+      file genome_dict from genome_dict_ch  <i class="conum" data-value="4"></i><b>(4)</b>
+      set replicateId, file(bam), file(bai) from aligned_bam_ch  <i class="conum" data-value="5"></i><b>(5)</b>
+
+  output:
+      set replicateId, file('split.bam'), file('split.bai') into splitted_bam_ch  <i class="conum" data-value="6"></i><b>(6)</b>
+
+  script:
+  """
+  # SplitNCigarReads and reassign mapping qualities
+  java -jar $GATK -T SplitNCigarReads \
+                  -R $genome -I $bam \<i class="conum" data-value="7"></i><b>(7)</b>
+                  -o split.bam \<i class="conum" data-value="8"></i><b>(8)</b>
+                  -rf ReassignOneMappingQuality \
+                  -RMQF 255 -RMQT 60 \
+                  -U ALLOW_N_CIGAR_READS \
+                  --fix_misencoded_quality_scores
+
+  """
+}</pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td><a href="https://www.nextflow.io/docs/latest/process.html#tag"><code>tag</code></a> line with the using the replicate id as the tag.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>the genome fasta file</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>the genome index from the <code>genome_index_ch</code> channel created in the process <code>1A_prepare_genome_samtools</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>the genome dictionary from the <code>genome_dict_ch</code> channel created in the process <code>1B_prepare_genome_picard</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>the set containing the aligned reads from the <code>aligned_bam_ch</code> channel created in the process <code>2 _rnaseq_mapping_star</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>a set containing the sample id, the split bam file and the split bam index</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>specifies the input file names $genome and $bam to GATK</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td>specifies the output file names to GATK</td>
+</tr>
+</table>
+</div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
+</body>
+</html>

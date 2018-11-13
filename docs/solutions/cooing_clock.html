@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.6.1">
+<title>Problem 3</title>
+<link rel="stylesheet" href="../css/crg.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+</head>
+<body class="article">
+<div id="header">
+<h1>Problem 3</h1>
+</div>
+<div id="content">
+<div class="listingblock">
+<div class="title">Solution</div>
+<div class="content">
+<pre>/*
+ * Process 1B: Create a FASTA genome sequence dictionary with Picard for GATK
+ */
+
+process '1B_prepare_genome_picard' {
+
+  input:
+      file genome from genome_file <i class="conum" data-value="1"></i><b>(1)</b>
+  output:
+      file "${genome.baseName}.dict" into genome_dict_ch <i class="conum" data-value="2"></i><b>(2)</b>
+
+  script:
+  """
+  PICARD=`which picard.jar`
+  java -jar \$PICARD CreateSequenceDictionary R= $genome O= ${genome.baseName}.dict
+  """
+}</pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Take as input the <code>genome</code> file from <code>genome_file</code></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Give as output the file <code>${genome.baseName}.dict</code> and adds it to the channel <code>genome_dict_ch</code></td>
+</tr>
+</table>
+</div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
+</body>
+</html>
