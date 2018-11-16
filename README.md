@@ -15,6 +15,11 @@ The event programme is available [here](schedule.md).
 
 The presentation abstracts are available at [this link](abstracts.md).
 
+### Training 
+
+The material for the beginners training on Thursday 22, morning is available 
+as [this link](https://nextflow-io.github.io/nf-hack18/). 
+
 ### Event chat
 
 We will use the following Gitter [channel](https://gitter.im/nextflow-io/nf-hack18) during the workshop activities. Feel free to register and use it for any question about logistic, problems, doubts during the workshop, etc. 
