@@ -13,7 +13,7 @@ The script `script1.nf` defines the pipeline input parameters.
 
 [source,nextflow,linenums]
 ----
-include::script1.nf[]
+include::../course/script1.nf[]
 ----
 
 Run it by using the 
@@ -59,7 +59,7 @@ The second example adds the `index` process.
 
 [source,nextflow,linenums]
 ----
-include::script2.nf[]
+include::../course/script2.nf[]
 ----
 
 It takes the transcriptome file as input and creates the transcriptome index by using the `salmon` tool. 
