@@ -18,7 +18,7 @@
 | 16.10 - 16.20 | [Tiffany Delhomme: IARC nextflow pipelines: towards efficient cancer genomics analyses](https://www.nextflow.io/nfhack/2018/tiffany.html) | 
 | 16.20 - 16.30 | [Diogo Nuno Silva: FlowCraft, A modular, extensible and flexible tool to build, monitor and report nextflow pipelines](https://www.nextflow.io/nfhack/2018/diogo.html) | 
 | 16.30 - 17.00 | Coffee break              |
-| 17.00 - 18.30 | Hackathon                 |
+| 17.00 - open  | Hackathon                 |
 | 20.00 - open  | Social dinner             |
 
 #### Friday, 23 November
