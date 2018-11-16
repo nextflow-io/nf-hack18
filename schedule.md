@@ -4,8 +4,9 @@
 
 |<img width=150/>|                            |
 |------------- |----------------------------|
-| 8.30 - 9.00  | Registration               |
-| 9.00 - 11.00 | Nextflow for beginners (1) |
+| 8.30 - 9.00  | Registration              |
+| 9.00 - 9.10  | Welcome (Damjana Kastelic, CRG Training)              |
+| 9.10 - 11.00 | Nextflow for beginners (1) |
 | 11.00 - 11.30 | Coffee break              |
 | 11.30 - 13.00 | Nextflow for beginners (2)|
 | 13.00 - 14.15 | Lunch                     |
@@ -32,11 +33,11 @@
 | 11.00 - 11.30 | Coffee break              |
 | 11.30 - 13.00 | Hackathon                 |
 | 13.00 - 14.00 | Lunch                     |
-| 14.00 - 14.30 | [Brendan Bouffler: Scaling genomics in the AWS cloud](https://github.com/nextflow-io/nf-hack18/blob/master/abstracts.md#scaling-genomics-in-the-aws-cloud) | 
-| 14.30 - 17.00 | Hackathon                 |
-| 17.00 - 17.30 | Final remarks             |
-| 17.30 - open  | Farewell drink            |
-
+| 14.00 - 14.10 | Antonio Puertas Gallardo  |
+| 14.10 - 14.40 | [Luca Carrogu: Scaling genomics in the AWS cloud](https://github.com/nextflow-io/nf-hack18/blob/master/abstracts.md#scaling-genomics-in-the-aws-cloud) | 
+| 14.40 - 18.00 | Hackathon                 |
+| 18.00 - 18.30 | Final remarks & Farewell  |
+| 18.30 - open  | Visit of the Brewery      |
 ## Registration 
 
 For details and registration check [this link](http://www.crg.eu/en/event/coursescrg-nextflow-reproducible-silico-genomics-0).
