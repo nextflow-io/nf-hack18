@@ -6,14 +6,14 @@ GEMS = env
 ASCIIDOCTOR = $(GEMS)/bin/asciidoctor
 endif
 DOCS_DIR = ../docs
-HTML_FILE = $(DOCS_DIR)/index.html
 PDF_FILE = $(DOCS_DIR)/nf-hack18.pdf
 SOLUTIONS_DIR = solutions
 CHEATSHEET_HTML = $(DOCS_DIR)/cheatsheet.html
 CHEATSHEET_PDF = $(DOCS_DIR)/cheatsheet.pdf
 STYLESHEETS_DIR = css
 ASSETS_DIR = assets
-README = index.adoc
+DOCS = index.adoc cloud.adoc training.adoc handson.adoc
+DOCS_HTML = $(DOCS:%.adoc=$(DOCS_DIR)/%.html)
 CHEATSHEET = cheatsheet.adoc
 SOLUTIONS = $(wildcard $(SOLUTIONS_DIR)/*.adoc)
 SOLUTIONS_HTML = $(SOLUTIONS:%.adoc=$(DOCS_DIR)/%.html)
@@ -26,10 +26,10 @@ draft: set-draft html
 set-draft:
 	$(eval ATTRS += -a draft)
 
-html: setup $(HTML_FILE) $(CHEATSHEET_HTML) $(SOLUTIONS_HTML)
-$(HTML_FILE): $(README) *.adoc
-	@GEM_HOME=$(GEMS) $(ASCIIDOCTOR) $(README) $(ATTRS) -o $(HTML_FILE)
-	@echo == Written file $(HTML_FILE)
+html: setup $(DOCS_HTML) $(CHEATSHEET_HTML) $(SOLUTIONS_HTML)
+$(DOCS_HTML): $(DOCS_DIR)/%.html: %.adoc *.adoc
+	@GEM_HOME=$(GEMS) $(ASCIIDOCTOR) $< $(ATTRS) -o $@
+	@echo == Written file $@
 
 $(CHEATSHEET_HTML): $(CHEATSHEET) *.adoc
 	@GEM_HOME=$(GEMS) $(ASCIIDOCTOR) $(CHEATSHEET) -o $(CHEATSHEET_HTML)
@@ -41,8 +41,8 @@ $(SOLUTIONS_HTML): $(DOCS_DIR)/%.html: %.adoc solutions/*.adoc
 	@echo == Written file $@
 
 pdf: setup $(PDF_FILE) $(CHEATSHEET_PDF) *.adoc
-$(PDF_FILE): $(README)
-	@GEM_HOME=$(GEMS) $(ASCIIDOCTOR)-pdf $(README) -a pdf-stylesdir=$(PDF)/style -a pdf-style=$(PDF_STYLE) -a pdf-fontsdir=$(PDF)/font
+$(PDF_FILE): $(DOCS)
+	@GEM_HOME=$(GEMS) $(ASCIIDOCTOR)-pdf $(DOCS) -a pdf-stylesdir=$(PDF)/style -a pdf-style=$(PDF_STYLE) -a pdf-fontsdir=$(PDF)/font
 	@echo == Written file $(PDF_FILE)
 
 $(CHEATSHEET_PDF): $(CHEATSHEET)
@@ -64,7 +64,7 @@ pages: html
 	@git push
 
 clean:
-	rm -f $(HTML_FILE) $(CHEATSHEET_HTML) $(PDF_FILE) $(CHEATSHEET_PDF) $(DEPLOY_LIST) $(SOLUTIONS_HTML)
+	rm -f $(DOCS_HTML) $(CHEATSHEET_HTML) $(PDF_FILE) $(CHEATSHEET_PDF) $(DEPLOY_LIST) $(SOLUTIONS_HTML)
 
 deepclean: clean
 	rm -rf $(GEMS) bin .bundle

@@ -708,8 +708,8 @@ p, p.lead, .paragraph.lead > p, #preamble > .sectionbody > .paragraph:first-of-t
 
 .exampleblock > .content { background-color: #fffef7; border-color: #e0e0dc; -webkit-box-shadow: 0 1px 4px #e0e0dc; box-shadow: 0 1px 4px #e0e0dc; }
 
-#header > h1:only-child:after { background-image: url(../assets/crg_blue_logo.jpg); background-size: 4.125em 1.875em; display: inline-block; width: 4.125em; height: 1.875em; content: " "; margin-top: .25em; }
-@media only screen and (min-width: 768px) { #header > h1:only-child:after { float: right; } }
+/* #header > h1:only-child:after { background-image: url(../assets/crg_blue_logo.jpg); background-size: 4.125em 1.875em; display: inline-block; width: 4.125em; height: 1.875em; content: " "; margin-top: .25em; }
+@media only screen and (min-width: 768px) { #header > h1:only-child:after { float: right; } } */
 
 #toc:before { background-image: url(../assets/crg_blue_logo.png); background-size: 10.9375em 5em; display: inline-block; width: 10.9375em; height: 5em; content: " "; margin-top: .25em; margin-bottom: .25em; }
 

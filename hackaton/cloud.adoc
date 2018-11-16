@@ -7,7 +7,7 @@
 :toclevels: 3
 :imagesdir: ./assets/
 ifeval::["{backend}" == "html5"]
-:stylesdir: ../docs/css/
+:stylesdir: ./css/
 :stylesheet: crg.css
 :linkcss:
 :source-highlighter: highlight.js

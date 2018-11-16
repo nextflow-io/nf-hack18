@@ -1,0 +1,3146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.6.2">
+<title>Nextflow Workshop 2018</title>
+<link rel="stylesheet" href="./css/crg.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<h1>Nextflow Workshop 2018 <span class="image nflogo" style="float: right"><img src="./assets/nextflow_logo.png" alt="Logo" width="300" height="100"></span></h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_installation">1. Installation</a>
+<ul class="sectlevel2">
+<li><a href="#_requirements">1.1. Requirements</a></li>
+<li><a href="#_nextflow_installation">1.2. Nextflow Installation</a></li>
+</ul>
+</li>
+<li><a href="#_simple_rna_seq_pipeline">2. Simple Rna-Seq pipeline</a>
+<ul class="sectlevel2">
+<li><a href="#_define_the_pipeline_parameters">2.1. Define the pipeline parameters</a>
+<ul class="sectlevel3">
+<li><a href="#_exercise">2.1.1. Exercise</a></li>
+<li><a href="#_exercise_2">2.1.2. Exercise</a></li>
+<li><a href="#_recap">2.1.3. Recap</a></li>
+</ul>
+</li>
+<li><a href="#_create_transcriptome_index_file">2.2. Create transcriptome index file</a>
+<ul class="sectlevel3">
+<li><a href="#_exercise_3">2.2.1. Exercise</a></li>
+<li><a href="#_exercise_4">2.2.2. Exercise</a></li>
+<li><a href="#_exercise_5">2.2.3. Exercise</a></li>
+<li><a href="#_recap_2">2.2.4. Recap</a></li>
+</ul>
+</li>
+<li><a href="#_collect_read_files_by_pairs">2.3. Collect read files by pairs</a>
+<ul class="sectlevel3">
+<li><a href="#_exercise_6">2.3.1. Exercise</a></li>
+<li><a href="#_exercise_7">2.3.2. Exercise</a></li>
+<li><a href="#_recap_3">2.3.3. Recap</a></li>
+</ul>
+</li>
+<li><a href="#_perform_expression_quantification">2.4. Perform expression quantification</a>
+<ul class="sectlevel3">
+<li><a href="#_exercise_8">2.4.1. Exercise</a></li>
+<li><a href="#_exercise_9">2.4.2. Exercise</a></li>
+<li><a href="#_recap_4">2.4.3. Recap</a></li>
+</ul>
+</li>
+<li><a href="#_quality_control">2.5. Quality control</a>
+<ul class="sectlevel3">
+<li><a href="#_exercise_10">2.5.1. Exercise</a></li>
+<li><a href="#_recap_5">2.5.2. Recap</a></li>
+</ul>
+</li>
+<li><a href="#_multiqc_report">2.6. MultiQC report</a>
+<ul class="sectlevel3">
+<li><a href="#_recap_6">2.6.1. Recap</a></li>
+</ul>
+</li>
+<li><a href="#_handle_completion_event">2.7. Handle completion event</a></li>
+<li><a href="#_bonus">2.8. Bonus!</a></li>
+<li><a href="#_custom_scripts">2.9. Custom scripts</a>
+<ul class="sectlevel3">
+<li><a href="#_recap_7">2.9.1. Recap</a></li>
+</ul>
+</li>
+<li><a href="#_metrics_and_reports">2.10. Metrics and reports</a></li>
+<li><a href="#_more_resources">2.11. More resources</a></li>
+</ul>
+</li>
+<li><a href="#_run_a_pipeline_from_a_github_repository">3. Run a pipeline from a GitHub repository</a></li>
+<li><a href="#_basic_language_structures_and_commands">4. Basic language structures and commands</a>
+<ul class="sectlevel2">
+<li><a href="#_printing_values">4.1. Printing values</a></li>
+<li><a href="#_comments">4.2. Comments</a></li>
+<li><a href="#_variables">4.3. Variables</a></li>
+<li><a href="#_lists">4.4. Lists</a></li>
+<li><a href="#_maps">4.5. Maps</a></li>
+<li><a href="#_string_interpolation">4.6. String interpolation</a></li>
+<li><a href="#_multi_line_strings">4.7. Multi-line strings</a></li>
+<li><a href="#_if_statement">4.8. If statement</a></li>
+<li><a href="#_for_statement">4.9. For statement</a></li>
+<li><a href="#_functions">4.10. Functions</a></li>
+<li><a href="#_closures">4.11. Closures</a></li>
+<li><a href="#_more_resources_2">4.12. More resources</a></li>
+</ul>
+</li>
+<li><a href="#_channels">5. Channels</a>
+<ul class="sectlevel2">
+<li><a href="#_channel_types">5.1. Channel types</a>
+<ul class="sectlevel3">
+<li><a href="#_queue_channel">5.1.1. Queue channel</a></li>
+<li><a href="#_value_channels">5.1.2. Value channels</a></li>
+</ul>
+</li>
+<li><a href="#_channel_factories">5.2. Channel factories</a>
+<ul class="sectlevel3">
+<li><a href="#_value">5.2.1. value</a></li>
+<li><a href="#_from">5.2.2. from</a></li>
+<li><a href="#_frompath">5.2.3. fromPath</a></li>
+<li><a href="#_fromfilepairs">5.2.4. fromFilePairs</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#_operators">6. Operators</a>
+<ul class="sectlevel2">
+<li><a href="#_basic_example">6.1. Basic example</a></li>
+<li><a href="#_basic_operators">6.2. Basic operators</a>
+<ul class="sectlevel3">
+<li><a href="#_println">6.2.1. println</a></li>
+<li><a href="#_map">6.2.2. map</a></li>
+<li><a href="#_into">6.2.3. into</a></li>
+<li><a href="#_mix">6.2.4. mix</a></li>
+<li><a href="#_flatten">6.2.5. flatten</a></li>
+<li><a href="#_collect">6.2.6. collect</a></li>
+<li><a href="#_grouptuple">6.2.7. groupTuple</a></li>
+<li><a href="#_join">6.2.8. join</a></li>
+<li><a href="#_subscribe">6.2.9. subscribe</a></li>
+</ul>
+</li>
+<li><a href="#_more_resources_3">6.3. More resources</a></li>
+</ul>
+</li>
+<li><a href="#_processes">7. Processes</a>
+<ul class="sectlevel2">
+<li><a href="#_script">7.1. Script</a>
+<ul class="sectlevel3">
+<li><a href="#_script_variables">7.1.1. Script variables</a></li>
+<li><a href="#_conditional_script">7.1.2. Conditional script</a></li>
+</ul>
+</li>
+<li><a href="#_inputs">7.2. Inputs</a>
+<ul class="sectlevel3">
+<li><a href="#_input_values">7.2.1. Input values</a></li>
+<li><a href="#_input_files">7.2.2. Input files</a></li>
+<li><a href="#_combine_input_channels">7.2.3. Combine input channels</a></li>
+<li><a href="#_input_repeaters">7.2.4. Input repeaters</a></li>
+</ul>
+</li>
+<li><a href="#_outputs">7.3. Outputs</a>
+<ul class="sectlevel3">
+<li><a href="#_output_values">7.3.1. Output values</a></li>
+<li><a href="#_output_files">7.3.2. Output files</a></li>
+<li><a href="#_multiple_output_files">7.3.3. Multiple output files</a></li>
+<li><a href="#_dynamic_output_file_names">7.3.4. Dynamic output file names</a></li>
+<li><a href="#_composite_inputs_and_outputs">7.3.5. Composite inputs and outputs</a></li>
+</ul>
+</li>
+<li><a href="#_when">7.4. When</a></li>
+<li><a href="#_directives">7.5. Directives</a>
+<ul class="sectlevel4">
+<li><a href="#_exercise_23">Exercise</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_installation">1. Installation</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_requirements">1.1. Requirements</h3>
+<div class="paragraph">
+<p>Nextflow can be used on any POSIX compatible system (Linux, OS X, etc).
+It requires Bash and
+<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html">Java
+8 (or later)</a> to be installed.</p>
+</div>
+<div class="paragraph">
+<p>Optional requirements:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.docker.com/">Docker</a> engine 1.10.x (or later)</p>
+</li>
+<li>
+<p><a href="https://github.com/sylabs/singularity">Singularity</a> 2.5.x (or later, optional)</p>
+</li>
+<li>
+<p><a href="https://conda.io/">Conda</a> 4.5 (or later, optional)</p>
+</li>
+<li>
+<p><a href="http://www.graphviz.org/">Graphviz</a> (optional)</p>
+</li>
+<li>
+<p>AWS Batch computing environment properly configured (optional)</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_nextflow_installation">1.2. Nextflow Installation</h3>
+<div class="paragraph">
+<p>Nextflow is distributed as a self-contained executable package, which
+means that it does not require any special installation procedure.</p>
+</div>
+<div class="paragraph">
+<p>It only needs two easy steps:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Download the executable package by using the command shown below.
+It will create the <code>nextflow</code> main executable file in the current directory.</p>
+<div class="literalblock">
+<div class="content">
+<pre>curl https://get.nextflow.io | bash</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Finally, move the <code>nextflow</code> file to a directory accessible by
+your <code>$PATH</code> variable (this is only required to avoid remembering and
+typing the full path to <code>nextflow</code> each time you need to run it).</p>
+<div class="literalblock">
+<div class="content">
+<pre>mv nextflow ~/bin</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Check everything is fine running the command:</p>
+<div class="literalblock">
+<div class="content">
+<pre>nextflow info</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Alternatively Nextflow can also be installed using Conda package managed
+using the command:
+</td>
+</tr>
+</table>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>conda install nextflow</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_simple_rna_seq_pipeline">2. Simple Rna-Seq pipeline</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>During this tutorial you will implement a proof of concept of a RNA-Seq pipeline which:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Indexes a trascriptome file.</p>
+</li>
+<li>
+<p>Performs quality controls</p>
+</li>
+<li>
+<p>Performs quantification.</p>
+</li>
+<li>
+<p>Create a MultiqQC report.</p>
+</li>
+</ol>
+</div>
+<div class="sect2">
+<h3 id="_define_the_pipeline_parameters">2.1. Define the pipeline parameters</h3>
+<div class="paragraph">
+<p>The script <code>script1.nf</code> defines the pipeline input parameters.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">params.reads = "$baseDir/data/ggal/*_{1,2}.fq"
+params.transcriptome = "$baseDir/data/ggal/transcriptome.fa"
+params.multiqc = "$baseDir/multiqc"
+
+println "reads: $params.reads"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Run it by using the
+following command:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>nextflow run script1.nf</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Try to specify a different input parameter, for example:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>nextflow run script1.nf --reads this/and/that</pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_exercise">2.1.1. Exercise</h4>
+<div class="paragraph">
+<p>Modify the <code>script1.nf</code> adding a fourth parameter named <code>outdir</code> and set it to a default path
+that will be used as the pipeline output directory.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_exercise_2">2.1.2. Exercise</h4>
+<div class="paragraph">
+<p>Modify the <code>script1.nf</code> to print all the pipeline parameters by using a single <code>println</code> command and a <a href="https://www.nextflow.io/docs/latest/script.html#multi-line-strings">multiline string</a> statement.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+see an example <a href="https://github.com/nextflow-io/rnaseq-nf/blob/3b5b49f/main.nf#L41-L48">here</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_recap">2.1.3. Recap</h4>
+<div class="paragraph">
+<p>In this step you have learned:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>How to define parameters in your pipeline script</p>
+</li>
+<li>
+<p>How to pass parameters by using the command line</p>
+</li>
+<li>
+<p>The use of <code>$var</code> and <code>${var}</code> variable placeholders</p>
+</li>
+<li>
+<p>How to use multiline strings</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_create_transcriptome_index_file">2.2. Create transcriptome index file</h3>
+<div class="paragraph">
+<p>Nextflow allows the execution of any command or user script by using a <code>process</code> definition.</p>
+</div>
+<div class="paragraph">
+<p>A process is defined by providing three main declarations:
+the process <a href="https://www.nextflow.io/docs/latest/process.html#inputs">inputs</a>,
+the process <a href="https://www.nextflow.io/docs/latest/process.html#outputs">outputs</a>
+and finally the command <a href="https://www.nextflow.io/docs/latest/process.html#script">script</a>.</p>
+</div>
+<div class="paragraph">
+<p>The second example adds the <code>index</code> process.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">/*
+ * pipeline input parameters
+ */
+params.reads = "$baseDir/data/ggal/*_{1,2}.fq"
+params.transcriptome = "$baseDir/data/ggal/transcriptome.fa"
+params.multiqc = "$baseDir/multiqc"
+params.outdir = "results"
+
+println """\
+         R N A S E Q - N F   P I P E L I N E
+         ===================================
+         transcriptome: ${params.transcriptome}
+         reads        : ${params.reads}
+         outdir       : ${params.outdir}
+         """
+         .stripIndent()
+
+/*
+ * create a transcriptome file object given then transcriptome string parameter
+ */
+transcriptome_file = file(params.transcriptome)
+
+/*
+ * define the `index` process that create a binary index
+ * given the transcriptome file
+ */
+process index {
+
+    input:
+    file transcriptome from transcriptome_file
+
+    output:
+    file 'index' into index_ch
+
+    script:
+    """
+    salmon index --threads $task.cpus -t $transcriptome -i index
+    """
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It takes the transcriptome file as input and creates the transcriptome index by using the <code>salmon</code> tool.</p>
+</div>
+<div class="paragraph">
+<p>Note how the input declaration defines a <code>transcriptome</code> variable in the process context
+that it is used in the command script to reference that file in the Salmon command line.</p>
+</div>
+<div class="paragraph">
+<p>Try to run it by using the command:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>nextflow run script2.nf</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The execution will fail because Salmon is not installed in your environment.</p>
+</div>
+<div class="paragraph">
+<p>Add the command line option <code>-with-docker</code> to launch the execution through a Docker container
+as shown below:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>nextflow run script2.nf -with-docker</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This time it works because it uses the Docker container <code>nextflow/rnaseq-nf</code> defined in the
+<code>nextflow.config</code> file.</p>
+</div>
+<div class="paragraph">
+<p>In order to avoid to add the option <code>-with-docker</code> add the following line in the <code>nextflow.config</code> file:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>docker.enabled = true</pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_exercise_3">2.2.1. Exercise</h4>
+<div class="paragraph">
+<p>Enable the Docker execution by default adding the above setting in the <code>nextflow.config</code> file.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_exercise_4">2.2.2. Exercise</h4>
+<div class="paragraph">
+<p>Print the output of the <code>index_ch</code> channel by using the <a href="https://www.nextflow.io/docs/latest/operator.html#println">println</a>
+operator (do not confuse it with the <code>println</code> statement seen previously).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_exercise_5">2.2.3. Exercise</h4>
+<div class="paragraph">
+<p>Use the command <code>tree work</code> to see how Nextflow organises the process work directory.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_recap_2">2.2.4. Recap</h4>
+<div class="paragraph">
+<p>In this step you have learned:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>How to define a process executing a custom command</p>
+</li>
+<li>
+<p>How process inputs are declared</p>
+</li>
+<li>
+<p>How process outputs are declared</p>
+</li>
+<li>
+<p>How to access the number of available CPUs</p>
+</li>
+<li>
+<p>How to print the content of a channel</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_collect_read_files_by_pairs">2.3. Collect read files by pairs</h3>
+<div class="paragraph">
+<p>This step shows how to match <strong>read</strong> files into pairs, so they can be mapped by <strong>Salmon</strong>.</p>
+</div>
+<div class="paragraph">
+<p>Edit the script <code>script3.nf</code> and add the following statement as the last line:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>read_pairs_ch.println()</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Save it and execute it with the following command:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>nextflow run script3.nf</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It will print an output similar to the one shown below:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[ggal_gut, [/.../data/ggal/gut_1.fq, /.../data/ggal/gut_2.fq]]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The above example shows how the <code>read_pairs_ch</code> channel emits tuples composed by
+two elements, where the first is the read pair prefix and the second is a list
+representing the actual files.</p>
+</div>
+<div class="paragraph">
+<p>Try it again specifying different read files by using a glob pattern:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>nextflow run script3.nf --reads 'data/ggal/*_{1,2}.fq'</pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+File paths including one or more wildcards ie. <code>*</code>, <code>?</code>, etc. MUST be
+wrapped in single-quoted characters to avoid Bash expands the glob.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_exercise_6">2.3.1. Exercise</h4>
+<div class="paragraph">
+<p>Use the <a href="https://www.nextflow.io/docs/latest/operator.html#set">set</a> operator in place
+of <code>=</code> assignment to define the <code>read_pairs_ch</code> channel.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_exercise_7">2.3.2. Exercise</h4>
+<div class="paragraph">
+<p>Use the <a href="https://www.nextflow.io/docs/latest/operator.html#ifempty">ifEmpty</a> operator
+to check if the <code>read_pairs_ch</code> contains at least an item.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_recap_3">2.3.3. Recap</h4>
+<div class="paragraph">
+<p>In this step you have learned:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>How to use <code>fromFilePairs</code> to handle read pair files</p>
+</li>
+<li>
+<p>How to use the <code>set</code> operator to define a new channel variable</p>
+</li>
+<li>
+<p>How to use the <code>ifEmpty</code> operator to check if a channel is empty</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_perform_expression_quantification">2.4. Perform expression quantification</h3>
+<div class="paragraph">
+<p>The script <code>script4.nf</code> adds the <code>quantification</code> process.</p>
+</div>
+<div class="paragraph">
+<p>In this script note as the <code>index_ch</code> channel, declared as output in the <code>index</code> process,
+is now used as a channel in the input section.</p>
+</div>
+<div class="paragraph">
+<p>Also note as the second input is declared as a <code>set</code> composed by two elements:
+the <code>pair_id</code> and the <code>reads</code> in order to match the structure of the items emitted
+by the <code>read_pairs_ch</code> channel.</p>
+</div>
+<div class="paragraph">
+<p>Execute it by using the following command:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>nextflow run script4.nf -resume</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You will see the execution of the <code>quantification</code> process.</p>
+</div>
+<div class="paragraph">
+<p>The <code>-resume</code> option cause the execution of any step that has been already processed to be skipped.</p>
+</div>
+<div class="paragraph">
+<p>Try to execute it with more read files as shown below:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>nextflow run script4.nf -resume --reads 'data/ggal/*_{1,2}.fq'</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You will notice that the <code>quantification</code> process is executed more than
+one time.</p>
+</div>
+<div class="paragraph">
+<p>Nextflow parallelizes the execution of your pipeline simply by providing multiple input data
+to your script.</p>
+</div>
+<div class="sect3">
+<h4 id="_exercise_8">2.4.1. Exercise</h4>
+<div class="paragraph">
+<p>Add a <a href="https://www.nextflow.io/docs/latest/process.html#tag">tag</a> directive to the
+<code>quantification</code> process to provide a more readable execution log.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_exercise_9">2.4.2. Exercise</h4>
+<div class="paragraph">
+<p>Add a <a href="https://www.nextflow.io/docs/latest/process.html#publishdir">publishDir</a> directive
+to the <code>quantification</code> process to store the process results into a directory of your choice.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_recap_4">2.4.3. Recap</h4>
+<div class="paragraph">
+<p>In this step you have learned:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>How to connect two processes by using the channel declarations</p>
+</li>
+<li>
+<p>How to resume the script execution skipping already already computed steps</p>
+</li>
+<li>
+<p>How to use the <code>tag</code> directive to provide a more readable execution output</p>
+</li>
+<li>
+<p>How to use the <code>publishDir</code> to store a process results in a path of your choice</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_quality_control">2.5. Quality control</h3>
+<div class="paragraph">
+<p>This step implements a quality control of your input reads. The inputs are the same
+read pairs which are provided to the <code>quantification</code> steps</p>
+</div>
+<div class="paragraph">
+<p>You can run it by using the following command:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>nextflow run script5.nf -resume</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The script will report the following error message:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>Channel `read_pairs_ch` has been used twice as an input by process `fastqc` and process `quantification`</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_exercise_10">2.5.1. Exercise</h4>
+<div class="paragraph">
+<p>Modify the creation of the <code>read_pairs_ch</code> channel by using a <a href="https://www.nextflow.io/docs/latest/operator.html#into">into</a>
+operator in place of a <code>set</code>.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+see an example <a href="https://github.com/nextflow-io/rnaseq-nf/blob/3b5b49f/main.nf#L58">here</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_recap_5">2.5.2. Recap</h4>
+<div class="paragraph">
+<p>In this step you have learned:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>How to use the <code>into</code> operator to create multiple copies of the same channel</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_multiqc_report">2.6. MultiQC report</h3>
+<div class="paragraph">
+<p>This step collect the outputs from the <code>quantification</code> and <code>fastqc</code> steps to create
+a final report by using the <a href="http://multiqc.info/">MultiQC</a> tool.</p>
+</div>
+<div class="paragraph">
+<p>Execute the script with the following command:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>nextflow run script6.nf -resume --reads 'data/ggal/*_{1,2}.fq'</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It creates the final report in the <code>results</code> folder in the current work directory.</p>
+</div>
+<div class="paragraph">
+<p>In this script note the use of the <a href="https://www.nextflow.io/docs/latest/operator.html#mix">mix</a>
+and <a href="https://www.nextflow.io/docs/latest/operator.html#collect">collect</a> operators chained
+together to get all the outputs of the <code>quantification</code> and <code>fastqc</code> process as a single
+input.</p>
+</div>
+<div class="sect3">
+<h4 id="_recap_6">2.6.1. Recap</h4>
+<div class="paragraph">
+<p>In this step you have learned:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>How to collect many outputs to a single input with the <code>collect</code> operator</p>
+</li>
+<li>
+<p>How to <code>mix</code> two channels in a single channel</p>
+</li>
+<li>
+<p>How to chain two or more operators togethers</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_handle_completion_event">2.7. Handle completion event</h3>
+<div class="paragraph">
+<p>This step shows how to execute an action when the pipeline completes the execution.</p>
+</div>
+<div class="paragraph">
+<p>Note that Nextflow processes define the execution of <strong>asynchronous</strong> tasks i.e. they are not
+executed one after another as they are written in the pipeline script as it would happen in a
+common <strong>imperative</strong> programming language.</p>
+</div>
+<div class="paragraph">
+<p>The script uses the <code>workflow.onComplete</code> event handler to print a confirmation message
+when the script completes.</p>
+</div>
+<div class="paragraph">
+<p>Try to run it by using the following command:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>nextflow run script7.nf -resume --reads 'data/ggal/*_{1,2}.fq'</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_bonus">2.8. Bonus!</h3>
+<div class="paragraph">
+<p>Send a notification email when the workflow execution complete using the <code>-N &lt;email address&gt;</code>
+command line option. Note: this requires the configuration of a SMTP server in nextflow config
+file. For the sake of this tutorial add the following setting in your <code>nextflow.config</code> file:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-config hljs" data-lang="config">mail {
+  from = 'info@nextflow.io'
+  smtp.host = 'email-smtp.eu-west-1.amazonaws.com'
+  smtp.port = 587
+  smtp.user = "AKIAIDY3I32PYKDTFK6A"
+  smtp.password = "Aj/Y2fo0s7uo1vs+Ffb+JTLVBw2p5Hk9FRMLvQx5U/+E"
+  smtp.auth = true
+  smtp.starttls.enable = true
+  smtp.starttls.required = true
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then execute again the previous example specifying your email address:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>nextflow run script7.nf -resume --reads 'data/ggal/*_{1,2}.fq' -N &lt;your email&gt;</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>See <a href="https://www.nextflow.io/docs/latest/mail.html#mail-configuration">mail documentation</a>
+for details.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_custom_scripts">2.9. Custom scripts</h3>
+<div class="paragraph">
+<p>Real world pipelines use a lot of custom user scripts (BASH, R, Python, etc). Nextflow
+allows you to use and manage all these scripts in consistent manner. Simply put them
+in a directory named <code>bin</code> in the pipeline project root. They will be automatically added
+to the pipeline execution <code>PATH</code>.</p>
+</div>
+<div class="paragraph">
+<p>For example, create a file named <code>fastqc.sh</code> with the following content:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">#!/bin/bash
+set -e
+set -u
+
+sample_id=${1}
+reads=${2}
+
+mkdir fastqc_${sample_id}_logs
+fastqc -o fastqc_${sample_id}_logs -f fastq -q ${reads}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Save it, give execute permission and move it in the <code>bin</code> directory as shown below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">chmod +x fastqc.sh
+mkdir -p bin
+mv fastqc.sh bin</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then, open the <code>script7.nf</code> file and replace the <code>fastqc</code> process' script with
+the following code:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">  script:
+  """
+  fastqc.sh "$sample_id" "$reads"
+  """</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Run it as before:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>nextflow run script7.nf -resume --reads 'data/ggal/*_{1,2}.fq'</pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_recap_7">2.9.1. Recap</h4>
+<div class="paragraph">
+<p>In this step you have learned:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>How to write or use existing custom script in your Nextflow pipeline.</p>
+</li>
+<li>
+<p>How to avoid the use of absolute paths having your scripts in the <code>bin/</code> project folder.</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_metrics_and_reports">2.10. Metrics and reports</h3>
+<div class="paragraph">
+<p>Nextflow is able to produce multiple reports and charts providing several runtime metrics
+and execution information.</p>
+</div>
+<div class="paragraph">
+<p>Run the <a href="https://github.com/nextflow-io/rnaseq-nf">rnaseq-nf</a> pipeline
+previously introduced as shown below:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>nextflow run rnaseq-nf -with-docker -with-report -with-trace -with-timeline -with-dag dag.png</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>-with-report</code> option enables the creation of the workflow execution report. Open
+the file <code>report.html</code> with a browser to see the report created with the above command.</p>
+</div>
+<div class="paragraph">
+<p>The <code>-with-trace</code> option enables the create of a tab separated file containing runtime
+information for each executed task. Check the content of the file <code>trace.txt</code> for an example.</p>
+</div>
+<div class="paragraph">
+<p>The <code>-with-timeline</code> option enables the creation of the workflow timeline report showing
+how processes where executed along time. This may be useful to identify most time consuming
+tasks and bottlenecks. See an example at <a href="https://www.nextflow.io/docs/latest/tracing.html#timeline-report">this link</a>.</p>
+</div>
+<div class="paragraph">
+<p>Finally the <code>-with-dag</code> option enables to rendering of the workflow execution direct acyclic graph
+representation. Note: this feature requires the installation of <a href="http://www.graphviz.org/">Graphviz</a> in your computer.
+See <a href="https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation">here</a> for details.</p>
+</div>
+<div class="paragraph">
+<p>Note: runtime metrics may be incomplete for run short running tasks as in the case of this tutorial.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_more_resources">2.11. More resources</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://docs.nextflow.io">Nextflow documentation</a> - The Nextflow docs home.</p>
+</li>
+<li>
+<p><a href="https://github.com/nextflow-io/patterns">Nextflow patterns</a> - A collection of Nextflow implementation patterns.</p>
+</li>
+<li>
+<p><a href="https://github.com/CRG-CNAG/CalliNGS-NF">CalliNGS-NF</a> - An Variant calling pipeline implementing GATK best practices.</p>
+</li>
+<li>
+<p><a href="http://nf-co.re/">nf-core</a> - A community collection of production ready genomic pipelines.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_run_a_pipeline_from_a_github_repository">3. Run a pipeline from a GitHub repository</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Nextflow allows the execution of a pipeline project directly from a GitHub repository (or similar services eg. BitBucket and GitLab).</p>
+</div>
+<div class="paragraph">
+<p>This simplifies the sharing and the deployment of complex projects and tracking changes in a consistent manner.</p>
+</div>
+<div class="paragraph">
+<p>The following GitHub repository hosts a complete version of the workflow introduced in this tutorial:</p>
+</div>
+<div class="paragraph">
+<p><a href="https://github.com/nextflow-io/rnaseq-nf" class="bare">github.com/nextflow-io/rnaseq-nf</a></p>
+</div>
+<div class="paragraph">
+<p>You can run it by specifying the project name as shown below:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>nextflow run nextflow-io/rnaseq-nf -with-docker</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It automatically downloads it and store in the <code>$HOME/.nextflow</code> folder.</p>
+</div>
+<div class="paragraph">
+<p>Use the command info to show the project information, e.g.:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>nextflow info nextflow-io/rnaseq-nf</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Nextflow allows the execution of a specific revision of your project by using the <code>-r</code> command line option. For Example:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>nextflow run nextflow-io/rnaseq-nf -r dev</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Revision are defined by using Git tags or branches defined in the project repository.</p>
+</div>
+<div class="paragraph">
+<p>This allows a precise control of the changes in your project files and dependencies over time.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_basic_language_structures_and_commands">4. Basic language structures and commands</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Nextflow is a DSL implemented on top of the Groovy programming lang, which in turns is a super-set of the Java programming language. This means that Nextflow can run any Groovy and Java code.</p>
+</div>
+<div class="sect2">
+<h3 id="_printing_values">4.1. Printing values</h3>
+<div class="paragraph">
+<p>To print something is as easy as using one of the <code>print</code> or <code>println</code> methods.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">println("Hello, World!")</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The only difference between the two is that the <code>println</code> method implicitly appends a new line character to the printed string.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+parenthesis for function invocations are optional. Therefore also the following is a valid
+syntax.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">println "Hello, World!"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_comments">4.2. Comments</h3>
+<div class="paragraph">
+<p>Comments use the same syntax as in the C-family programming languages:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">// comment a single config file
+
+/*
+   a comment spanning
+   multiple lines
+ */</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_variables">4.3. Variables</h3>
+<div class="paragraph">
+<p>To define a variable, simply assign a value to it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">x = 1
+println x
+
+x = new java.util.Date()
+println x
+
+x = -3.1499392
+println x
+
+x = false
+println x
+
+x = "Hi"
+println x</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Local variables are defined using the <code>def</code> keyword:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">def x = 'foo'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It should be always used when defining variables local to a function or a closure.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_lists">4.4. Lists</h3>
+<div class="paragraph">
+<p>A List object can be defined by placing the list items in square brackets:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">list = [10,20,30,40]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You can access a given item in the list with square-bracket notation (indexes start at <code>0</code>)
+or using the <code>get</code> method:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">assert list[0] == 10
+assert list[0] == list.get(0)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In order to get the length of the list use the size method:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">assert list.size() == 4</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Lists can also be indexed with negative indexes and reversed ranges.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">list = [0,1,2]
+assert list[-1] == 2
+assert list[-1..0] == list.reverse()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>List objects implements all methods provided by the Java <a href="https://docs.oracle.com/javase/8/docs/api/java/util/List.html">java.util.List</a> interface
+plus the extension methods provided by <a href="http://docs.groovy-lang.org/latest/html/groovy-jdk/java/util/List.html">Groovy API</a>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">assert [1,2,3] &lt;&lt; 1 == [1,2,3,1]
+assert [1,2,3] + [1] == [1,2,3,1]
+assert [1,2,3,1] - [1] == [2,3]
+assert [1,2,3] * 2 == [1,2,3,1,2,3]
+assert [1,[2,3]].flatten() == [1,2,3]
+assert [1,2,3].reverse() == [3,2,1]
+assert [1,2,3].collect{ it+3 } == [4,5,6]
+assert [1,2,3,1].unique().size() == 3
+assert [1,2,3,1].count(1) == 2
+assert [1,2,3,4].min() == 1
+assert [1,2,3,4].max() == 4
+assert [1,2,3,4].sum() == 10
+assert [4,2,1,3].sort() == [1,2,3,4]
+assert [4,2,1,3].find{it%2 == 0} == 4
+assert [4,2,1,3].findAll{it%2 == 0} == [4,2]</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_maps">4.5. Maps</h3>
+<div class="paragraph">
+<p>Maps are like lists that have an arbitrary type of key instead of integer. Therefore, the syntax is very much aligned.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">map = [a:0, b:1, c:2]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Maps can be accessed in a conventional square-bracket syntax or as if the key was a property of the map.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">assert map['a'] == 0        <i class="conum" data-value="1"></i><b>(1)</b>
+assert map.b == 1           <i class="conum" data-value="2"></i><b>(2)</b>
+assert map.get('c') == 2    <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Use of the square brackets.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Use a dot notation.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Use of get method.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To add data or to modify a map, the syntax is similar to adding values to list:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">map['a'] = 'x'           <i class="conum" data-value="1"></i><b>(1)</b>
+map.b = 'y'              <i class="conum" data-value="2"></i><b>(2)</b>
+map.put('c', 'z')        <i class="conum" data-value="3"></i><b>(3)</b>
+assert map == [a:'x', b:'y', c:'z']</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Use of the square brackets.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Use a dot notation.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Use of get method.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Map objects implements all methods provided by the Java <a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html">java.util.Map</a> interface
+plus the extension methods provided by <a href="http://docs.groovy-lang.org/latest/html/groovy-jdk/java/util/Map.html">Groovy API</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_string_interpolation">4.6. String interpolation</h3>
+<div class="paragraph">
+<p>String literals can be defined enclosing them either with single-quoted or double-quotes characters.</p>
+</div>
+<div class="paragraph">
+<p>Double-quoted strings can contain the value of an arbitrary variable by prefixing its name with the $ character, or the value of any expression by using the ${expression} syntax, similar to Bash/shell scripts:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">foxtype = 'quick'
+foxcolor = ['b', 'r', 'o', 'w', 'n']
+println "The $foxtype ${foxcolor.join()} fox"
+
+x = 'Hello'
+println '$x + $y'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This code prints:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">The quick brown fox
+$x + $y</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Note the different use of <code>$</code> and <code>${..}</code> syntax to interpolate value expressions in a string literal.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Finally string literals can also be defined using the <code>/</code> character as delimiter. They are known as
+<strong>slashy</strong> strings and are useful for defining regular expressions and patterns, as there is no need to escape backslashes. As with double quote strings they allow to interpolate variables prefixed with a <code>$</code>
+character.</p>
+</div>
+<div class="paragraph">
+<p>Try the following to see the difference:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">x = /tic\tac\toe/
+y = 'tic\tac\toe'
+
+println x
+println y</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>it prints:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>tic\tac\toe
+tic    ac    oe</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_multi_line_strings">4.7. Multi-line strings</h3>
+<div class="paragraph">
+<p>A block of text that span multiple lines can be defined by delimiting it with triple single or double quotes:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">text = """
+    Hello there James
+    how are you today?
+    """</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Finally multi-line strings can also be defined with slashy string. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">text = /
+    This is a multi-line
+    slashy string!
+    It's cool, isn't it?!
+    /</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Like before, multi-line strings inside double quotes and slash characters support variable interpolation, while single-quoted multi-line strings do not.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_if_statement">4.8. If statement</h3>
+<div class="paragraph">
+<p>The <code>if</code> statement uses the same syntax common other programming lang such Java, C, JavaScript, etc.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">if( &lt; boolean expression &gt; ) {
+    // true branch
+}
+else {
+    // false branch
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>else</code> branch is optional. Also curly brackets are optional when the branch define just a single
+statement.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">x = 1
+if( x &gt; 10 )
+    println 'Hello'</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+<code>null</code>, empty strings and empty collections are evaluated to <code>false</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Therefore a statement like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">list = [1,2,3]
+if( list != null &amp;&amp; list.size() &gt; 0 ) {
+  println list
+}
+else {
+  println 'The list is empty'
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Can be written as:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">if( list )
+    println list
+else
+    println 'The list is empty'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>See the <a href="http://groovy-lang.org/semantics.html#Groovy-Truth">Groovy-Truth</a> for details.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+In some cases can be useful to replace <code>if</code> statement with a ternary expression aka
+conditional expression. For example:
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">println list ? list : 'The list is empty'</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The previous statement can be further simplified using the <a href="http://groovy-lang.org/operators.html#_elvis_operator">Elvis operator</a> as shown below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">println list ?: 'The list is empty'</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_for_statement">4.9. For statement</h3>
+<div class="paragraph">
+<p>The classical <code>for</code> loop syntax is supported as shown here:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">for (int i = 0; i &lt;3; i++) {
+   println("Hello World $i")
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Iteration over list objects is also possible using the syntax below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">list = ['a','b','c']
+
+for( String elem : list ) {
+  println elem
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_functions">4.10. Functions</h3>
+<div class="paragraph">
+<p>It is possible to define a custom function into a script, as shown here:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">int fib(int n) {
+    return n &lt; 2 ? 1 : fib(n-1) + fib(n-2)
+}
+
+assert fib(10)==89</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A function can take multiple arguments separating them with a comma. The <code>return</code>
+keyword can be omitted and the function implicitly returns the value
+of the last evaluated expression. Also explicit types can be omitted (thought not recommended):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">def fact( n ) {
+  n &gt; 1 ? n * fact(n-1) : 1
+}
+
+assert fact(5) == 120</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_closures">4.11. Closures</h3>
+<div class="paragraph">
+<p>Closures are the swiss army knife of Nextflow/Groovy programming. In a nutshell a closure is
+is a block of code that can be passed as an argument to a function, it could also be defined
+an anonymous function.</p>
+</div>
+<div class="paragraph">
+<p>More formally, a closure allows the definition of functions as first class objects.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">square = { it * it }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The curly brackets around the expression <code>it * it</code> tells the script interpreter to treat this expression as code. The <code>it</code> identifier is an implicit variable that represents the value that is passed to the function when it is invoked.</p>
+</div>
+<div class="paragraph">
+<p>Once compiled the function object is assigned to the variable <code>square</code> as any other variable assignments shown previously. To invoke the closure execution use the special method <code>call</code> or just use the round
+parentheses to specify the closure parameter(s). For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">assert square.call(5) == 25
+assert square(9) == 81</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This is not very interesting until we find that we can pass the function <code>square</code> as an argument to other functions or methods.
+Some built-in functions take a function like this as an argument. One example is the <code>collect</code> method on lists:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">x = [ 1, 2, 3, 4 ].collect(square)
+println x</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It prints:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>[ 1, 4, 9, 16 ]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>By default, closures take a single parameter called <code>it</code>, to give it a different name use the
+<code>-&gt;</code> syntax. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">square = { num -&gt; num * num }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It&#8217;s also possible to define closures with multiple, custom-named parameters.</p>
+</div>
+<div class="paragraph">
+<p>For example, the method <code>each()</code> when applied to a map can take a closure with two arguments,
+to which it passes the <em>key-value</em> pair for each entry in the map object. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">printMap = { a, b -&gt;
+    println "$a with value $b"
+}
+
+[ "Yue" : "Wu", "Mark" : "Williams", "Sudha" : "Kumari" ].each(printMap)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It prints:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>Yue with value Wu
+Mark with value Williams
+Sudha with value Kumari</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A closure has two other important features. First, it can access and <em>modify</em> variables in the scope
+where it is defined.</p>
+</div>
+<div class="paragraph">
+<p>Second, a closure can be defined in an <em>anonymous</em> manner, meaning that it is not given a name,
+and is defined in the place where it needs to be used.</p>
+</div>
+<div class="paragraph">
+<p>As an example showing both these features, see the following code fragment:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">result = 0  <i class="conum" data-value="1"></i><b>(1)</b>
+map = ["China": 1 , "India" : 2, "USA" : 3]   <i class="conum" data-value="2"></i><b>(2)</b>
+map.keySet().each { result+= myMap[it] }      <i class="conum" data-value="3"></i><b>(3)</b>
+println result</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Define a global variable.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Define a map object.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Invoke the <code>each</code> method passing closure object which modifies the <code>result</code> variable.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Learn more about closures in the <a href="http://groovy-lang.org/closures.html">Groovy documentation</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_more_resources_2">4.12. More resources</h3>
+<div class="paragraph">
+<p>The complete Groovy language documentation is available at <a href="http://groovy-lang.org/documentation.html#languagespecification">this link</a>.</p>
+</div>
+<div class="paragraph">
+<p>A great resource to master Apache Groovy syntax is <a href="https://www.manning.com/books/groovy-in-action-second-edition">Groovy in Action</a>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_channels">5. Channels</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Channels are a key data structure of Nextflow that allows the implementation
+of reactive-functional oriented computational workflows based on the <a href="https://en.wikipedia.org/wiki/Dataflow_programming">Dataflow</a> programming paradigm.</p>
+</div>
+<div class="paragraph">
+<p>They are used to logically connect tasks each other or to implement functional style data transformations.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./assets/channel-files.png" alt="channel files">
+</div>
+</div>
+<div class="sect2">
+<h3 id="_channel_types">5.1. Channel types</h3>
+<div class="paragraph">
+<p>Nextflow distinguish two different kinds of channels: <strong>queue</strong> channels and <strong>value</strong> channels.</p>
+</div>
+<div class="sect3">
+<h4 id="_queue_channel">5.1.1. Queue channel</h4>
+<div class="paragraph">
+<p>A <em>queue</em> channel is a <em>asynchronous</em> unidirectional <em>FIFO</em> queue which connects two processes or operators.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>What <em>asynchronous</em> means? That operations are non-blocking.</p>
+</li>
+<li>
+<p>What <em>unidirectional</em> means? That data flow from a producer to a consumer.</p>
+</li>
+<li>
+<p>What <em>FIFO</em> means? That the data is guaranteed to be delivered in the same order as it is produced.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>A queue channel is implicitly created by process output definitions or using channel factories methods
+such as <a href="https://www.nextflow.io/docs/latest/channel.html#from">Channel.from</a> or <a href="https://www.nextflow.io/docs/latest/channel.html#frompath">Channel.fromPath</a>.</p>
+</div>
+<div class="paragraph">
+<p>Try the following snippets:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">p = Channel.from(1,2,3)
+println(p)      <i class="conum" data-value="1"></i><b>(1)</b>
+p.println()     <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note the different use of <code>println</code>:</p>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Use the built-in <code>pritnln</code> function to print the <code>p</code> variable.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Apply the <code>println</code> method to the <code>p</code> channel, therefore prints each item emitted by the channels.</td>
+</tr>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_exercise_11">Exercise</h5>
+<div class="paragraph">
+<p>Try to execute this snippet, it will produce an error message.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">p = Channel.from(1,2,3)
+p.println()
+p.println()</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+A queue channel can have one and exactly one producer and one and exactly one consumer.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_value_channels">5.1.2. Value channels</h4>
+<div class="paragraph">
+<p>A <strong>value</strong> channel a.k.a. singleton channel by definition is bound to a single value and it can be read unlimited times without consuming its content.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">p = Channel.value('Hello')
+p.println()
+p.println()
+p.println()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It prints:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>Hello
+Hello
+Hello</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_channel_factories">5.2. Channel factories</h3>
+<div class="sect3">
+<h4 id="_value">5.2.1. value</h4>
+<div class="paragraph">
+<p>The <code>value</code> factory method is used to create a <em>value</em> channel. An optional not <code>null</code> argument
+can be specified to bind the channel to a specific value. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">ch1 = Channel.value()                 <i class="conum" data-value="1"></i><b>(1)</b>
+ch2 = Channel.value( 'Hello there' )  <i class="conum" data-value="2"></i><b>(2)</b>
+ch2 = Channel.value( [1,2,3,4,5] )    <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Creates an <em>empty</em> value channel.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Creates a value channel and binds a string to it.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Creates a value channel and binds a list object to it that will be emitted as a sole emission.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_from">5.2.2. from</h4>
+<div class="paragraph">
+<p>The factory <code>Channel.from</code> allows the creation of a queue channel with the values specified as argument.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">ch = Channel.from( 1, 3, 5, 7 )
+ch.println{ "value: $it" }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The first line in this example creates a variable <code>ch</code> which holds a channel object. This channel emits the values specified as a parameter in the <code>from</code> method. Thus the second line will print the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>value: 1
+value: 3
+value: 5
+value: 7</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_frompath">5.2.3. fromPath</h4>
+<div class="paragraph">
+<p>The <code>fromPath</code> factory method create a queue channel emitting one or more files
+matching the specified glob pattern.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">Channel.fromPath( '/data/big/*.txt' )</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This example creates a channel and emits as many items as there are files with <code>txt</code> extension in the <code>/data/big</code> folder. Each element is a file object implementing the <a href="https://docs.oracle.com/javase/8/docs/api/java/nio/file/Paths.html">Path</a> interface.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Two asterisks, i.e. <code>**</code>, works like <code>*</code> but crosses directory boundaries. This syntax is generally used for matching complete paths. Curly brackets specify a collection of sub-patterns.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 1. Available options</caption>
+<colgroup>
+<col style="width: 15%;">
+<col style="width: 85%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">glob</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When <code>true</code> interprets characters <code>*</code>, <code>?</code>, <code>[]</code> and <code>{}</code> as glob wildcards, otherwise handles them as normal characters (default: <code>true</code>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Type of paths returned, either <code>file</code>, <code>dir</code> or <code>any</code> (default: <code>file</code>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">hidden</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When <code>true</code> includes hidden files in the resulting paths (default: <code>false</code>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">maxDepth</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum number of directory levels to visit (default: <code>no limit</code>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">followLinks</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When <code>true</code> it follows symbolic links during directories tree traversal, otherwise they are managed as files (default: <code>true</code>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">relative</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When <code>true</code> returned paths are relative to the top-most common directory (default: <code>false</code>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">checkIfExists</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When <code>true</code> throws an exception of the specified path do not exist in the file system (default: <code>false</code>)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>Learn more about the blog pattern syntax at <a href="https://docs.oracle.com/javase/tutorial/essential/io/fileOps.html#glob">this link</a>.</p>
+</div>
+<div class="sect4">
+<h5 id="_exercise_12">Exercise</h5>
+<div class="paragraph">
+<p>Use the <code>Channel.fromPath</code> method to create a channel emitting all files with the suffix <code>.fq</code> in the <code>data/ggal/</code> and any subdirectory, then print the file name.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_fromfilepairs">5.2.4. fromFilePairs</h4>
+<div class="paragraph">
+<p>The <code>fromFilePairs</code> method creates a channel emitting the file pairs matching a glob pattern provided by the user. The matching files are emitted as tuples in which the first element is the grouping key of the matching pair and the second element is the list of files (sorted in lexicographical order).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">Channel
+    .fromFilePairs('/my/data/SRR*_{1,2}.fastq')
+    .println()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It will produce an output similar to the following:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>[SRR493366, [/my/data/SRR493366_1.fastq, /my/data/SRR493366_2.fastq]]
+[SRR493367, [/my/data/SRR493367_1.fastq, /my/data/SRR493367_2.fastq]]
+[SRR493368, [/my/data/SRR493368_1.fastq, /my/data/SRR493368_2.fastq]]
+[SRR493369, [/my/data/SRR493369_1.fastq, /my/data/SRR493369_2.fastq]]
+[SRR493370, [/my/data/SRR493370_1.fastq, /my/data/SRR493370_2.fastq]]
+[SRR493371, [/my/data/SRR493371_1.fastq, /my/data/SRR493371_2.fastq]]</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The glob pattern must contain at least a star wildcard character.
+</td>
+</tr>
+</table>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<caption class="title">Table 2. Available options</caption>
+<colgroup>
+<col style="width: 15%;">
+<col style="width: 85%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Type of paths returned, either <code>file</code>, <code>dir</code> or <code>any</code> (default: <code>file</code>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">hidden</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When <code>true</code> includes hidden files in the resulting paths (default: <code>false</code>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">maxDepth</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum number of directory levels to visit (default: <code>no limit</code>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">followLinks</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When <code>true</code> it follows symbolic links during directories tree traversal, otherwise they are managed as files (default: <code>true</code>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">size</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Defines the number of files each emitted item is expected to hold (default: 2). Set to <code>-1</code> for any.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">flat</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When <code>true</code> the matching files are produced as sole elements in the emitted tuples (default: <code>false</code>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">checkIfExists</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">When <code>true</code> throws an exception of the specified path do not exist in the file system (default: <code>false</code>)</p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect4">
+<h5 id="_exercise_13">Exercise</h5>
+<div class="paragraph">
+<p>Use the <code>fromFilePairs</code> method to create a channel emitting all pairs of fastq read in the <code>data/ggal/</code>
+directory and print them.</p>
+</div>
+<div class="paragraph">
+<p>Then use the <code>flat:true</code> option and compare the output with the previous execution.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_operators">6. Operators</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Built-in functions applied to channels</p>
+</li>
+<li>
+<p>Transform channels content</p>
+</li>
+<li>
+<p>Can be used also to filter, fork and combine channels</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_basic_example">6.1. Basic example</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">nums = Channel.from(1,2,3,4)         <i class="conum" data-value="1"></i><b>(1)</b>
+square = nums.map { it -&gt; it * it }  <i class="conum" data-value="2"></i><b>(2)</b>
+square.println()                     <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="./assets/channel-map.png" alt="channel map">
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Create a queue channel emitting four values.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Create a new channels transforming each number in it&#8217;s square.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Print the channel content.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Operators can be chained to implement custom behaviors:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">Channel.from(1,2,3,4)
+        .map { it -&gt; it * it }
+        .println()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Operators can be separated in to five groups:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Filtering operators</p>
+</li>
+<li>
+<p>Transforming operators</p>
+</li>
+<li>
+<p>Splitting operators</p>
+</li>
+<li>
+<p>Combining operators</p>
+</li>
+<li>
+<p>Forking operators</p>
+</li>
+<li>
+<p>Maths operators</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_basic_operators">6.2. Basic operators</h3>
+<div class="sect3">
+<h4 id="_println">6.2.1. println</h4>
+<div class="paragraph">
+<p>The <code>println</code> operator prints the items emitted by a channel to the console standard output appending a
+<em>new line</em> character to each of them. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">Channel
+      .from('foo', 'bar', 'baz', 'qux')
+      .println()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It prints:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>foo
+bar
+baz
+qux</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>An optional <em>closure</em> parameter can be specified to customise how items are printed. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">Channel
+      .from('foo', 'bar', 'baz', 'qux')
+      .println { "- $it" }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It prints:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>- foo
+- bar
+- baz
+- qux</pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<code>println</code> is a terminal operator, i.e. it does not allow the chaining with other operators.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_map">6.2.2. map</h4>
+<div class="paragraph">
+<p>The <code>map</code> operator applies a function of your choosing to every item emitted by a channel, and returns the items so obtained as a new channel. The function applied is called the <em>mapping</em> function and is expressed with a <em>closure</em> as shown in the example below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">Channel
+    .from( 'hello', 'world' )
+    .map { it -&gt; it.reverse() }
+    .println()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A <code>map</code> can associate to each element a generic <em>tuple</em> containing any data as needed.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">Channel
+    .from( 'hello', 'world' )
+    .map { word -&gt; [word, word.size()] }
+    .println { word, len -&gt; "$word contains $len letters" }</code></pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_exercise_14">Exercise</h5>
+<div class="paragraph">
+<p>Use <code>fromPath</code> to create a channel emitting the <em>fastq</em> files matching the pattern <code>data/ggal/*.fq</code>,
+then chain with a map to return a pair containing the file name and the path itself.
+Finally print the resulting channel.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">Channel.fromPath('data/ggal/*.fq')
+        .map { file -&gt; [ file.name, file ] }
+        .println { name, file -&gt; "&gt; file: $name" }</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_into">6.2.3. into</h4>
+<div class="paragraph">
+<p>The <code>into</code> operator connects a source channel to two or more target channels in such a way the values emitted by the source channel are copied to the target channels. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">Channel
+     .from( 'a', 'b', 'c' )
+     .into{ foo; bar }
+
+foo.println{ "Foo emits: " + it }
+bar.println{ "Bar emits: " + it }</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+Note the use in this example of curly brackets and the <code>;</code> as channel names separator. This is needed because the actual parameter of into is a <em>closure</em> which defines the target channels to which the source one is connected.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_mix">6.2.4. mix</h4>
+<div class="paragraph">
+<p>The <code>mix</code> operator combines the items emitted by two (or more) channels into a single channel.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">c1 = Channel.from( 1,2,3 )
+c2 = Channel.from( 'a','b' )
+c3 = Channel.from( 'z' )
+
+c1 .mix(c2,c3).println()</code></pre>
+</div>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>1
+2
+a
+3
+b
+z</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The items in the resulting channel have the same order as in respective original channel,
+however there&#8217;s no guarantee that the element of the second channel are append after the elements
+of the first. Indeed in the above example the element <code>a</code> has been printed before <code>3</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_flatten">6.2.5. flatten</h4>
+<div class="paragraph">
+<p>The <code>flatten</code> operator transforms a channel in such a way that every <em>tuple</em> is flattened so that each single entry is emitted as a sole element by the resulting channel.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">foo = [1,2,3]
+bar = [4, 5, 6]
+
+Channel
+    .from(foo, bar)
+    .flatten()
+    .println()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The above snippet prints:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>1
+2
+3
+4
+5
+6</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_collect">6.2.6. collect</h4>
+<div class="paragraph">
+<p>The <code>collect</code> operator collects all the items emitted by a channel to a list and return the resulting object as a sole emission.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">Channel
+    .from( 1, 2, 3, 4 )
+    .collect()
+    .println()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It prints a single value:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>[1,2,3,4]</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The result of the <code>collect</code> operator is a <strong>value</strong> channel.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_grouptuple">6.2.7. groupTuple</h4>
+<div class="paragraph">
+<p>The <code>groupTuple</code> operator collects tuples (or lists) of values emitted by the source channel grouping together the elements that share the same key. Finally it emits a new tuple object for each distinct key collected.</p>
+</div>
+<div class="paragraph">
+<p>Try the following example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">Channel
+     .from( [1,'A'], [1,'B'], [2,'C'], [3, 'B'], [1,'C'], [2, 'A'], [3, 'D'] )
+     .groupTuple()
+     .println()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It shows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>[1, [A, B, C]]
+[2, [C, A]]
+[3, [B, D]]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This operator is useful to process altogether all elements for which there&#8217;s a common
+property or a grouping key.</p>
+</div>
+<div class="sect4">
+<h5 id="_exercise_15">Exercise</h5>
+<div class="paragraph">
+<p>Use <code>fromPath</code> to create a channel emitting the <em>fastq</em> files matching the pattern <code>data/ggal/*.fq</code>,
+then use a <code>map</code> to associate to each file the name prefix. Finally group together all
+files having the same common prefix.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_join">6.2.8. join</h4>
+<div class="paragraph">
+<p>The <code>join</code> operator creates a channel that joins together the items emitted by two channels for which exits a matching key. The key is defined, by default, as the first element in each item emitted.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">left = Channel.from(['X', 1], ['Y', 2], ['Z', 3], ['P', 7])
+right= Channel.from(['Z', 6], ['Y', 5], ['X', 4])
+left.join(right).println()</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The resulting channel emits:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>[Z, 3, 6]
+[Y, 2, 5]
+[X, 1, 4]</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_subscribe">6.2.9. subscribe</h4>
+<div class="paragraph">
+<p>The <code>subscribe</code> operator permits to execute a user define function each time a new value is emitted by the source channel.</p>
+</div>
+<div class="paragraph">
+<p>The emitted value is passed implicitly to the specified function. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">// define a channel emitting three values
+source = Channel.from ( 'alpha', 'beta', 'delta' )
+
+// subscribe a function to the channel printing the emitted values
+source.subscribe {  println "Got: $it"  }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It prints:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>Got: alpha
+Got: beta
+Got: delta</pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+<code>subscribe</code> is a terminal operator, i.e. it does not allow the chaining with other operators.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_more_resources_3">6.3. More resources</h3>
+<div class="paragraph">
+<p>Check the <a href="https://www.nextflow.io/docs/latest/operator.html">operators documentation</a> on Nextflow web site.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_processes">7. Processes</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>A <em>process</em> is the basic Nextflow computing primitive to execute foreign function i.e. custom
+scripts or tools.</p>
+</div>
+<div class="paragraph">
+<p>The process definition starts with keyword the <code>process</code>, followed by process name and finally the process <code>body</code> delimited by curly brackets. The process body must contain a string which represents the command or, more generally, a script that is executed by it.</p>
+</div>
+<div class="paragraph">
+<p>A basic process looks like the following example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">process sayHello {
+  """
+  echo 'Hello world!'
+  """
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>A process may contain five definition blocks, respectively: directives,
+inputs, outputs, when clause and finally the process script. The syntax is defined as follows:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>process &lt; name &gt; {
+  [ directives ]        <i class="conum" data-value="1"></i><b>(1)</b>
+  input:                <i class="conum" data-value="2"></i><b>(2)</b>
+  &lt; process inputs &gt;
+  output:               <i class="conum" data-value="3"></i><b>(3)</b>
+  &lt; process outputs &gt;
+  when:                 <i class="conum" data-value="4"></i><b>(4)</b>
+  &lt; condition &gt;
+  [script|shell|exec]:  <i class="conum" data-value="5"></i><b>(5)</b>
+  &lt; user script to be executed &gt;
+}</pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Zero, one or more process directives</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Zero, one or more process inputs</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Zero, one or more process outputs</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>An optional boolean conditional to trigger the process execution</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>The command to be executed</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_script">7.1. Script</h3>
+<div class="paragraph">
+<p>The <code>script</code> block is a string statement that defines the command that is executed by the process to carry out its task.</p>
+</div>
+<div class="paragraph">
+<p>A process contains one and only one script block, and it must be the last statement when the process contains input and output declarations.</p>
+</div>
+<div class="paragraph">
+<p>The script block can be a simple string or multi-line string. The latter simplifies the writing of non trivial scripts
+composed by multiple commands spanning over multiple lines. For example::</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">process example {
+    script:
+    """
+    blastp -db /data/blast -query query.fa -outfmt 6 &gt; blast_result
+    cat blast_result | head -n 10 | cut -f 2 &gt; top_hits
+    blastdbcmd -db /data/blast -entry_batch top_hits &gt; sequences
+    """
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>By default the process command is interpreted as a <strong>Bash</strong> script. However any other scripting language can be used just simply starting the script with the corresponding <a href="https://en.wikipedia.org/wiki/Shebang_(Unix)">Shebang</a> declaration. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">process pyStuff {
+  script:
+  """
+  #!/usr/bin/env python
+
+  x = 'Hello'
+  y = 'world!'
+  print "%s - %s" % (x,y)
+  """
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+This allows the compositing in the same workflow script of tasks using different programming languages which may better fit a particular job. However for large chunks of code is suggested to save them
+into separate files and invoke them from the process script.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_script_variables">7.1.1. Script variables</h4>
+<div class="paragraph">
+<p>Process script can be defined dynamically using variable values like in other string.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">params.data = 'World'
+
+process foo {
+  script:
+  """
+  echo Hello $params.data
+  """
+}</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Since Nextflow uses the same Bash syntax for variable substitutions in strings, Bash environment variables need to be escaped using <code>\</code> character.
+</td>
+</tr>
+</table>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">process foo {
+  script:
+  """
+  echo \$PATH | tr : '\\n'
+  """
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This can be tricky when the script uses many Bash variables. A possible alternative
+is to use a script string delimited by single-quote characters</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">process bar {
+  script:
+  '''
+  echo $PATH | tr : '\\n'
+  '''
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>However this won&#8217;t allow any more the usage of Nextflow variables in the command script.</p>
+</div>
+<div class="paragraph">
+<p>Another alternative is to use a <code>shell</code> statement instead of <code>script</code> which uses a different
+syntax for Nextflow variable: <code>!{..}</code>. This allow to use both Nextflow and Bash variables in
+the same script.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">params.data = 'le monde'
+
+process baz {
+  shell:
+  '''
+  X='Bonjour'
+  echo $X !{params.data}
+  '''
+}</code></pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_exercise_16">Exercise</h5>
+<div class="paragraph">
+<p>Write a Nextflow script, putting together the above example, printing either a Nextflow variables and a Bash variable both the <code>script</code> and <code>shell</code> syntax.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_conditional_script">7.1.2. Conditional script</h4>
+<div class="paragraph">
+<p>The process script can also be defined in a complete dynamic manner using a <code>if</code> statement or any other expression evaluating to string value. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">params.aligner = 'kallisto'
+
+process foo {
+  script:
+  if( params.aligner == 'kallisto' )
+    """
+    kallisto --reads /some/data.fastq
+    """
+  else if( params.aligner == 'salmon' )
+    """
+    salmons --reads /some/data.fastq
+    """
+  else
+    throw new IllegalArgumentException("Unknown aligner $params.aligner")
+}</code></pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_exercise_17">Exercise</h5>
+<div class="paragraph">
+<p>Write a custom function that given the aligner name as parameter returns the command
+string to be executed. Then use this function as the process script body.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_inputs">7.2. Inputs</h3>
+<div class="paragraph">
+<p>Nextflow processes are isolated from each other but can communicate between themselves sending values through channels.</p>
+</div>
+<div class="paragraph">
+<p>The input block defines which channels the process is expecting to receive inputs data from. You can only define one input block at a time and it must contain one or more inputs declarations.</p>
+</div>
+<div class="paragraph">
+<p>The input block follows the syntax shown below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">input:
+  &lt;input qualifier&gt; &lt;input name&gt; [from &lt;source channel&gt;]</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_input_values">7.2.1. Input values</h4>
+<div class="paragraph">
+<p>The <code>val</code> qualifier allows you to receive data of any type as input. It can be accessed in the process script by using the specified input name, as shown in the following example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">num = Channel.from( 1, 2, 3 )
+
+process basicExample {
+  input:
+  val x from num
+
+  """
+  echo process job $x
+  """
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the above example the process is executed three times, each time a value is received from the channel num and used to process the script. Thus, it results in an output similar to the one shown below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>process job 3
+process job 1
+process job 2</code></pre>
+</div>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The channel guarantees that items are delivered in the same order as they have been sent - but - since the process is executed in a parallel manner, there is no guarantee that they are processed in the same order as they are received.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_input_files">7.2.2. Input files</h4>
+<div class="paragraph">
+<p>The <code>file</code> qualifier allows the handling of file values in the process execution context. This means that
+Nextflow will stage it in the process execution directory, and it can be access in the script by using the name specified in the input declaration.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">reads = Channel.fromPath( 'data/ggal/*.fq' )
+
+process foo {
+    input:
+    file 'sample.fastq' from reads
+    script:
+    """
+    your_command --reads sample.fastq
+    """
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The input file name can also be defined using a variable reference as shown below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">reads = Channel.fromPath( 'data/ggal/*.fq' )
+
+process foo {
+    input:
+    file sample from reads
+    script:
+    """
+    your_command --reads $sample
+    """
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The same syntax it&#8217;s also able to handle more than one input file in the same execution.
+Only change the channel composition.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">reads = Channel.fromPath( 'data/ggal/*.fq' )
+
+process foo {
+    input:
+    file sample from reads.collect()
+    script:
+    """
+    your_command --reads $sample
+    """
+}</code></pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_exercise_18">Exercise</h5>
+<div class="paragraph">
+<p>Write a script that merge all read files matching the pattern <code>data/ggal/*_1.fq</code> into a single
+file. Then print the first 20 lines.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_combine_input_channels">7.2.3. Combine input channels</h4>
+<div class="paragraph">
+<p>A key feature of processes is the ability to handle inputs from multiple channels. However it&#8217;s
+important to understands how the content of channel and their semantic affect the execution
+of a process.</p>
+</div>
+<div class="paragraph">
+<p>Consider the following example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">process foo {
+  echo true
+  input:
+  val x from Channel.from(1,2,3)
+  val y from Channel.from('a','b','c')
+  script:
+   """
+   echo $x and $y
+   """
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Both channels emit three value, therefore the process is executed three times, each time with a different pair:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>(1, a)</p>
+</li>
+<li>
+<p>(2, b)</p>
+</li>
+<li>
+<p>(3, c)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>What is happening is that the process waits until there&#8217;s a complete input configuration i.e. it receives an input value from all the channels declared as input.</p>
+</div>
+<div class="paragraph">
+<p>When this condition is verified, it consumes the input values coming from the respective channels, and spawns a task execution, then repeat the same logic until one or more channels have no more content.</p>
+</div>
+<div class="paragraph">
+<p>This means channel values are consumed serially one after another and the first empty channel cause the process execution to stop even if there are other values in other channels.</p>
+</div>
+<div class="paragraph">
+<p><strong>What does it happen when not all channels have the same cardinality (i.e. they emit a different number of elements)?</strong></p>
+</div>
+<div class="paragraph">
+<p>For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">process foo {
+  echo true
+  input:
+  val x from Channel.from(1,2)
+  val y from Channel.from('a','b','c','d')
+  script:
+   """
+   echo $x and $y
+   """
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the above example the process is executed only two time, because when a channel has no more data to be processed it stops the process execution.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+Note however that <em>value</em> channel do not affect the process termination.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>To better understand this behavior compare the previous example with the following one:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">process bar {
+  echo true
+  input:
+  val x from Channel.value(1)
+  val y from Channel.from('a','b','c')
+  script:
+   """
+   echo $x and $y
+   """
+}</code></pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_exercise_19">Exercise</h5>
+<div class="paragraph">
+<p>Write a process that is executed for each read file matching the pattern <code>data/ggal/*_1.fa</code> and
+and use the same <code>data/ggal/transcriptome.fa</code> in each execution.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_input_repeaters">7.2.4. Input repeaters</h4>
+<div class="paragraph">
+<p>The <code>each</code> qualifier allows you to repeat the execution of a process for each item in a collection, every time a new data is received. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">sequences = Channel.fromPath('*.fa')
+methods = ['regular', 'expresso', 'psicoffee']
+
+process alignSequences {
+  input:
+  file seq from sequences
+  each mode from methods
+
+  """
+  t_coffee -in $seq -mode $mode
+  """
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the above example every time a file of sequences is received as input by the process, it executes three tasks running a T-coffee alignment with a different value for the <code>mode</code> parameter. This is useful when you need to repeat the same task for a given set of parameters.</p>
+</div>
+<div class="sect4">
+<h5 id="_exercise_20">Exercise</h5>
+<div class="paragraph">
+<p>Extend the previous example so a task is executed for each read file matching the pattern <code>data/ggal/*_1.fa</code> and repeat the same task both with <code>salmon</code> and <code>kallisto</code>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_outputs">7.3. Outputs</h3>
+<div class="paragraph">
+<p>The <em>output</em> declaration block allows to define the channels used by the process to send out the results produced.</p>
+</div>
+<div class="paragraph">
+<p>It can be defined at most one output block and it can contain one or more outputs declarations. The output block follows the syntax shown below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>output:
+  &lt;output qualifier&gt; &lt;output name&gt; [into &lt;target channel&gt;[,channel,..]]</pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_output_values">7.3.1. Output values</h4>
+<div class="paragraph">
+<p>The <code>val</code> qualifier allows to output a <em>value</em> defined in the script context. In a common usage scenario,
+this is a value which has been defined in the <em>input</em> declaration block, as shown in the following example::</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">methods = ['prot','dna', 'rna']
+
+process foo {
+  input:
+  val x from methods
+
+  output:
+  val x into receiver
+
+  """
+  echo $x &gt; file
+  """
+}
+
+receiver.println { "Received: $it" }</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_output_files">7.3.2. Output files</h4>
+<div class="paragraph">
+<p>The <code>file</code> qualifier allows to output one or more files, produced by the process, over the specified channel.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">process randomNum {
+
+    output:
+    file 'result.txt' into numbers
+
+    '''
+    echo $RANDOM &gt; result.txt
+    '''
+}
+
+numbers.println { "Received: " + it.text }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the above example the process <code>randomNum</code> creates a file named <code>result.txt</code> containing a random number.</p>
+</div>
+<div class="paragraph">
+<p>Since a file parameter using the same name is declared in the output block, when the task is completed that
+file is sent over the <code>numbers</code> channel. A downstream <code>process</code> declaring the same channel as <em>input</em> will
+be able to receive it.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_multiple_output_files">7.3.3. Multiple output files</h4>
+<div class="paragraph">
+<p>When an output file name contains a <code>*</code> or <code>?</code> wildcard character it is interpreted as a
+<a href="http://docs.oracle.com/javase/tutorial/essential/io/fileOps.html#glob">glob</a> path matcher.
+This allows to <em>capture</em> multiple files into a list object and output them as a sole emission. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">process splitLetters {
+
+    output:
+    file 'chunk_*' into letters
+
+    '''
+    printf 'Hola' | split -b 1 - chunk_
+    '''
+}
+
+letters
+    .flatMap()
+    .println { "File: ${it.name} =&gt; ${it.text}" }</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>it prints:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>File: chunk_aa =&gt; H
+File: chunk_ab =&gt; o
+File: chunk_ac =&gt; l
+File: chunk_ad =&gt; a</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Some caveats on glob pattern behavior:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Input files are not included in the list of possible matches.</p>
+</li>
+<li>
+<p>Glob pattern matches against both files and directories path.</p>
+</li>
+<li>
+<p>When a two stars pattern <code>**</code> is used to recourse across directories, only file paths are matched
+i.e. directories are not included in the result list.</p>
+</li>
+</ul>
+</div>
+<div class="sect4">
+<h5 id="_exercise_21">Exercise</h5>
+<div class="paragraph">
+<p>Remove the <code>flatMap</code> operator and see out the output change. The documentation
+for the <code>flatMap</code> operator is available at <a href="https://www.nextflow.io/docs/latest/operator.html#flatmap">this link</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_dynamic_output_file_names">7.3.4. Dynamic output file names</h4>
+<div class="paragraph">
+<p>When an output file name needs to be expressed dynamically, it is possible to define it using a dynamic evaluated
+string which references values defined in the input declaration block or in the script global context.
+For example::</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">process align {
+  input:
+  val x from species
+  file seq from sequences
+
+  output:
+  file "${x}.aln" into genomes
+
+  """
+  t_coffee -in $seq &gt; ${x}.aln
+  """
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In the above example, each time the process is executed an alignment file is produced whose name depends
+on the actual value of the <code>x</code> input.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_composite_inputs_and_outputs">7.3.5. Composite inputs and outputs</h4>
+<div class="paragraph">
+<p>So far we have seen how to declare multiple input and output channels, but each channel was handling
+only one value at time. However Nextflow can handle tuple of values.</p>
+</div>
+<div class="paragraph">
+<p>When using channel emitting tuple of values the corresponding input declaration must be declared with a <code>set</code> qualifier followed by definition of each single element in the tuple.</p>
+</div>
+<div class="paragraph">
+<p>In the same manner output channel emitting tuple of values can be declared using the <code>set</code> qualifier
+following by the definition of each tuple element in the tuple.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">reads_ch = Channel.fromFilePairs('data/ggal/*_{1,2}.fq')
+
+process foo {
+  input:
+    set val(sample_id), file(sample_files) from reads_ch
+  output:
+    set val(sample_id), file('sample.bam') into bam_ch
+  script:
+  """
+    your_command_here --reads $sample_id &gt; sample.bam
+  """
+}
+
+bam_ch.println()</code></pre>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_exercise_22">Exercise</h5>
+<div class="paragraph">
+<p>Modify the script of the previous exercise so that the <em>bam</em> file is named as the given <code>sample_id</code>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_when">7.4. When</h3>
+<div class="paragraph">
+<p>The <code>when</code> declaration allows you to define a condition that must be verified in order to execute the process. This can be any expression that evaluates a boolean value.</p>
+</div>
+<div class="paragraph">
+<p>It is useful to enable/disable the process execution depending the state of various inputs and parameters. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">params.dbtype = 'nr'
+params.prot = 'data/prots/*.tfa'
+proteins = Channel.fromPath(params.prot)
+
+process find {
+  input:
+  file fasta from proteins
+  val type from params.dbtype
+
+  when:
+  fasta.name =~ /^BB11.*/ &amp;&amp; type == 'nr'
+
+  script:
+  """
+  blastp -query $fasta -db nr
+  """
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_directives">7.5. Directives</h3>
+<div class="paragraph">
+<p>Directive declarations allow the definition of optional settings that affect the execution of the current process without affecting the <em>semantic</em> of the task itself.</p>
+</div>
+<div class="paragraph">
+<p>They must be entered at the top of the process body, before any other declaration blocks (i.e. <code>input</code>, <code>output</code>, etc).</p>
+</div>
+<div class="paragraph">
+<p>Directives are commonly used to define the amount of computing resources to be used or
+other meta directives like that allows the definition of extra information for configuration or
+logging purpose. For example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">process foo {
+  cpus 2
+  memory 8.GB
+  container 'image/name'
+
+  script:
+  """
+  your_command --this --that
+  """
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The complete list of directives is available <a href="https://www.nextflow.io/docs/latest/process.html#directives">at this link</a>.</p>
+</div>
+<div class="sect4">
+<h5 id="_exercise_23">Exercise</h5>
+<div class="paragraph">
+<p>Modify the script of the previous exercise adding a <a href="https://www.nextflow.io/docs/latest/process.html#tag">tag</a> directive logging the <code>sample_id</code> in the execution output.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
+</body>
+</html>
