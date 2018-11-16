@@ -11,11 +11,11 @@ Check if you have already the following directory:
 
 [source,cmd]
 ----
-tree $HOME/nf-hack18/tutorial
+tree $HOME/nf-hack18/hands-on
 ----
 
 ----
-$HOME/nf-hack18/tutorial
+$HOME/nf-hack18/hands-on
 ├── bin
 │   └── gghist.R
 ├── data
@@ -47,7 +47,7 @@ If you don't have the above directory, clone it with the following command:
 [source,cmd]
 ----
 git clone https://github.com/nextflow-io/nf-hack18/
-cd nf-hack18/tutorial
+cd nf-hack18/hands-on
 ----
 
 ----
