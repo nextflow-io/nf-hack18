@@ -11,12 +11,12 @@
 | 11.30 - 13.00 | Nextflow for beginners (2)|
 | 13.00 - 14.15 | Lunch                     |
 | 14.15 - 14.50 | [Cedric Notreme, Paolo Di Tommaso: The state of Nextflow](https://github.com/nextflow-io/nf-hack18/blob/master/abstracts.md#the-state-of-nextflow) | 
-| 14.50 - 15.20 | [Luke Goodsell: Industrial Personalised Immunotherapy Pipeline Development with Nextflow](https://github.com/nextflow-io/nf-hack18/blob/master/abstracts.md#industrial-personalised-immunotherapy-pipeline-development-with-nextflow) | 
-| 15.20 - 15.50 | [Philip Ewels: NF-Core, A community effort to collect curated Nextflow pipelines](https://github.com/nextflow-io/nf-hack18/blob/master/abstracts.md#nf-core-a-community-effort-to-collect-curated-nextflow-pipelines) |
-| 15.50 - 16.00 | [Alessia Visconti: Nextflow on the go](https://github.com/nextflow-io/nf-hack18/blob/master/abstracts.md#nextflow-on-the-go) |
+| 14.50 - 15.20 | [Luke Goodsell: Industrial Personalised Immunotherapy Pipeline Development with Nextflow](https://www.nextflow.io/nfhack/2018/luke-goodsell.html) | 
+| 15.20 - 15.50 | [Philip Ewels: NF-Core, A community effort to collect curated Nextflow pipelines](https://www.nextflow.io/nfhack/2018/phil.html) |
+| 15.50 - 16.00 | [Alessia Visconti: Nextflow on the go](https://www.nextflow.io/nfhack/2018/alessia.html) |
 | 16.00 - 16.10 | [Julia Soellner: Exploiting orthology and de novo transcriptome assembly to refine target sequence information](https://github.com/nextflow-io/nf-hack18/blob/master/abstracts.md#exploiting-orthology-and-de-novo-transcriptome-assembly-to-refine-target-sequence-information) | 
-| 16.10 - 16.20 | [Tiffany Delhomme: IARC nextflow pipelines: towards efficient cancer genomics analyses](https://github.com/nextflow-io/nf-hack18/blob/master/abstracts.md#iarc-nextflow-pipelines-towards-efficient-cancer-genomics-analyses) | 
-| 16.20 - 16.30 | [Diogo Nuno Silva: FlowCraft, A modular, extensible and flexible tool to build, monitor and report nextflow pipelines](https://github.com/nextflow-io/nf-hack18/blob/master/abstracts.md#flowcraft-a-modular-extensible-and-flexible-tool-to-build-monitor-and-report-nextflow-pipelines) | 
+| 16.10 - 16.20 | [Tiffany Delhomme: IARC nextflow pipelines: towards efficient cancer genomics analyses](https://www.nextflow.io/nfhack/2018/tiffany.html) | 
+| 16.20 - 16.30 | [Diogo Nuno Silva: FlowCraft, A modular, extensible and flexible tool to build, monitor and report nextflow pipelines](https://www.nextflow.io/nfhack/2018/diogo.html) | 
 | 16.30 - 17.00 | Coffee break              |
 | 17.00 - 18.30 | Hackathon                 |
 | 20.00 - open  | Social dinner             |
@@ -25,10 +25,10 @@
 
 |<img width=150/>|                            |
 |---------------|---------------------------|
-| 9.30 - 10.00  | [Vladimir Kiselev: Nextflow at the heart of UK genomics](https://github.com/nextflow-io/nf-hack18/blob/master/abstracts.md#nextflow-at-the-heart-of-uk-genomics) |
-| 10.00 - 10.30 | [Simone Coughlan: Using Nextflow to create scalable and reproducible pipelines at Genomics Medicine Ireland](https://github.com/nextflow-io/nf-hack18/blob/master/abstracts.md#using-nextflow-to-create-scalable-and-reproducible-pipelines-at-genomics-medicine-ireland) | 
-| 10.30 - 10.40 | [Roger Olivella: QCloud, A web-based quality control system for mass spectrometry-based proteomics laboratories](https://github.com/nextflow-io/nf-hack18/blob/master/abstracts.md#qcloud-a-web-based-quality-control-system-for-mass-spectrometry-based-proteomics-laboratories) |
-| 10.40 - 10.50 | [Francesco Strozzi: Agile pipelines with Nextflow: how to go from development to production without pain](https://github.com/nextflow-io/nf-hack18/blob/master/abstracts.md#agile-pipelines-with-nextflow-how-to-go-from-development-to-production-without-pain) |
+| 9.30 - 10.00  | [Vladimir Kiselev: Nextflow at the heart of UK genomics](https://www.nextflow.io/nfhack/2018/vladimir-kiselev.html) |
+| 10.00 - 10.30 | [Simone Coughlan: Using Nextflow to create scalable and reproducible pipelines at Genomics Medicine Ireland](https://www.nextflow.io/nfhack/2018/simone.html) | 
+| 10.30 - 10.40 | [Roger Olivella: QCloud, A web-based quality control system for mass spectrometry-based proteomics laboratories](https://www.nextflow.io/nfhack/2018/roger.html) |
+| 10.40 - 10.50 | [Francesco Strozzi: Agile pipelines with Nextflow: how to go from development to production without pain](https://www.nextflow.io/nfhack/2018/francesco.html) |
 | 10.50 - 11.00 | Evan Floden: Nextflow support and enhancements |
 | 11.00 - 11.30 | Coffee break              |
 | 11.30 - 13.00 | Hackathon                 |
