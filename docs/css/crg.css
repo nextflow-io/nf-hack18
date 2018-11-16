@@ -694,6 +694,22 @@ pre > code.language-cmd { display: block; }
 @media screen { pre > code.language-cmd { color: #e6e6e6; background-color: #333333; } }
 @media print { pre > code.language-cmd { background-color: #E2E2E2; } }
 
+pre.CodeRay.highlight {
+  padding: 0;
+}
+
+pre.CodeRay.highlight > code {
+  display: block;
+  padding: 1em;
+}
+
+pre.CodeRay.highlight > code[data-lang=cmd] { 
+  display: block;
+  border-radius: 4px;
+  color: #e6e6e6;
+  background-color: #333333;
+}
+
 dt, th.tableblock, td.content, div.footnote { text-rendering: optimizeLegibility; }
 
 h1, h2, p, p.lead, .paragraph.lead > p, #preamble > .sectionbody > .paragraph:first-of-type p, td.content, span.alt { letter-spacing: -0.01em; }
