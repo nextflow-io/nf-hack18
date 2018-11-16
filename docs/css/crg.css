@@ -710,6 +710,16 @@ pre.CodeRay.highlight > code[data-lang=cmd] {
   background-color: #333333;
 }
 
+pre.CodeRay.highlight > code[data-lang=cmd] > table.CodeRay td.code pre { 
+  color: #e6e6e6;
+  background-color: #333333;
+}
+
+pre.CodeRay.highlight > code[data-lang=cmd] > table.CodeRay td.line-numbers pre { 
+  color: #e6e6e6;
+  background-color: #333333;
+}
+
 dt, th.tableblock, td.content, div.footnote { text-rendering: optimizeLegibility; }
 
 h1, h2, p, p.lead, .paragraph.lead > p, #preamble > .sectionbody > .paragraph:first-of-type p, td.content, span.alt { letter-spacing: -0.01em; }
