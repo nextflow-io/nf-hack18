@@ -24,23 +24,35 @@ It only needs two easy steps:
 
 1. Download the executable package by using the command shown below. 
 It will create the `nextflow` main executable file in the current directory.
-
-    curl https://get.nextflow.io | bash
-
++
+[source,cmd]
+----
+curl https://get.nextflow.io | bash
+----
 
 2. Finally, move the `nextflow` file to a directory accessible by
 your `$PATH` variable (this is only required to avoid remembering and
 typing the full path to `nextflow` each time you need to run it).
-
-    mv nextflow ~/bin
++
+[source,cmd]
+----
+mv nextflow ~/bin
+----
 
 3. Check everything is fine running the command: 
++
+[source,cmd]
+----
+nextflow info
+----
 
-    nextflow info
-
-TIP: Alternatively Nextflow can also be installed using Conda package managed 
+[TIP]
+====
+Alternatively Nextflow can also be installed using Conda package managed 
 using the command:
-
-    conda install nextflow
-
-
+    
+[source,cmd]
+----
+conda install nextflow
+----
+====

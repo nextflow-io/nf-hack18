@@ -19,11 +19,17 @@ include::../course/script1.nf[]
 Run it by using the 
 following command: 
 
-  nextflow run script1.nf
+[source,cmd]
+----
+nextflow run script1.nf
+----
 
 Try to specify a different input parameter, for example: 
 
-  nextflow run script1.nf --reads this/and/that
+[source,cmd]
+----
+nextflow run script1.nf --reads this/and/that
+----
 
 === Exercise 
 
@@ -69,21 +75,30 @@ that it is used in the command script to reference that file in the Salmon comma
 
 Try to run it by using the command: 
 
-  nextflow run script2.nf
+[source,cmd]
+----
+nextflow run script2.nf
+----
 
 The execution will fail because Salmon is not installed in your environment. 
 
 Add the command line option `-with-docker` to launch the execution through a Docker container
 as shown below: 
 
-  nextflow run script2.nf -with-docker
+[source,cmd]
+----
+nextflow run script2.nf -with-docker
+----
 
 This time it works because it uses the Docker container `nextflow/rnaseq-nf` defined in the 
 `nextflow.config` file. 
 
 In order to avoid to add the option `-with-docker` add the following line in the `nextflow.config` file: 
 
-  docker.enabled = true
+[source,config]
+----
+docker.enabled = true
+----
 
 === Exercise
 
@@ -115,11 +130,17 @@ This step shows how to match *read* files into pairs, so they can be mapped by *
 
 Edit the script `script3.nf` and add the following statement as the last line: 
 
-  read_pairs_ch.println()
+[source,nextflow]
+----
+read_pairs_ch.println()
+----
 
 Save it and execute it with the following command: 
 
-  nextflow run script3.nf
+[source,cmd]
+----
+nextflow run script3.nf
+----
 
 It will print an output similar to the one shown below:
 
@@ -131,7 +152,10 @@ representing the actual files.
 
 Try it again specifying different read files by using a glob pattern:
 
-  nextflow run script3.nf --reads 'data/ggal/*_{1,2}.fq'
+[source,cmd]
+----
+nextflow run script3.nf --reads 'data/ggal/*_{1,2}.fq'
+----
 
 IMPORTANT: File paths including one or more wildcards ie. `*`, `?`, etc. MUST be 
 wrapped in single-quoted characters to avoid Bash expands the glob.
@@ -169,7 +193,10 @@ by the `read_pairs_ch` channel.
 
 Execute it by using the following command: 
 
-  nextflow run script4.nf -resume
+[source,cmd]
+----
+nextflow run script4.nf -resume
+----
 
 You will see the execution of the `quantification` process. 
 
@@ -177,7 +204,10 @@ The `-resume` option cause the execution of any step that has been already proce
 
 Try to execute it with more read files as shown below: 
 
-  nextflow run script4.nf -resume --reads 'data/ggal/*_{1,2}.fq'
+[source,cmd]
+----
+nextflow run script4.nf -resume --reads 'data/ggal/*_{1,2}.fq'
+----
   
 You will notice that the `quantification` process is executed more than 
 one time. 
@@ -213,13 +243,17 @@ read pairs which are provided to the `quantification` steps
 
 You can run it by using the following command: 
 
-  nextflow run script5.nf -resume 
+
+[source,cmd]
+----
+nextflow run script5.nf -resume 
+----
 
 The script will report the following error message: 
 
-```
+----
 Channel `read_pairs_ch` has been used twice as an input by process `fastqc` and process `quantification`
-```
+----
 
 === Exercise
 
@@ -244,7 +278,10 @@ a final report by using the http://multiqc.info/[MultiQC] tool.
 
 Execute the script with the following command: 
 
-  nextflow run script6.nf -resume --reads 'data/ggal/*_{1,2}.fq' 
+[source,cmd]
+----
+nextflow run script6.nf -resume --reads 'data/ggal/*_{1,2}.fq' 
+----
 
 It creates the final report in the `results` folder in the current work directory. 
 
@@ -276,7 +313,10 @@ when the script completes.
 
 Try to run it by using the following command: 
 
-  nextflow run script7.nf -resume --reads 'data/ggal/*_{1,2}.fq'
+[source,cmd]
+----
+nextflow run script7.nf -resume --reads 'data/ggal/*_{1,2}.fq'
+----
 
 == Bonus! 
 
@@ -300,7 +340,10 @@ mail {
 
 Then execute again the previous example specifying your email address: 
 
-    nextflow run script7.nf -resume --reads 'data/ggal/*_{1,2}.fq' -N <your email>
+[source,cmd]
+----
+nextflow run script7.nf -resume --reads 'data/ggal/*_{1,2}.fq' -N <your email>
+----
     
 
 See https://www.nextflow.io/docs/latest/mail.html#mail-configuration[mail documentation] 
@@ -330,7 +373,7 @@ fastqc -o fastqc_${sample_id}_logs -f fastq -q ${reads}
 
 Save it, give execute permission and move it in the `bin` directory as shown below: 
 
-[source,bash,linenums]
+[source,cmd,linenums]
 ----
 chmod +x fastqc.sh
 mkdir -p bin 
@@ -342,15 +385,18 @@ the following code:
 
 [source,nextflow,linenums]
 ----
-  script:
-  """
-  fastqc.sh "$sample_id" "$reads"
-  """
+script:
+"""
+fastqc.sh "$sample_id" "$reads"
+"""
 ----
 
 Run it as before: 
 
-  nextflow run script7.nf -resume --reads 'data/ggal/*_{1,2}.fq'
+[source,cmd]
+----
+nextflow run script7.nf -resume --reads 'data/ggal/*_{1,2}.fq'
+----
 
 === Recap 
 
@@ -368,7 +414,10 @@ and execution information.
 Run the https://github.com/nextflow-io/rnaseq-nf[rnaseq-nf] pipeline
 previously introduced as shown below: 
 
-  nextflow run rnaseq-nf -with-docker -with-report -with-trace -with-timeline -with-dag dag.png
+[source,cmd]
+----
+nextflow run rnaseq-nf -with-docker -with-report -with-trace -with-timeline -with-dag dag.png
+----
 
 The `-with-report` option enables the creation of the workflow execution report. Open 
 the file `report.html` with a browser to see the report created with the above command. 
