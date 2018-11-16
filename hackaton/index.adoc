@@ -7,7 +7,7 @@
 :toclevels: 3
 :imagesdir: ./assets/
 ifeval::["{backend}" == "html5"]
-:stylesdir: ./css
+:stylesdir: ../docs/css/
 :stylesheet: crg.css
 :linkcss:
 :source-highlighter: highlight.js
@@ -31,13 +31,8 @@ It is supposed to be a tutorial project for newbie Nextflow users who are intere
 :sectnums:
 
 :leveloffset: +1
-
-include::datasets.adoc[]
-
-include::workflow.adoc[]
-
-include::setup.adoc[]
-
-include::implementation.adoc[]
-
+include::01_datasets.adoc[]
+include::02_workflow.adoc[]
+include::03_setup.adoc[]
+include::04_implementation.adoc[]
 :leveloffset: -1

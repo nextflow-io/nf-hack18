@@ -3,7 +3,7 @@
 :linkattrs:
 
 We are going to use Amazon Elastic Compute Cloud (Amazon EC2) virtual machines to work on the practical part 
-of the workshop. Each attendee will run a `t2.xlarge` instance based on a prepared image with the following 
+of the workshop. Each attendee will run a AWS EC2 instance based on a prepared image with the following 
 tools already installed:
 
 - Docker
@@ -17,7 +17,7 @@ Connect to the AWS cloud login instance by using the following command:
 
 [source, cmd]
 ----
-ssh login@34.252.30.18
+ssh login@52.30.76.104
 ----
 
 Then launch a new AWS instance running the command shown below and follow
@@ -25,14 +25,14 @@ the instructions on screen:
 
 [source, cmd]
 ----
-curl -L https://goo.gl/1C3abb | bash 
+ec2-launch.sh
 ----
 
 ----
-~~ N E X T F L O W  '1 7  -  W O R K S H O P ~~
+~~ N E X T F L O W  '1 8  -  W O R K S H O P ~~
 
 Launching EC2 virtual machine
-- type  : t2.xlarge
+- type  : t2.large
 - ami   : ami-61d0ec07
 - disk  : 8 GB
 - subnet: subnet-05222a43
