@@ -5,7 +5,7 @@
 During the training and the hackathon activities we'll use a AWS cloud environment. Follow the following steps to launch your Ec2 instance.
 
 1. SSH in the login instance with this command: 
-
++
 [source,cmd]
 ----
 ssh -o StrictHostKeyChecking=no \
@@ -14,14 +14,14 @@ ssh -o StrictHostKeyChecking=no \
 ----
 
 2. Launch your AWS instance with this command: 
-
++
 [source,cmd]
 ----
 ec2-launch.sh
 ----
 
 3. When it completes, copy the printed SSH command, _exit_ from the login node (or open a new terminal window) and SSH to the new instance: 
-
++
 [source,cmd]
 ----
 exit
@@ -29,7 +29,7 @@ ssh me@<host-name-printed-in-your-screen>
 ----
 
 4. Clone the following GitHub repository: 
-
++
 [source,cmd]
 ----
 git clone https://github.com/nextflow-io/nf-hack18
