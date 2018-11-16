@@ -5,8 +5,8 @@
 :nofooter:
 :icons: font
 :toclevels: 3
-:imagesdir: ./assets/
 ifeval::["{backend}" == "html5"]
+:imagesdir: ./assets/
 :stylesdir: ../docs/css/
 :stylesheet: crg.css
 :linkcss:
@@ -16,7 +16,7 @@ ifeval::["{backend}" == "html5"]
 :linkattrs:
 endif::[]
 ifeval::["{backend}" == "pdf"]
-:imagesdir: ./docs/assets/
+:imagesdir: ../docs/assets/
 endif::[]
 ifdef::draft[]
 
