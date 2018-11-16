@@ -4,10 +4,11 @@
 <meta charset="UTF-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.6.2">
+<meta name="generator" content="Asciidoctor 1.5.7.1">
 <title>Nextflow Workshop 2018</title>
 <link rel="stylesheet" href="./css/crg.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./css/coderay-asciidoctor.css">
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
@@ -289,11 +290,19 @@ using the command:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">params.reads = "$baseDir/data/ggal/*_{1,2}.fq"
-params.transcriptome = "$baseDir/data/ggal/transcriptome.fa"
-params.multiqc = "$baseDir/multiqc"
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+</pre></td>
+  <td class="code"><pre>params.reads = &quot;$baseDir/data/ggal/*_{1,2}.fq&quot;
+params.transcriptome = &quot;$baseDir/data/ggal/transcriptome.fa&quot;
+params.multiqc = &quot;$baseDir/multiqc&quot;
 
-println "reads: $params.reads"</code></pre>
+println &quot;reads: $params.reads&quot;</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -377,21 +386,62 @@ and finally the command <a href="https://www.nextflow.io/docs/latest/process.htm
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">/*
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+</pre></td>
+  <td class="code"><pre>/*
  * pipeline input parameters
  */
-params.reads = "$baseDir/data/ggal/*_{1,2}.fq"
-params.transcriptome = "$baseDir/data/ggal/transcriptome.fa"
-params.multiqc = "$baseDir/multiqc"
-params.outdir = "results"
+params.reads = &quot;$baseDir/data/ggal/*_{1,2}.fq&quot;
+params.transcriptome = &quot;$baseDir/data/ggal/transcriptome.fa&quot;
+params.multiqc = &quot;$baseDir/multiqc&quot;
+params.outdir = &quot;results&quot;
 
-println """\
+println &quot;&quot;&quot;\
          R N A S E Q - N F   P I P E L I N E
          ===================================
          transcriptome: ${params.transcriptome}
          reads        : ${params.reads}
          outdir       : ${params.outdir}
-         """
+         &quot;&quot;&quot;
          .stripIndent()
 
 /*
@@ -412,10 +462,12 @@ process index {
     file 'index' into index_ch
 
     script:
-    """
+    &quot;&quot;&quot;
     salmon index --threads $task.cpus -t $transcriptome -i index
-    """
-}</code></pre>
+    &quot;&quot;&quot;
+}
+</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -691,7 +743,7 @@ read pairs which are provided to the <code>quantification</code> steps</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>Channel `read_pairs_ch` has been used twice as an input by process `fastqc` and process `quantification`</code></pre>
+<pre class="CodeRay highlight"><code>Channel `read_pairs_ch` has been used twice as an input by process `fastqc` and process `quantification`</code></pre>
 </div>
 </div>
 <div class="sect3">
@@ -802,16 +854,29 @@ file. For the sake of this tutorial add the following setting in your <code>next
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-config hljs" data-lang="config">mail {
+<pre class="CodeRay highlight"><code data-lang="config"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td>
+  <td class="code"><pre>mail {
   from = 'info@nextflow.io'
   smtp.host = 'email-smtp.eu-west-1.amazonaws.com'
   smtp.port = 587
-  smtp.user = "AKIAIDY3I32PYKDTFK6A"
-  smtp.password = "Aj/Y2fo0s7uo1vs+Ffb+JTLVBw2p5Hk9FRMLvQx5U/+E"
+  smtp.user = &quot;AKIAIDY3I32PYKDTFK6A&quot;
+  smtp.password = &quot;Aj/Y2fo0s7uo1vs+Ffb+JTLVBw2p5Hk9FRMLvQx5U/+E&quot;
   smtp.auth = true
   smtp.starttls.enable = true
   smtp.starttls.required = true
-}</code></pre>
+}</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -840,7 +905,18 @@ to the pipeline execution <code>PATH</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">#!/bin/bash
+<pre class="CodeRay highlight"><code data-lang="bash"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td>
+  <td class="code"><pre>#!/bin/bash
 set -e
 set -u
 
@@ -848,7 +924,8 @@ sample_id=${1}
 reads=${2}
 
 mkdir fastqc_${sample_id}_logs
-fastqc -o fastqc_${sample_id}_logs -f fastq -q ${reads}</code></pre>
+fastqc -o fastqc_${sample_id}_logs -f fastq -q ${reads}</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -856,9 +933,15 @@ fastqc -o fastqc_${sample_id}_logs -f fastq -q ${reads}</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">chmod +x fastqc.sh
+<pre class="CodeRay highlight"><code data-lang="bash"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+</pre></td>
+  <td class="code"><pre>chmod +x fastqc.sh
 mkdir -p bin
-mv fastqc.sh bin</code></pre>
+mv fastqc.sh bin</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -867,10 +950,17 @@ the following code:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">  script:
-  """
-  fastqc.sh "$sample_id" "$reads"
-  """</code></pre>
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+</pre></td>
+  <td class="code"><pre>  script:
+  &quot;&quot;&quot;
+  fastqc.sh &quot;$sample_id&quot; &quot;$reads&quot;
+  &quot;&quot;&quot;</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1019,7 +1109,11 @@ See <a href="https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation"
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">println("Hello, World!")</code></pre>
+<pre class="CodeRay highlight"><code data-lang="groovy"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+</pre></td>
+  <td class="code"><pre>println(<span class="string"><span class="delimiter">&quot;</span><span class="content">Hello, World!</span><span class="delimiter">&quot;</span></span>)</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1040,7 +1134,11 @@ syntax.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">println "Hello, World!"</code></pre>
+<pre class="CodeRay highlight"><code data-lang="groovy"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+</pre></td>
+  <td class="code"><pre>println <span class="string"><span class="delimiter">&quot;</span><span class="content">Hello, World!</span><span class="delimiter">&quot;</span></span></pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 </div>
@@ -1051,12 +1149,21 @@ syntax.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">// comment a single config file
+<pre class="CodeRay highlight"><code data-lang="groovy"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+</pre></td>
+  <td class="code"><pre><span class="comment">// comment a single config file</span>
 
-/*
+<span class="comment">/*
    a comment spanning
    multiple lines
- */</code></pre>
+ */</span></pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 </div>
@@ -1067,20 +1174,37 @@ syntax.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">x = 1
+<pre class="CodeRay highlight"><code data-lang="groovy"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td>
+  <td class="code"><pre>x = <span class="integer">1</span>
 println x
 
-x = new java.util.Date()
+x = <span class="keyword">new</span> java.util.Date()
 println x
 
-x = -3.1499392
+x = -<span class="float">3.1499392</span>
 println x
 
-x = false
+x = <span class="predefined-constant">false</span>
 println x
 
-x = "Hi"
-println x</code></pre>
+x = <span class="string"><span class="delimiter">&quot;</span><span class="content">Hi</span><span class="delimiter">&quot;</span></span>
+println x</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1088,7 +1212,11 @@ println x</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">def x = 'foo'</code></pre>
+<pre class="CodeRay highlight"><code data-lang="groovy"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+</pre></td>
+  <td class="code"><pre><span class="keyword">def</span> x = <span class="string"><span class="delimiter">'</span><span class="content">foo</span><span class="delimiter">'</span></span></pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1102,7 +1230,11 @@ println x</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">list = [10,20,30,40]</code></pre>
+<pre class="CodeRay highlight"><code data-lang="groovy"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+</pre></td>
+  <td class="code"><pre>list = [<span class="integer">10</span>,<span class="integer">20</span>,<span class="integer">30</span>,<span class="integer">40</span>]</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1111,8 +1243,13 @@ or using the <code>get</code> method:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">assert list[0] == 10
-assert list[0] == list.get(0)</code></pre>
+<pre class="CodeRay highlight"><code data-lang="groovy"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+</pre></td>
+  <td class="code"><pre><span class="keyword">assert</span> list[<span class="integer">0</span>] == <span class="integer">10</span>
+<span class="keyword">assert</span> list[<span class="integer">0</span>] == list.get(<span class="integer">0</span>)</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1120,7 +1257,11 @@ assert list[0] == list.get(0)</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">assert list.size() == 4</code></pre>
+<pre class="CodeRay highlight"><code data-lang="groovy"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+</pre></td>
+  <td class="code"><pre><span class="keyword">assert</span> list.size() == <span class="integer">4</span></pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1128,9 +1269,15 @@ assert list[0] == list.get(0)</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">list = [0,1,2]
-assert list[-1] == 2
-assert list[-1..0] == list.reverse()</code></pre>
+<pre class="CodeRay highlight"><code data-lang="groovy"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+</pre></td>
+  <td class="code"><pre>list = [<span class="integer">0</span>,<span class="integer">1</span>,<span class="integer">2</span>]
+<span class="keyword">assert</span> list[-<span class="integer">1</span>] == <span class="integer">2</span>
+<span class="keyword">assert</span> list[-<span class="integer">1</span>..<span class="integer">0</span>] == list.reverse()</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1139,21 +1286,39 @@ plus the extension methods provided by <a href="http://docs.groovy-lang.org/late
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">assert [1,2,3] &lt;&lt; 1 == [1,2,3,1]
-assert [1,2,3] + [1] == [1,2,3,1]
-assert [1,2,3,1] - [1] == [2,3]
-assert [1,2,3] * 2 == [1,2,3,1,2,3]
-assert [1,[2,3]].flatten() == [1,2,3]
-assert [1,2,3].reverse() == [3,2,1]
-assert [1,2,3].collect{ it+3 } == [4,5,6]
-assert [1,2,3,1].unique().size() == 3
-assert [1,2,3,1].count(1) == 2
-assert [1,2,3,4].min() == 1
-assert [1,2,3,4].max() == 4
-assert [1,2,3,4].sum() == 10
-assert [4,2,1,3].sort() == [1,2,3,4]
-assert [4,2,1,3].find{it%2 == 0} == 4
-assert [4,2,1,3].findAll{it%2 == 0} == [4,2]</code></pre>
+<pre class="CodeRay highlight"><code data-lang="groovy"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td>
+  <td class="code"><pre><span class="keyword">assert</span> [<span class="integer">1</span>,<span class="integer">2</span>,<span class="integer">3</span>] &lt;&lt; <span class="integer">1</span> == [<span class="integer">1</span>,<span class="integer">2</span>,<span class="integer">3</span>,<span class="integer">1</span>]
+<span class="keyword">assert</span> [<span class="integer">1</span>,<span class="integer">2</span>,<span class="integer">3</span>] + [<span class="integer">1</span>] == [<span class="integer">1</span>,<span class="integer">2</span>,<span class="integer">3</span>,<span class="integer">1</span>]
+<span class="keyword">assert</span> [<span class="integer">1</span>,<span class="integer">2</span>,<span class="integer">3</span>,<span class="integer">1</span>] - [<span class="integer">1</span>] == [<span class="integer">2</span>,<span class="integer">3</span>]
+<span class="keyword">assert</span> [<span class="integer">1</span>,<span class="integer">2</span>,<span class="integer">3</span>] * <span class="integer">2</span> == [<span class="integer">1</span>,<span class="integer">2</span>,<span class="integer">3</span>,<span class="integer">1</span>,<span class="integer">2</span>,<span class="integer">3</span>]
+<span class="keyword">assert</span> [<span class="integer">1</span>,[<span class="integer">2</span>,<span class="integer">3</span>]].flatten() == [<span class="integer">1</span>,<span class="integer">2</span>,<span class="integer">3</span>]
+<span class="keyword">assert</span> [<span class="integer">1</span>,<span class="integer">2</span>,<span class="integer">3</span>].reverse() == [<span class="integer">3</span>,<span class="integer">2</span>,<span class="integer">1</span>]
+<span class="keyword">assert</span> [<span class="integer">1</span>,<span class="integer">2</span>,<span class="integer">3</span>].collect{ <span class="local-variable">it</span>+<span class="integer">3</span> } == [<span class="integer">4</span>,<span class="integer">5</span>,<span class="integer">6</span>]
+<span class="keyword">assert</span> [<span class="integer">1</span>,<span class="integer">2</span>,<span class="integer">3</span>,<span class="integer">1</span>].unique().size() == <span class="integer">3</span>
+<span class="keyword">assert</span> [<span class="integer">1</span>,<span class="integer">2</span>,<span class="integer">3</span>,<span class="integer">1</span>].count(<span class="integer">1</span>) == <span class="integer">2</span>
+<span class="keyword">assert</span> [<span class="integer">1</span>,<span class="integer">2</span>,<span class="integer">3</span>,<span class="integer">4</span>].min() == <span class="integer">1</span>
+<span class="keyword">assert</span> [<span class="integer">1</span>,<span class="integer">2</span>,<span class="integer">3</span>,<span class="integer">4</span>].max() == <span class="integer">4</span>
+<span class="keyword">assert</span> [<span class="integer">1</span>,<span class="integer">2</span>,<span class="integer">3</span>,<span class="integer">4</span>].sum() == <span class="integer">10</span>
+<span class="keyword">assert</span> [<span class="integer">4</span>,<span class="integer">2</span>,<span class="integer">1</span>,<span class="integer">3</span>].sort() == [<span class="integer">1</span>,<span class="integer">2</span>,<span class="integer">3</span>,<span class="integer">4</span>]
+<span class="keyword">assert</span> [<span class="integer">4</span>,<span class="integer">2</span>,<span class="integer">1</span>,<span class="integer">3</span>].find{<span class="local-variable">it</span>%<span class="integer">2</span> == <span class="integer">0</span>} == <span class="integer">4</span>
+<span class="keyword">assert</span> [<span class="integer">4</span>,<span class="integer">2</span>,<span class="integer">1</span>,<span class="integer">3</span>].findAll{<span class="local-variable">it</span>%<span class="integer">2</span> == <span class="integer">0</span>} == [<span class="integer">4</span>,<span class="integer">2</span>]</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 </div>
@@ -1164,7 +1329,11 @@ assert [4,2,1,3].findAll{it%2 == 0} == [4,2]</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">map = [a:0, b:1, c:2]</code></pre>
+<pre class="CodeRay highlight"><code data-lang="groovy"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+</pre></td>
+  <td class="code"><pre>map = [<span class="key">a</span>:<span class="integer">0</span>, <span class="key">b</span>:<span class="integer">1</span>, <span class="key">c</span>:<span class="integer">2</span>]</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1172,9 +1341,15 @@ assert [4,2,1,3].findAll{it%2 == 0} == [4,2]</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">assert map['a'] == 0        <i class="conum" data-value="1"></i><b>(1)</b>
-assert map.b == 1           <i class="conum" data-value="2"></i><b>(2)</b>
-assert map.get('c') == 2    <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+<pre class="CodeRay highlight"><code data-lang="groovy"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+</pre></td>
+  <td class="code"><pre><span class="keyword">assert</span> map[<span class="string"><span class="delimiter">'</span><span class="content">a</span><span class="delimiter">'</span></span>] == <span class="integer">0</span>        <i class="conum" data-value="1"></i><b>(1)</b>
+<span class="keyword">assert</span> map.b == <span class="integer">1</span>           <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="keyword">assert</span> map.get(<span class="string"><span class="delimiter">'</span><span class="content">c</span><span class="delimiter">'</span></span>) == <span class="integer">2</span>    <i class="conum" data-value="3"></i><b>(3)</b></pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -1198,10 +1373,17 @@ assert map.get('c') == 2    <i class="conum" data-value="3"></i><b>(3)</b></code
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">map['a'] = 'x'           <i class="conum" data-value="1"></i><b>(1)</b>
-map.b = 'y'              <i class="conum" data-value="2"></i><b>(2)</b>
-map.put('c', 'z')        <i class="conum" data-value="3"></i><b>(3)</b>
-assert map == [a:'x', b:'y', c:'z']</code></pre>
+<pre class="CodeRay highlight"><code data-lang="groovy"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+</pre></td>
+  <td class="code"><pre>map[<span class="string"><span class="delimiter">'</span><span class="content">a</span><span class="delimiter">'</span></span>] = <span class="string"><span class="delimiter">'</span><span class="content">x</span><span class="delimiter">'</span></span>           <i class="conum" data-value="1"></i><b>(1)</b>
+map.b = <span class="string"><span class="delimiter">'</span><span class="content">y</span><span class="delimiter">'</span></span>              <i class="conum" data-value="2"></i><b>(2)</b>
+map.put(<span class="string"><span class="delimiter">'</span><span class="content">c</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">z</span><span class="delimiter">'</span></span>)        <i class="conum" data-value="3"></i><b>(3)</b>
+<span class="keyword">assert</span> map == [<span class="key">a</span>:<span class="string"><span class="delimiter">'</span><span class="content">x</span><span class="delimiter">'</span></span>, <span class="key">b</span>:<span class="string"><span class="delimiter">'</span><span class="content">y</span><span class="delimiter">'</span></span>, <span class="key">c</span>:<span class="string"><span class="delimiter">'</span><span class="content">z</span><span class="delimiter">'</span></span>]</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -1235,12 +1417,21 @@ plus the extension methods provided by <a href="http://docs.groovy-lang.org/late
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">foxtype = 'quick'
-foxcolor = ['b', 'r', 'o', 'w', 'n']
-println "The $foxtype ${foxcolor.join()} fox"
+<pre class="CodeRay highlight"><code data-lang="groovy"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+</pre></td>
+  <td class="code"><pre>foxtype = <span class="string"><span class="delimiter">'</span><span class="content">quick</span><span class="delimiter">'</span></span>
+foxcolor = [<span class="string"><span class="delimiter">'</span><span class="content">b</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">r</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">o</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">w</span><span class="delimiter">'</span></span>, <span class="string"><span class="delimiter">'</span><span class="content">n</span><span class="delimiter">'</span></span>]
+println <span class="string"><span class="delimiter">&quot;</span><span class="content">The </span><span class="inline"><span class="inline-delimiter">$</span>foxtype</span><span class="content"> </span><span class="inline"><span class="inline-delimiter">${</span>foxcolor.join()<span class="inline-delimiter">}</span></span><span class="content"> fox</span><span class="delimiter">&quot;</span></span>
 
-x = 'Hello'
-println '$x + $y'</code></pre>
+x = <span class="string"><span class="delimiter">'</span><span class="content">Hello</span><span class="delimiter">'</span></span>
+println <span class="string"><span class="delimiter">'</span><span class="content">$x + $y</span><span class="delimiter">'</span></span></pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1248,8 +1439,13 @@ println '$x + $y'</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">The quick brown fox
-$x + $y</code></pre>
+<pre class="CodeRay highlight"><code data-lang="groovy"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+</pre></td>
+  <td class="code"><pre>The quick brown fox
+<span class="error">$</span>x + <span class="error">$</span>y</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -1274,11 +1470,19 @@ character.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">x = /tic\tac\toe/
-y = 'tic\tac\toe'
+<pre class="CodeRay highlight"><code data-lang="groovy"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+</pre></td>
+  <td class="code"><pre>x = <span class="regexp"><span class="delimiter">/</span><span class="content">tic</span><span class="char">\t</span><span class="content">ac</span><span class="char">\t</span><span class="content">oe</span><span class="delimiter">/</span></span>
+y = <span class="string"><span class="delimiter">'</span><span class="content">tic\tac\toe</span><span class="delimiter">'</span></span>
 
 println x
-println y</code></pre>
+println y</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1286,7 +1490,7 @@ println y</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>tic\tac\toe
+<pre class="CodeRay highlight"><code>tic\tac\toe
 tic    ac    oe</code></pre>
 </div>
 </div>
@@ -1298,10 +1502,17 @@ tic    ac    oe</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">text = """
+<pre class="CodeRay highlight"><code data-lang="groovy"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+</pre></td>
+  <td class="code"><pre>text = <span class="string"><span class="delimiter">&quot;&quot;&quot;</span><span class="content">
     Hello there James
     how are you today?
-    """</code></pre>
+    </span><span class="delimiter">&quot;&quot;&quot;</span></span></pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1309,11 +1520,19 @@ tic    ac    oe</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">text = /
-    This is a multi-line
+<pre class="CodeRay highlight"><code data-lang="groovy"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+</pre></td>
+  <td class="code"><pre>text = <span class="regexp"><span class="delimiter">/</span></span><span class="error">
+</span>    This is a multi-line
     slashy string!
-    It's cool, isn't it?!
-    /</code></pre>
+    It<span class="string"><span class="delimiter">'</span><span class="content">s cool, isn</span><span class="delimiter">'</span></span>t <span class="local-variable">it</span>?!
+    <span class="regexp"><span class="delimiter">/</span></span></pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -1336,12 +1555,21 @@ Like before, multi-line strings inside double quotes and slash characters suppor
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">if( &lt; boolean expression &gt; ) {
-    // true branch
+<pre class="CodeRay highlight"><code data-lang="groovy"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+</pre></td>
+  <td class="code"><pre><span class="keyword">if</span>( &lt; <span class="type">boolean</span> expression &gt; ) {
+    <span class="comment">// true branch</span>
 }
-else {
-    // false branch
-}</code></pre>
+<span class="keyword">else</span> {
+    <span class="comment">// false branch</span>
+}</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1350,9 +1578,15 @@ statement.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">x = 1
-if( x &gt; 10 )
-    println 'Hello'</code></pre>
+<pre class="CodeRay highlight"><code data-lang="groovy"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+</pre></td>
+  <td class="code"><pre>x = <span class="integer">1</span>
+<span class="keyword">if</span>( x &gt; <span class="integer">10</span> )
+    println <span class="string"><span class="delimiter">'</span><span class="content">Hello</span><span class="delimiter">'</span></span></pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -1372,13 +1606,23 @@ if( x &gt; 10 )
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">list = [1,2,3]
-if( list != null &amp;&amp; list.size() &gt; 0 ) {
+<pre class="CodeRay highlight"><code data-lang="groovy"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td>
+  <td class="code"><pre>list = [<span class="integer">1</span>,<span class="integer">2</span>,<span class="integer">3</span>]
+<span class="keyword">if</span>( list != <span class="predefined-constant">null</span> &amp;&amp; list.size() &gt; <span class="integer">0</span> ) {
   println list
 }
-else {
-  println 'The list is empty'
-}</code></pre>
+<span class="keyword">else</span> {
+  println <span class="string"><span class="delimiter">'</span><span class="content">The list is empty</span><span class="delimiter">'</span></span>
+}</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1386,10 +1630,17 @@ else {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">if( list )
+<pre class="CodeRay highlight"><code data-lang="groovy"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+</pre></td>
+  <td class="code"><pre><span class="keyword">if</span>( list )
     println list
-else
-    println 'The list is empty'</code></pre>
+<span class="keyword">else</span>
+    println <span class="string"><span class="delimiter">'</span><span class="content">The list is empty</span><span class="delimiter">'</span></span></pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1410,7 +1661,11 @@ conditional expression. For example:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">println list ? list : 'The list is empty'</code></pre>
+<pre class="CodeRay highlight"><code data-lang="groovy"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+</pre></td>
+  <td class="code"><pre>println list ? list : <span class="string"><span class="delimiter">'</span><span class="content">The list is empty</span><span class="delimiter">'</span></span></pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1418,7 +1673,11 @@ conditional expression. For example:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">println list ?: 'The list is empty'</code></pre>
+<pre class="CodeRay highlight"><code data-lang="groovy"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+</pre></td>
+  <td class="code"><pre>println list ?: <span class="string"><span class="delimiter">'</span><span class="content">The list is empty</span><span class="delimiter">'</span></span></pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 </div>
@@ -1429,9 +1688,15 @@ conditional expression. For example:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">for (int i = 0; i &lt;3; i++) {
-   println("Hello World $i")
-}</code></pre>
+<pre class="CodeRay highlight"><code data-lang="groovy"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+</pre></td>
+  <td class="code"><pre><span class="keyword">for</span> (<span class="type">int</span> i = <span class="integer">0</span>; i &lt;<span class="integer">3</span>; i++) {
+   println(<span class="string"><span class="delimiter">&quot;</span><span class="content">Hello World </span><span class="inline"><span class="inline-delimiter">$</span>i</span><span class="delimiter">&quot;</span></span>)
+}</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1439,11 +1704,19 @@ conditional expression. For example:
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">list = ['a','b','c']
+<pre class="CodeRay highlight"><code data-lang="groovy"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+</pre></td>
+  <td class="code"><pre>list = [<span class="string"><span class="delimiter">'</span><span class="content">a</span><span class="delimiter">'</span></span>,<span class="string"><span class="delimiter">'</span><span class="content">b</span><span class="delimiter">'</span></span>,<span class="string"><span class="delimiter">'</span><span class="content">c</span><span class="delimiter">'</span></span>]
 
-for( String elem : list ) {
+<span class="keyword">for</span>( <span class="predefined-type">String</span> elem : list ) {
   println elem
-}</code></pre>
+}</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 </div>
@@ -1454,11 +1727,19 @@ for( String elem : list ) {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">int fib(int n) {
-    return n &lt; 2 ? 1 : fib(n-1) + fib(n-2)
+<pre class="CodeRay highlight"><code data-lang="groovy"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+</pre></td>
+  <td class="code"><pre><span class="type">int</span> fib(<span class="type">int</span> n) {
+    <span class="keyword">return</span> n &lt; <span class="integer">2</span> ? <span class="integer">1</span> : fib(n-<span class="integer">1</span>) + fib(n-<span class="integer">2</span>)
 }
 
-assert fib(10)==89</code></pre>
+<span class="keyword">assert</span> fib(<span class="integer">10</span>)==<span class="integer">89</span></pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1468,11 +1749,19 @@ of the last evaluated expression. Also explicit types can be omitted (thought no
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">def fact( n ) {
-  n &gt; 1 ? n * fact(n-1) : 1
+<pre class="CodeRay highlight"><code data-lang="groovy"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+</pre></td>
+  <td class="code"><pre><span class="keyword">def</span> <span class="function">fact</span>( n ) {
+  n &gt; <span class="integer">1</span> ? n * fact(n-<span class="integer">1</span>) : <span class="integer">1</span>
 }
 
-assert fact(5) == 120</code></pre>
+<span class="keyword">assert</span> fact(<span class="integer">5</span>) == <span class="integer">120</span></pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 </div>
@@ -1488,7 +1777,11 @@ an anonymous function.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">square = { it * it }</code></pre>
+<pre class="CodeRay highlight"><code data-lang="groovy"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+</pre></td>
+  <td class="code"><pre>square = { <span class="local-variable">it</span> * <span class="local-variable">it</span> }</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1500,8 +1793,13 @@ parentheses to specify the closure parameter(s). For example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">assert square.call(5) == 25
-assert square(9) == 81</code></pre>
+<pre class="CodeRay highlight"><code data-lang="groovy"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+</pre></td>
+  <td class="code"><pre><span class="keyword">assert</span> square.call(<span class="integer">5</span>) == <span class="integer">25</span>
+<span class="keyword">assert</span> square(<span class="integer">9</span>) == <span class="integer">81</span></pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1510,8 +1808,13 @@ Some built-in functions take a function like this as an argument. One example is
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">x = [ 1, 2, 3, 4 ].collect(square)
-println x</code></pre>
+<pre class="CodeRay highlight"><code data-lang="groovy"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+</pre></td>
+  <td class="code"><pre>x = [ <span class="integer">1</span>, <span class="integer">2</span>, <span class="integer">3</span>, <span class="integer">4</span> ].collect(square)
+println x</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1519,7 +1822,7 @@ println x</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>[ 1, 4, 9, 16 ]</code></pre>
+<pre class="CodeRay highlight"><code>[ 1, 4, 9, 16 ]</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1528,7 +1831,11 @@ println x</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">square = { num -&gt; num * num }</code></pre>
+<pre class="CodeRay highlight"><code data-lang="groovy"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+</pre></td>
+  <td class="code"><pre>square = { num -&gt; num * num }</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1540,11 +1847,19 @@ to which it passes the <em>key-value</em> pair for each entry in the map object.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">printMap = { a, b -&gt;
-    println "$a with value $b"
+<pre class="CodeRay highlight"><code data-lang="groovy"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+</pre></td>
+  <td class="code"><pre>printMap = { a, b -&gt;
+    println <span class="string"><span class="delimiter">&quot;</span><span class="inline"><span class="inline-delimiter">$</span>a</span><span class="content"> with value </span><span class="inline"><span class="inline-delimiter">$</span>b</span><span class="delimiter">&quot;</span></span>
 }
 
-[ "Yue" : "Wu", "Mark" : "Williams", "Sudha" : "Kumari" ].each(printMap)</code></pre>
+[ <span class="string"><span class="delimiter">&quot;</span><span class="content">Yue</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">Wu</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Mark</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">Williams</span><span class="delimiter">&quot;</span></span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">Sudha</span><span class="delimiter">&quot;</span></span> : <span class="string"><span class="delimiter">&quot;</span><span class="content">Kumari</span><span class="delimiter">&quot;</span></span> ].each(printMap)</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1552,7 +1867,7 @@ to which it passes the <em>key-value</em> pair for each entry in the map object.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>Yue with value Wu
+<pre class="CodeRay highlight"><code>Yue with value Wu
 Mark with value Williams
 Sudha with value Kumari</code></pre>
 </div>
@@ -1570,10 +1885,17 @@ and is defined in the place where it needs to be used.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">result = 0  <i class="conum" data-value="1"></i><b>(1)</b>
-map = ["China": 1 , "India" : 2, "USA" : 3]   <i class="conum" data-value="2"></i><b>(2)</b>
-map.keySet().each { result+= myMap[it] }      <i class="conum" data-value="3"></i><b>(3)</b>
-println result</code></pre>
+<pre class="CodeRay highlight"><code data-lang="groovy"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+</pre></td>
+  <td class="code"><pre>result = <span class="integer">0</span>  <i class="conum" data-value="1"></i><b>(1)</b>
+map = [<span class="string"><span class="delimiter">&quot;</span><span class="content">China</span><span class="delimiter">&quot;</span></span>: <span class="integer">1</span> , <span class="string"><span class="delimiter">&quot;</span><span class="content">India</span><span class="delimiter">&quot;</span></span> : <span class="integer">2</span>, <span class="string"><span class="delimiter">&quot;</span><span class="content">USA</span><span class="delimiter">&quot;</span></span> : <span class="integer">3</span>]   <i class="conum" data-value="2"></i><b>(2)</b>
+map.keySet().each { result+= myMap[<span class="local-variable">it</span>] }      <i class="conum" data-value="3"></i><b>(3)</b>
+println result</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -1654,9 +1976,15 @@ such as <a href="https://www.nextflow.io/docs/latest/channel.html#from">Channel.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">p = Channel.from(1,2,3)
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+</pre></td>
+  <td class="code"><pre>p = Channel.from(1,2,3)
 println(p)      <i class="conum" data-value="1"></i><b>(1)</b>
-p.println()     <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+p.println()     <i class="conum" data-value="2"></i><b>(2)</b></pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1681,9 +2009,15 @@ p.println()     <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">p = Channel.from(1,2,3)
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+</pre></td>
+  <td class="code"><pre>p = Channel.from(1,2,3)
 p.println()
-p.println()</code></pre>
+p.println()</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="admonitionblock important">
@@ -1707,10 +2041,17 @@ A queue channel can have one and exactly one producer and one and exactly one co
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">p = Channel.value('Hello')
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+</pre></td>
+  <td class="code"><pre>p = Channel.value('Hello')
 p.println()
 p.println()
-p.println()</code></pre>
+p.println()</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1718,7 +2059,7 @@ p.println()</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>Hello
+<pre class="CodeRay highlight"><code>Hello
 Hello
 Hello</code></pre>
 </div>
@@ -1735,9 +2076,15 @@ can be specified to bind the channel to a specific value. For example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">ch1 = Channel.value()                 <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+</pre></td>
+  <td class="code"><pre>ch1 = Channel.value()                 <i class="conum" data-value="1"></i><b>(1)</b>
 ch2 = Channel.value( 'Hello there' )  <i class="conum" data-value="2"></i><b>(2)</b>
-ch2 = Channel.value( [1,2,3,4,5] )    <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+ch2 = Channel.value( [1,2,3,4,5] )    <i class="conum" data-value="3"></i><b>(3)</b></pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -1764,8 +2111,13 @@ ch2 = Channel.value( [1,2,3,4,5] )    <i class="conum" data-value="3"></i><b>(3)
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">ch = Channel.from( 1, 3, 5, 7 )
-ch.println{ "value: $it" }</code></pre>
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+</pre></td>
+  <td class="code"><pre>ch = Channel.from( 1, 3, 5, 7 )
+ch.println{ &quot;value: $it&quot; }</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1788,7 +2140,11 @@ matching the specified glob pattern.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">Channel.fromPath( '/data/big/*.txt' )</code></pre>
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+</pre></td>
+  <td class="code"><pre>Channel.fromPath( '/data/big/*.txt' )</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1806,7 +2162,7 @@ Two asterisks, i.e. <code>**</code>, works like <code>*</code> but crosses direc
 </tr>
 </table>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1. Available options</caption>
 <colgroup>
 <col style="width: 15%;">
@@ -1866,9 +2222,15 @@ Two asterisks, i.e. <code>**</code>, works like <code>*</code> but crosses direc
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">Channel
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+</pre></td>
+  <td class="code"><pre>Channel
     .fromFilePairs('/my/data/SRR*_{1,2}.fastq')
-    .println()</code></pre>
+    .println()</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1876,7 +2238,7 @@ Two asterisks, i.e. <code>**</code>, works like <code>*</code> but crosses direc
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>[SRR493366, [/my/data/SRR493366_1.fastq, /my/data/SRR493366_2.fastq]]
+<pre class="CodeRay highlight"><code>[SRR493366, [/my/data/SRR493366_1.fastq, /my/data/SRR493366_2.fastq]]
 [SRR493367, [/my/data/SRR493367_1.fastq, /my/data/SRR493367_2.fastq]]
 [SRR493368, [/my/data/SRR493368_1.fastq, /my/data/SRR493368_2.fastq]]
 [SRR493369, [/my/data/SRR493369_1.fastq, /my/data/SRR493369_2.fastq]]
@@ -1896,7 +2258,7 @@ The glob pattern must contain at least a star wildcard character.
 </tr>
 </table>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 2. Available options</caption>
 <colgroup>
 <col style="width: 15%;">
@@ -1973,9 +2335,15 @@ directory and print them.</p>
 <h3 id="_basic_example">6.1. Basic example</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">nums = Channel.from(1,2,3,4)         <i class="conum" data-value="1"></i><b>(1)</b>
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+</pre></td>
+  <td class="code"><pre>nums = Channel.from(1,2,3,4)         <i class="conum" data-value="1"></i><b>(1)</b>
 square = nums.map { it -&gt; it * it }  <i class="conum" data-value="2"></i><b>(2)</b>
-square.println()                     <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
+square.println()                     <i class="conum" data-value="3"></i><b>(3)</b></pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="imageblock">
@@ -2004,9 +2372,15 @@ square.println()                     <i class="conum" data-value="3"></i><b>(3)<
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">Channel.from(1,2,3,4)
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+</pre></td>
+  <td class="code"><pre>Channel.from(1,2,3,4)
         .map { it -&gt; it * it }
-        .println()</code></pre>
+        .println()</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2045,9 +2419,15 @@ square.println()                     <i class="conum" data-value="3"></i><b>(3)<
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">Channel
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+</pre></td>
+  <td class="code"><pre>Channel
       .from('foo', 'bar', 'baz', 'qux')
-      .println()</code></pre>
+      .println()</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2055,7 +2435,7 @@ square.println()                     <i class="conum" data-value="3"></i><b>(3)<
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>foo
+<pre class="CodeRay highlight"><code>foo
 bar
 baz
 qux</code></pre>
@@ -2066,9 +2446,15 @@ qux</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">Channel
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+</pre></td>
+  <td class="code"><pre>Channel
       .from('foo', 'bar', 'baz', 'qux')
-      .println { "- $it" }</code></pre>
+      .println { &quot;- $it&quot; }</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2102,10 +2488,17 @@ qux</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">Channel
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+</pre></td>
+  <td class="code"><pre>Channel
     .from( 'hello', 'world' )
     .map { it -&gt; it.reverse() }
-    .println()</code></pre>
+    .println()</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2113,10 +2506,17 @@ qux</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">Channel
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+</pre></td>
+  <td class="code"><pre>Channel
     .from( 'hello', 'world' )
     .map { word -&gt; [word, word.size()] }
-    .println { word, len -&gt; "$word contains $len letters" }</code></pre>
+    .println { word, len -&gt; &quot;$word contains $len letters&quot; }</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="sect4">
@@ -2128,9 +2528,15 @@ Finally print the resulting channel.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">Channel.fromPath('data/ggal/*.fq')
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+</pre></td>
+  <td class="code"><pre>Channel.fromPath('data/ggal/*.fq')
         .map { file -&gt; [ file.name, file ] }
-        .println { name, file -&gt; "&gt; file: $name" }</code></pre>
+        .println { name, file -&gt; &quot;&gt; file: $name&quot; }</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 </div>
@@ -2142,12 +2548,21 @@ Finally print the resulting channel.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">Channel
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+</pre></td>
+  <td class="code"><pre>Channel
      .from( 'a', 'b', 'c' )
      .into{ foo; bar }
 
-foo.println{ "Foo emits: " + it }
-bar.println{ "Bar emits: " + it }</code></pre>
+foo.println{ &quot;Foo emits: &quot; + it }
+bar.println{ &quot;Bar emits: &quot; + it }</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -2170,16 +2585,24 @@ Note the use in this example of curly brackets and the <code>;</code> as channel
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">c1 = Channel.from( 1,2,3 )
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+</pre></td>
+  <td class="code"><pre>c1 = Channel.from( 1,2,3 )
 c2 = Channel.from( 'a','b' )
 c3 = Channel.from( 'z' )
 
-c1 .mix(c2,c3).println()</code></pre>
+c1 .mix(c2,c3).println()</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>1
+<pre class="CodeRay highlight"><code>1
 2
 a
 3
@@ -2209,13 +2632,23 @@ of the first. Indeed in the above example the element <code>a</code> has been pr
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">foo = [1,2,3]
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+</pre></td>
+  <td class="code"><pre>foo = [1,2,3]
 bar = [4, 5, 6]
 
 Channel
     .from(foo, bar)
     .flatten()
-    .println()</code></pre>
+    .println()</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2223,7 +2656,7 @@ Channel
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>1
+<pre class="CodeRay highlight"><code>1
 2
 3
 4
@@ -2239,10 +2672,17 @@ Channel
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">Channel
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+</pre></td>
+  <td class="code"><pre>Channel
     .from( 1, 2, 3, 4 )
     .collect()
-    .println()</code></pre>
+    .println()</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2250,7 +2690,7 @@ Channel
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>[1,2,3,4]</code></pre>
+<pre class="CodeRay highlight"><code>[1,2,3,4]</code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -2276,10 +2716,17 @@ The result of the <code>collect</code> operator is a <strong>value</strong> chan
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">Channel
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+</pre></td>
+  <td class="code"><pre>Channel
      .from( [1,'A'], [1,'B'], [2,'C'], [3, 'B'], [1,'C'], [2, 'A'], [3, 'D'] )
      .groupTuple()
-     .println()</code></pre>
+     .println()</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2287,7 +2734,7 @@ The result of the <code>collect</code> operator is a <strong>value</strong> chan
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>[1, [A, B, C]]
+<pre class="CodeRay highlight"><code>[1, [A, B, C]]
 [2, [C, A]]
 [3, [B, D]]</code></pre>
 </div>
@@ -2312,9 +2759,15 @@ files having the same common prefix.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">left = Channel.from(['X', 1], ['Y', 2], ['Z', 3], ['P', 7])
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+</pre></td>
+  <td class="code"><pre>left = Channel.from(['X', 1], ['Y', 2], ['Z', 3], ['P', 7])
 right= Channel.from(['Z', 6], ['Y', 5], ['X', 4])
-left.join(right).println()</code></pre>
+left.join(right).println()</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2322,7 +2775,7 @@ left.join(right).println()</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>[Z, 3, 6]
+<pre class="CodeRay highlight"><code>[Z, 3, 6]
 [Y, 2, 5]
 [X, 1, 4]</code></pre>
 </div>
@@ -2338,11 +2791,19 @@ left.join(right).println()</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">// define a channel emitting three values
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+</pre></td>
+  <td class="code"><pre>// define a channel emitting three values
 source = Channel.from ( 'alpha', 'beta', 'delta' )
 
 // subscribe a function to the channel printing the emitted values
-source.subscribe {  println "Got: $it"  }</code></pre>
+source.subscribe {  println &quot;Got: $it&quot;  }</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2392,11 +2853,19 @@ scripts or tools.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">process sayHello {
-  """
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+</pre></td>
+  <td class="code"><pre>process sayHello {
+  &quot;&quot;&quot;
   echo 'Hello world!'
-  """
-}</code></pre>
+  &quot;&quot;&quot;
+}</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2456,14 +2925,25 @@ composed by multiple commands spanning over multiple lines. For example::</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">process example {
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td>
+  <td class="code"><pre>process example {
     script:
-    """
+    &quot;&quot;&quot;
     blastp -db /data/blast -query query.fa -outfmt 6 &gt; blast_result
     cat blast_result | head -n 10 | cut -f 2 &gt; top_hits
     blastdbcmd -db /data/blast -entry_batch top_hits &gt; sequences
-    """
-}</code></pre>
+    &quot;&quot;&quot;
+}</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2471,16 +2951,29 @@ composed by multiple commands spanning over multiple lines. For example::</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">process pyStuff {
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td>
+  <td class="code"><pre>process pyStuff {
   script:
-  """
+  &quot;&quot;&quot;
   #!/usr/bin/env python
 
   x = 'Hello'
   y = 'world!'
-  print "%s - %s" % (x,y)
-  """
-}</code></pre>
+  print &quot;%s - %s&quot; % (x,y)
+  &quot;&quot;&quot;
+}</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -2503,14 +2996,25 @@ into separate files and invoke them from the process script.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">params.data = 'World'
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+</pre></td>
+  <td class="code"><pre>params.data = 'World'
 
 process foo {
   script:
-  """
+  &quot;&quot;&quot;
   echo Hello $params.data
-  """
-}</code></pre>
+  &quot;&quot;&quot;
+}</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="admonitionblock important">
@@ -2527,12 +3031,21 @@ Since Nextflow uses the same Bash syntax for variable substitutions in strings, 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">process foo {
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+</pre></td>
+  <td class="code"><pre>process foo {
   script:
-  """
+  &quot;&quot;&quot;
   echo \$PATH | tr : '\\n'
-  """
-}</code></pre>
+  &quot;&quot;&quot;
+}</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2541,12 +3054,21 @@ is to use a script string delimited by single-quote characters</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">process bar {
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+</pre></td>
+  <td class="code"><pre>process bar {
   script:
   '''
   echo $PATH | tr : '\\n'
   '''
-}</code></pre>
+}</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2559,7 +3081,18 @@ the same script.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">params.data = 'le monde'
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td>
+  <td class="code"><pre>params.data = 'le monde'
 
 process baz {
   shell:
@@ -2567,7 +3100,8 @@ process baz {
   X='Bonjour'
   echo $X !{params.data}
   '''
-}</code></pre>
+}</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="sect4">
@@ -2584,21 +3118,39 @@ process baz {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">params.aligner = 'kallisto'
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td>
+  <td class="code"><pre>params.aligner = 'kallisto'
 
 process foo {
   script:
   if( params.aligner == 'kallisto' )
-    """
+    &quot;&quot;&quot;
     kallisto --reads /some/data.fastq
-    """
+    &quot;&quot;&quot;
   else if( params.aligner == 'salmon' )
-    """
+    &quot;&quot;&quot;
     salmons --reads /some/data.fastq
-    """
+    &quot;&quot;&quot;
   else
-    throw new IllegalArgumentException("Unknown aligner $params.aligner")
-}</code></pre>
+    throw new IllegalArgumentException(&quot;Unknown aligner $params.aligner&quot;)
+}</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="sect4">
@@ -2623,7 +3175,7 @@ string to be executed. Then use this function as the process script body.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">input:
+<pre class="CodeRay highlight"><code data-lang="nextflow">input:
   &lt;input qualifier&gt; &lt;input name&gt; [from &lt;source channel&gt;]</code></pre>
 </div>
 </div>
@@ -2634,16 +3186,29 @@ string to be executed. Then use this function as the process script body.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">num = Channel.from( 1, 2, 3 )
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td>
+  <td class="code"><pre>num = Channel.from( 1, 2, 3 )
 
 process basicExample {
   input:
   val x from num
 
-  """
+  &quot;&quot;&quot;
   echo process job $x
-  """
-}</code></pre>
+  &quot;&quot;&quot;
+}</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2651,7 +3216,7 @@ process basicExample {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code>process job 3
+<pre class="CodeRay highlight"><code>process job 3
 process job 1
 process job 2</code></pre>
 </div>
@@ -2677,16 +3242,29 @@ Nextflow will stage it in the process execution directory, and it can be access 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">reads = Channel.fromPath( 'data/ggal/*.fq' )
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td>
+  <td class="code"><pre>reads = Channel.fromPath( 'data/ggal/*.fq' )
 
 process foo {
     input:
     file 'sample.fastq' from reads
     script:
-    """
+    &quot;&quot;&quot;
     your_command --reads sample.fastq
-    """
-}</code></pre>
+    &quot;&quot;&quot;
+}</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2694,16 +3272,29 @@ process foo {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">reads = Channel.fromPath( 'data/ggal/*.fq' )
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td>
+  <td class="code"><pre>reads = Channel.fromPath( 'data/ggal/*.fq' )
 
 process foo {
     input:
     file sample from reads
     script:
-    """
+    &quot;&quot;&quot;
     your_command --reads $sample
-    """
-}</code></pre>
+    &quot;&quot;&quot;
+}</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2712,16 +3303,29 @@ Only change the channel composition.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">reads = Channel.fromPath( 'data/ggal/*.fq' )
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td>
+  <td class="code"><pre>reads = Channel.fromPath( 'data/ggal/*.fq' )
 
 process foo {
     input:
     file sample from reads.collect()
     script:
-    """
+    &quot;&quot;&quot;
     your_command --reads $sample
-    """
-}</code></pre>
+    &quot;&quot;&quot;
+}</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="sect4">
@@ -2744,16 +3348,29 @@ of a process.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">process foo {
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td>
+  <td class="code"><pre>process foo {
   echo true
   input:
   val x from Channel.from(1,2,3)
   val y from Channel.from('a','b','c')
   script:
-   """
+   &quot;&quot;&quot;
    echo $x and $y
-   """
-}</code></pre>
+   &quot;&quot;&quot;
+}</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2789,16 +3406,29 @@ of a process.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">process foo {
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td>
+  <td class="code"><pre>process foo {
   echo true
   input:
   val x from Channel.from(1,2)
   val y from Channel.from('a','b','c','d')
   script:
-   """
+   &quot;&quot;&quot;
    echo $x and $y
-   """
-}</code></pre>
+   &quot;&quot;&quot;
+}</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2821,16 +3451,29 @@ Note however that <em>value</em> channel do not affect the process termination.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">process bar {
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td>
+  <td class="code"><pre>process bar {
   echo true
   input:
   val x from Channel.value(1)
   val y from Channel.from('a','b','c')
   script:
-   """
+   &quot;&quot;&quot;
    echo $x and $y
-   """
-}</code></pre>
+   &quot;&quot;&quot;
+}</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="sect4">
@@ -2848,7 +3491,21 @@ and use the same <code>data/ggal/transcriptome.fa</code> in each execution.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">sequences = Channel.fromPath('*.fa')
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td>
+  <td class="code"><pre>sequences = Channel.fromPath('*.fa')
 methods = ['regular', 'expresso', 'psicoffee']
 
 process alignSequences {
@@ -2856,10 +3513,11 @@ process alignSequences {
   file seq from sequences
   each mode from methods
 
-  """
+  &quot;&quot;&quot;
   t_coffee -in $seq -mode $mode
-  """
-}</code></pre>
+  &quot;&quot;&quot;
+}</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2895,7 +3553,24 @@ this is a value which has been defined in the <em>input</em> declaration block, 
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">methods = ['prot','dna', 'rna']
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre></td>
+  <td class="code"><pre>methods = ['prot','dna', 'rna']
 
 process foo {
   input:
@@ -2904,12 +3579,13 @@ process foo {
   output:
   val x into receiver
 
-  """
+  &quot;&quot;&quot;
   echo $x &gt; file
-  """
+  &quot;&quot;&quot;
 }
 
-receiver.println { "Received: $it" }</code></pre>
+receiver.println { &quot;Received: $it&quot; }</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 </div>
@@ -2920,7 +3596,20 @@ receiver.println { "Received: $it" }</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">process randomNum {
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td>
+  <td class="code"><pre>process randomNum {
 
     output:
     file 'result.txt' into numbers
@@ -2930,7 +3619,8 @@ receiver.println { "Received: $it" }</code></pre>
     '''
 }
 
-numbers.println { "Received: " + it.text }</code></pre>
+numbers.println { &quot;Received: &quot; + it.text }</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2951,7 +3641,22 @@ This allows to <em>capture</em> multiple files into a list object and output the
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">process splitLetters {
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td>
+  <td class="code"><pre>process splitLetters {
 
     output:
     file 'chunk_*' into letters
@@ -2963,7 +3668,8 @@ This allows to <em>capture</em> multiple files into a list object and output the
 
 letters
     .flatMap()
-    .println { "File: ${it.name} =&gt; ${it.text}" }</code></pre>
+    .println { &quot;File: ${it.name} =&gt; ${it.text}&quot; }</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3011,18 +3717,33 @@ For example::</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">process align {
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td>
+  <td class="code"><pre>process align {
   input:
   val x from species
   file seq from sequences
 
   output:
-  file "${x}.aln" into genomes
+  file &quot;${x}.aln&quot; into genomes
 
-  """
+  &quot;&quot;&quot;
   t_coffee -in $seq &gt; ${x}.aln
-  """
-}</code></pre>
+  &quot;&quot;&quot;
+}</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3045,7 +3766,23 @@ following by the definition of each tuple element in the tuple.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">reads_ch = Channel.fromFilePairs('data/ggal/*_{1,2}.fq')
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td>
+  <td class="code"><pre>reads_ch = Channel.fromFilePairs('data/ggal/*_{1,2}.fq')
 
 process foo {
   input:
@@ -3053,12 +3790,13 @@ process foo {
   output:
     set val(sample_id), file('sample.bam') into bam_ch
   script:
-  """
+  &quot;&quot;&quot;
     your_command_here --reads $sample_id &gt; sample.bam
-  """
+  &quot;&quot;&quot;
 }
 
-bam_ch.println()</code></pre>
+bam_ch.println()</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="sect4">
@@ -3079,7 +3817,26 @@ bam_ch.println()</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">params.dbtype = 'nr'
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre></td>
+  <td class="code"><pre>params.dbtype = 'nr'
 params.prot = 'data/prots/*.tfa'
 proteins = Channel.fromPath(params.prot)
 
@@ -3092,10 +3849,11 @@ process find {
   fasta.name =~ /^BB11.*/ &amp;&amp; type == 'nr'
 
   script:
-  """
+  &quot;&quot;&quot;
   blastp -query $fasta -db nr
-  """
-}</code></pre>
+  &quot;&quot;&quot;
+}</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 </div>
@@ -3114,16 +3872,29 @@ logging purpose. For example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-nextflow hljs" data-lang="nextflow">process foo {
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td>
+  <td class="code"><pre>process foo {
   cpus 2
   memory 8.GB
   container 'image/name'
 
   script:
-  """
+  &quot;&quot;&quot;
   your_command --this --that
-  """
-}</code></pre>
+  &quot;&quot;&quot;
+}</pre></td>
+</tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -3139,8 +3910,5 @@ logging purpose. For example:</p>
 </div>
 </div>
 </div>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-<script>hljs.initHighlighting()</script>
 </body>
 </html>

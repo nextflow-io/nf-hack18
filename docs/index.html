@@ -4,11 +4,10 @@
 <meta charset="UTF-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.6.2">
+<meta name="generator" content="Asciidoctor 1.5.7.1">
 <title>Nextflow Workshop 2018</title>
 <link rel="stylesheet" href="./css/crg.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body class="article">
 <div id="header">
@@ -34,41 +33,6 @@
 </div>
 </div>
 </div>
-<script type="text/javascript">
-    var tocitems = $('#toc li a'),
-    scrollItems = tocitems.map(function(){
-      var item = $($(this).attr("href"));
-      if (item.length) { return item; }
-    });
-    $(document).ready(function() {
-        var lastId
-        $(window).scroll(function() {
-              // Get container scroll position
-            var fromTop = $(this).scrollTop();
-
-            // Get id of current scroll item
-            var cur = scrollItems.map(function(){
-                var offset = this.offset().top - parseFloat(this.css('margin-top'))
-                if (offset < fromTop) {
-                    return this;
-                }
-            });
-            // Get the id of the current element
-            cur = cur[cur.length-1];
-            var id = cur && cur.length ? cur[0].id : "";
-
-            if (lastId !== id) {
-               lastId = id;
-               // Set/remove active class
-               scrollItems
-                 .end().parent()
-                 .removeClass("active")
-                 .end().filter("[href='#"+id+"']")
-                 .parent().addClass("active");
-            }
-        } );
-    } );
-</script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 <script>hljs.initHighlighting()</script>

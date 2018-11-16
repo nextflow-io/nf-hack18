@@ -6,24 +6,13 @@
 :icons: font
 :toclevels: 3
 :imagesdir: ./assets/
-ifeval::["{backend}" == "html5"]
 :stylesdir: ./css/
 :stylesheet: crg.css
 :linkcss:
-:source-highlighter: highlight.js
-:highlightjs-theme: github
+:source-highlighter: coderay
+:coderay-linenums-mode: table
 :toc: left
 :linkattrs:
-endif::[]
-ifeval::["{backend}" == "pdf"]
-:imagesdir: ./docs/assets/
-endif::[]
-ifdef::draft[]
-
-image::draft.png[DRAFT,150,150,float="right",align="center"]
-include::todo.adoc[leveloffset=+1]
-endif::draft[]
-
 :sectnums:
 
 :leveloffset: +1

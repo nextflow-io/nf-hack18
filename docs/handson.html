@@ -4,10 +4,12 @@
 <meta charset="UTF-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.6.2">
+<meta name="generator" content="Asciidoctor 1.5.7.1">
 <title>Nextflow Workshop 2018</title>
 <link rel="stylesheet" href="./css/crg.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="./css/coderay-asciidoctor.css">
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
@@ -22,7 +24,7 @@
 <ul class="sectlevel3">
 <li><a href="#_preparing_data">1.2.1. Preparing data</a></li>
 <li><a href="#_mapping_rna_seq_reads_to_the_reference">1.2.2. Mapping RNA-seq reads to the reference</a></li>
-<li><a href="#_split_n_trim_and_reassign_mapping_qualities">1.2.3. Split&#8217;N&#8217;Trim and reassign mapping qualities</a></li>
+<li><a href="#_splitntrim_and_reassign_mapping_qualities">1.2.3. Split&#8217;N&#8217;Trim and reassign mapping qualities</a></li>
 <li><a href="#_base_recalibration">1.2.4. Base Recalibration</a></li>
 <li><a href="#_variant_calling_and_variant_filtering">1.2.5. Variant Calling and Variant filtering</a></li>
 <li><a href="#_variant_post_processing">1.2.6. Variant Post-processing</a></li>
@@ -140,7 +142,7 @@
 <div class="paragraph">
 <p>Only reads mapped to the <a href="http://genome-euro.ucsc.edu/cgi-bin/hgTracks?db=hg19&amp;lastVirtModeType=default&amp;lastVirtModeExtraState=&amp;virtModeType=default&amp;virtMode=0&amp;nonVirtPosition=&amp;position=chr22%3A14700001-25900000&amp;hgsid=221945779_QucOFSFGagd1cn9uVki0TFjrxSBU" target="_blank" rel="noopener">22q11</a> locus of the human genome (<code>chr22:16000000-18000000</code>) are used.</p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -379,7 +381,7 @@ java -jar picard.jar CreateSequenceDictionary R= genome.fa O= genome.dict</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_split_n_trim_and_reassign_mapping_qualities">1.2.3. Split&#8217;N&#8217;Trim and reassign mapping qualities</h4>
+<h4 id="_splitntrim_and_reassign_mapping_qualities">1.2.3. Split&#8217;N&#8217;Trim and reassign mapping qualities</h4>
 <div class="paragraph">
 <p>The RNA-seq reads overlapping exon-intron junctions can produce false positive variants due to inaccurate splicing. To solve this problem the GATK team recommend to hard-clip any sequence that overlap intronic regions and developed a speciall tool for this purpose: <code>SplitNCigarReads</code>. The tool identifies Ns in the CIGAR string of the alignment and split reads at this position so that few new reads are created.</p>
 </div>
@@ -576,7 +578,7 @@ gghist.R -i AF.4R -o AF.histogram.pdf</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cmd hljs" data-lang="cmd">tree $HOME/nf-hack18/tutorial</code></pre>
+<pre class="CodeRay highlight"><code data-lang="cmd">tree $HOME/nf-hack18/tutorial</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -613,7 +615,7 @@ gghist.R -i AF.4R -o AF.histogram.pdf</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cmd hljs" data-lang="cmd">git clone https://github.com/nextflow-io/nf-hack18/
+<pre class="CodeRay highlight"><code data-lang="cmd">git clone https://github.com/nextflow-io/nf-hack18/
 cd nf-hack18/tutorial</code></pre>
 </div>
 </div>
@@ -634,7 +636,7 @@ Checking connectivity... done.</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cmd hljs" data-lang="cmd">docker pull cbcrg/callings-nf@sha256:b65a7d721b9dd2da07d6bdd7f868b04039860f14fa514add975c59e68614c310</code></pre>
+<pre class="CodeRay highlight"><code data-lang="cmd">docker pull cbcrg/callings-nf@sha256:b65a7d721b9dd2da07d6bdd7f868b04039860f14fa514add975c59e68614c310</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -732,7 +734,7 @@ from the <code>$HOME/nf-hack18/tutorial</code> repository directory with your fa
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cmd hljs" data-lang="cmd">cd $HOME/nf-hack18/tutorial
+<pre class="CodeRay highlight"><code data-lang="cmd">cd $HOME/nf-hack18/tutorial
 nano main.nf</code></pre>
 </div>
 </div>
@@ -808,7 +810,7 @@ With <code>nano</code> you can save and close the file with <span class="keyseq"
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cmd hljs" data-lang="cmd">nextflow run main.nf</code></pre>
+<pre class="CodeRay highlight"><code data-lang="cmd">nextflow run main.nf</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -877,7 +879,7 @@ However this time, we can use the the <code>-resume</code> flag.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cmd hljs" data-lang="cmd">nextflow run main.nf -resume</code></pre>
+<pre class="CodeRay highlight"><code data-lang="cmd">nextflow run main.nf -resume</code></pre>
 </div>
 </div>
 <div class="admonitionblock tip">
@@ -987,7 +989,7 @@ process '1A_prepare_genome_samtools' { <i class="conum" data-value="1"></i><b>(1
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cmd hljs" data-lang="cmd">nextflow run main.nf -resume</code></pre>
+<pre class="CodeRay highlight"><code data-lang="cmd">nextflow run main.nf -resume</code></pre>
 </div>
 </div>
 <div class="listingblock">
@@ -1278,7 +1280,7 @@ process '1D_prepare_vcf_file' {
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cmd hljs" data-lang="cmd">nextflow run main.nf -resume</code></pre>
+<pre class="CodeRay highlight"><code data-lang="cmd">nextflow run main.nf -resume</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1864,7 +1866,7 @@ for details on the specific operators.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">( sample_id, file_bam, file_bai )</code></pre>
+<pre class="CodeRay highlight"><code data-lang="bash">( sample_id, file_bam, file_bai )</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1872,7 +1874,7 @@ for details on the specific operators.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">( sample_id, output.vcf )</code></pre>
+<pre class="CodeRay highlight"><code data-lang="bash">( sample_id, output.vcf )</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1886,7 +1888,7 @@ for details on the specific operators.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">( sample_id, file_vcf, List[file_bam], List[file_bai] )</code></pre>
+<pre class="CodeRay highlight"><code data-lang="bash">( sample_id, file_vcf, List[file_bam], List[file_bai] )</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2046,7 +2048,7 @@ the `grouped_vcf_bam_bai_ch`channel</p>
 <div class="paragraph">
 <p>The file is sorted by genomic position and contains 8 fields:</p>
 </div>
-<table class="tableblock frame-all grid-all">
+<table class="tableblock frame-all grid-all fit-content">
 <colgroup>
 <col>
 <col>
@@ -2115,7 +2117,7 @@ the `grouped_vcf_bam_bai_ch`channel</p>
 <div class="paragraph">
 <p>The file is sorted by coordinates and contains 13 fields:</p>
 </div>
-<table class="tableblock frame-all grid-all">
+<table class="tableblock frame-all grid-all fit-content">
 <colgroup>
 <col>
 <col>
@@ -2211,7 +2213,7 @@ shown below:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cmd hljs" data-lang="cmd">nextflow run main.nf -resume --reads 'data/reads/ENCSR000C*_{1,2}.fastq.gz'</code></pre>
+<pre class="CodeRay highlight"><code data-lang="cmd">nextflow run main.nf -resume --reads 'data/reads/ENCSR000C*_{1,2}.fastq.gz'</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2275,8 +2277,40 @@ depending on the specified pipeline input dataset.</p>
 </div>
 </div>
 </div>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-<script>hljs.initHighlighting()</script>
+<script type="text/javascript">
+    var tocitems = $('#toc li a'),
+    scrollItems = tocitems.map(function(){
+      var item = $($(this).attr("href"));
+      if (item.length) { return item; }
+    });
+    $(document).ready(function() {
+        var lastId
+        $(window).scroll(function() {
+              // Get container scroll position
+            var fromTop = $(this).scrollTop();
+
+            // Get id of current scroll item
+            var cur = scrollItems.map(function(){
+                var offset = this.offset().top - parseFloat(this.css('margin-top'))
+                if (offset < fromTop) {
+                    return this;
+                }
+            });
+            // Get the id of the current element
+            cur = cur[cur.length-1];
+            var id = cur && cur.length ? cur[0].id : "";
+
+            if (lastId !== id) {
+               lastId = id;
+               // Set/remove active class
+               scrollItems
+                 .end().parent()
+                 .removeClass("active")
+                 .end().filter("[href='#"+id+"']")
+                 .parent().addClass("active");
+            }
+        } );
+    } );
+</script>
 </body>
 </html>
