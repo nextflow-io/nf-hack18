@@ -1,0 +1,31 @@
+= Run a pipeline from a GitHub repository
+
+Nextflow allows the execution of a pipeline project directly from a GitHub repository (or similar services eg. BitBucket and GitLab).
+
+This simplifies the sharing and the deployment of complex projects and tracking changes in a consistent manner.
+
+The following GitHub repository hosts a complete version of the workflow introduced in this tutorial:
+
+https://github.com/nextflow-io/rnaseq-nf
+
+You can run it by specifying the project name as shown below:
+
+    nextflow run nextflow-io/rnaseq-nf -with-docker
+
+It automatically downloads it and store in the `$HOME/.nextflow` folder.
+
+
+Use the command info to show the project information, e.g.:
+
+    nextflow info nextflow-io/rnaseq-nf
+
+Nextflow allows the execution of a specific revision of your project by using the `-r` command line option. For Example:
+
+    nextflow run nextflow-io/rnaseq-nf -r dev
+
+Revision are defined by using Git tags or branches defined in the project repository.
+
+This allows a precise control of the changes in your project files and dependencies over time.
+
+
+

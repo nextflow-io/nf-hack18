@@ -2,139 +2,20 @@
 :experimental:
 :linkattrs:
 
-We are going to use Amazon Elastic Compute Cloud (Amazon EC2) virtual machines to work on the practical part 
-of the workshop. Each attendee will run a AWS EC2 instance based on a prepared image with the following 
-tools already installed:
 
-- Docker
-- Git
-- Nano
-- Java 8
+== Pipeline data 
 
-== Launch and connect to the EC2 virtual machine
+All the files needed for the hands-on activity are stored in https://github.com/nextflow-io/nf-hack18/[this GitHub] repository.
 
-Connect to the AWS cloud login instance by using the following command:
-
-[source, cmd]
-----
-ssh login@52.30.76.104
-----
-
-Then launch a new AWS instance running the command shown below and follow
-the instructions on screen:
-
-[source, cmd]
-----
-ec2-launch.sh
-----
-
-----
-~~ N E X T F L O W  '1 8  -  W O R K S H O P ~~
-
-Launching EC2 virtual machine
-- type  : t2.large
-- ami   : ami-61d0ec07
-- disk  : 8 GB
-- subnet: subnet-05222a43
-
-* Please confirm you want to launch an VM with these settings [y/n]
-----
-
-Type kbd:[Y] kbd:[Enter] and wait until the instance is ready:
-----
-* Instance launched >> i-07a9f2ba3795c4f8f <<
-* Waiting for ready status ..  [/]
-----
-
-
-Once the previous command is completed and the virtual machine is up and 
-running you will get a message similar to the one below:
-
-----
-* The instance is ready -- Login with the following command:
-
-  ssh hack17@ec2-xx-xxx-xxx-xxx.eu-west-1.compute.amazonaws.com
-----
-
-Open a new shell terminal and connect to the AWS instance using the 
-command printed. 
-
-
-
-== Installing Nextflow
-
-Nextflow can be installed with the following command:
+Check if you have already the following directory: 
 
 [source,cmd]
 ----
-curl -fsSL get.nextflow.io | bash
+tree $HOME/nf-hack18/tutorial
 ----
 
 ----
-...
-CAPSULE: Downloading dependency com.fasterxml.jackson.core:jackson-databind:jar:2.6.6
-CAPSULE: Downloading dependency ch.qos.logback:logback-classic:jar:1.1.10
-CAPSULE: Downloading dependency com.amazonaws:jmespath-java:jar:1.0
-CAPSULE: Downloading dependency com.fasterxml.jackson.core:jackson-annotations:jar:2.6.0
-                                                                         
-      N E X T F L O W
-      version 0.25.6 build 4526
-      last modified 13-08-2017 14:35 UTC 
-      cite doi:10.1038/nbt.3820
-      http://nextflow.io
-
-
-Nextflow installation completed. Please note:
-- the executable file `nextflow` has been created in the folder: /home/hack17
-- you may complete the installation by moving it to a directory in your $PATH
-----
-
-Complete the installation copying the `nextflow` launcher file in a folder in the `PATH` variable e.g.:
-
-[source,cmd]
-----
-mv nextflow $HOME/bin/
-----
-
-
-To check the installed version use the command below:
-
-[source,cmd]
-----
-nextflow info
-----
-----
-  Version: 0.25.6 build 4526
-  Modified: 13-08-2017 14:35 UTC 
-  System: Linux 4.4.0-93-generic
-  Runtime: Groovy 2.4.11 on OpenJDK 64-Bit Server VM 1.8.0_131-8u131-b11-2ubuntu1.16.04.3-b11
-  Encoding: UTF-8 (UTF-8)
-----
-
-== Getting the data
-
-All the files needed for the workshop are stored in a git repository on GitHub. In order to get the data run the following command:
-
-[source,cmd]
-----
-git clone https://github.com/CRG-CNAG/ngs2017-nf.git
-----
-----
-Cloning into 'ngs2017-nf'...
-remote: Counting objects: 71, done.
-remote: Total 71 (delta 0), reused 0 (delta 0), pack-reused 71
-Unpacking objects: 100% (71/71), done.
-Checking connectivity... done.
-----
-
-Check the content of the freshly cloned repo:
-
-[source,cmd]
-----
-tree ngs2017-nf
-----
-----
-ngs2017-nf
+$HOME/nf-hack18/tutorial
 ├── bin
 │   └── gghist.R
 ├── data
@@ -160,6 +41,23 @@ ngs2017-nf
 
 3 directories, 19 files
 ----
+
+If you don't have the above directory, clone it with the following command: 
+
+[source,cmd]
+----
+git clone https://github.com/nextflow-io/nf-hack18/
+cd nf-hack18/tutorial
+----
+
+----
+Cloning into 'nf-hack18'...
+remote: Counting objects: 71, done.
+remote: Total 71 (delta 0), reused 0 (delta 0), pack-reused 71
+Unpacking objects: 100% (71/71), done.
+Checking connectivity... done.
+----
+
 
 == Pulling the Docker image
 

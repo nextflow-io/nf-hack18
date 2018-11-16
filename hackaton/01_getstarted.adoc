@@ -1,0 +1,27 @@
+= Cloud environment setup
+
+== Launch AWS Ec2 instance 
+
+During the training and the hackathon activities we'll use a AWS cloud environment. Follow the following steps to launch your Ec2 instance.
+
+1. SSH in the login instance with this command: 
+
+    ssh -o StrictHostKeyChecking=no \
+        -o "UserKnownHostsFile /dev/null" \
+        login@63.32.116.228 
+
+2. Launch your AWS instance with this command: 
+
+    ec2-launch.sh
+
+3. When it completes, copy the printed SSH command, _exit_ from the login node (or open a new terminal window) and SSH to the new instance: 
+
+    exit
+    ssh me@<host-name-printed-in-your-screen>
+
+4. Clone the following GitHub repository: 
+
+   git clone https://github.com/nextflow-io/nf-hack18
+   cd nf-hack18
+
+

@@ -5,9 +5,9 @@
 :nofooter:
 :icons: font
 :toclevels: 3
-ifeval::["{backend}" == "html5"]
 :imagesdir: ./assets/
-:stylesdir: ./css/
+ifeval::["{backend}" == "html5"]
+:stylesdir: ../docs/css/
 :stylesheet: crg.css
 :linkcss:
 :source-highlighter: highlight.js
@@ -16,7 +16,7 @@ ifeval::["{backend}" == "html5"]
 :linkattrs:
 endif::[]
 ifeval::["{backend}" == "pdf"]
-:imagesdir: ../docs/assets/
+:imagesdir: ./docs/assets/
 endif::[]
 ifdef::draft[]
 
@@ -24,8 +24,9 @@ image::draft.png[DRAFT,150,150,float="right",align="center"]
 include::todo.adoc[leveloffset=+1]
 endif::draft[]
 
-== Material
+:sectnums:
 
-==== link:cloud.html[Cloud setup] 
-==== link:training.html[Beginner training] 
-==== link:handson.html[Beginner hands-on]
+:leveloffset: +1
+// env setup 
+include::01_getstarted.adoc[]
+:leveloffset: -1

@@ -4,7 +4,7 @@
 
 A first step in any pipeline is to prepare the input data. You will find
 all the data required to run the pipeline in the folder `data`
-within the `ngs2017-nf` repository directory.
+within the `$HOME/nf-hack18/tutorial` repository directory.
 
 There are four data inputs that we will use in this tutorial:
 
@@ -26,11 +26,11 @@ There are four data inputs that we will use in this tutorial:
 
 == Input parameters
 We can begin writing the pipeline by creating and editing a text file called `main.nf`
-from the `ngs2017-nf` repository directory with your favourite text editor. In this example we are using `nano`:
+from the `$HOME/nf-hack18/tutorial` repository directory with your favourite text editor. In this example we are using `nano`:
 
 [source,cmd]
 ----
-cd ngs2017-nf
+cd $HOME/nf-hack18/tutorial
 nano main.nf
 ----
 
