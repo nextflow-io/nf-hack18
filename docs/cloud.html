@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="generator" content="Asciidoctor 1.5.6.2">
+<title>Nextflow Workshop 2018</title>
+<link rel="stylesheet" href="../docs/css/crg.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+</head>
+<body class="article toc2 toc-left">
+<div id="header">
+<h1>Nextflow Workshop 2018 <span class="image nflogo" style="float: right"><img src="./assets/nextflow_logo.png" alt="Logo" width="300" height="100"></span></h1>
+<div id="toc" class="toc2">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_cloud_environment_setup">1. Cloud environment setup</a>
+<ul class="sectlevel2">
+<li><a href="#_launch_aws_ec2_instance">1.1. Launch AWS Ec2 instance</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="content">
+<div class="sect1">
+<h2 id="_cloud_environment_setup">1. Cloud environment setup</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_launch_aws_ec2_instance">1.1. Launch AWS Ec2 instance</h3>
+<div class="paragraph">
+<p>During the training and the hackathon activities we&#8217;ll use a AWS cloud environment. Follow the following steps to launch your Ec2 instance.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>SSH in the login instance with this command:</p>
+<div class="literalblock">
+<div class="content">
+<pre>ssh -o StrictHostKeyChecking=no \
+    -o "UserKnownHostsFile /dev/null" \
+    login@63.32.116.228</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Launch your AWS instance with this command:</p>
+<div class="literalblock">
+<div class="content">
+<pre>ec2-launch.sh</pre>
+</div>
+</div>
+</li>
+<li>
+<p>When it completes, copy the printed SSH command, <em>exit</em> from the login node (or open a new terminal window) and SSH to the new instance:</p>
+<div class="literalblock">
+<div class="content">
+<pre>exit
+ssh me@&lt;host-name-printed-in-your-screen&gt;</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Clone the following GitHub repository:</p>
+<div class="literalblock">
+<div class="content">
+<pre>git clone https://github.com/nextflow-io/nf-hack18
+cd nf-hack18</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+<script>hljs.initHighlighting()</script>
+</body>
+</html>
