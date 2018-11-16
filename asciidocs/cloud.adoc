@@ -12,7 +12,6 @@ ifeval::["{backend}" == "html5"]
 :linkcss:
 :source-highlighter: highlight.js
 :highlightjs-theme: github
-:toc: left
 :linkattrs:
 endif::[]
 ifeval::["{backend}" == "pdf"]
