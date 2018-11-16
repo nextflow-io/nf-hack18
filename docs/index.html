@@ -4,9 +4,9 @@
 <meta charset="UTF-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.6.1">
+<meta name="generator" content="Asciidoctor 1.5.6.2">
 <title>Nextflow Workshop Hackaton 2018</title>
-<link rel="stylesheet" href="./css/crg.css">
+<link rel="stylesheet" href="../docs/css/crg.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
 </head>
@@ -16,91 +16,90 @@
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_data_description">1. Data Description</a></li>
-<li><a href="#_worflow_description">2. Worflow Description</a>
+<li><a href="#_data_description">1. Data Description</a>
 <ul class="sectlevel2">
-<li><a href="#_sofware_manuals">2.1. Sofware manuals</a></li>
-<li><a href="#_pipeline_steps">2.2. Pipeline steps</a>
+<li><a href="#_sofware_manuals">1.1. Sofware manuals</a></li>
+<li><a href="#_pipeline_steps">1.2. Pipeline steps</a>
 <ul class="sectlevel3">
-<li><a href="#_preparing_data">2.2.1. Preparing data</a></li>
-<li><a href="#_mapping_rna_seq_reads_to_the_reference">2.2.2. Mapping RNA-seq reads to the reference</a></li>
-<li><a href="#_split_n_trim_and_reassign_mapping_qualities">2.2.3. Split&#8217;N&#8217;Trim and reassign mapping qualities</a></li>
-<li><a href="#_base_recalibration">2.2.4. Base Recalibration</a></li>
-<li><a href="#_variant_calling_and_variant_filtering">2.2.5. Variant Calling and Variant filtering</a></li>
-<li><a href="#_variant_post_processing">2.2.6. Variant Post-processing</a></li>
+<li><a href="#_preparing_data">1.2.1. Preparing data</a></li>
+<li><a href="#_mapping_rna_seq_reads_to_the_reference">1.2.2. Mapping RNA-seq reads to the reference</a></li>
+<li><a href="#_split_n_trim_and_reassign_mapping_qualities">1.2.3. Split&#8217;N&#8217;Trim and reassign mapping qualities</a></li>
+<li><a href="#_base_recalibration">1.2.4. Base Recalibration</a></li>
+<li><a href="#_variant_calling_and_variant_filtering">1.2.5. Variant Calling and Variant filtering</a></li>
+<li><a href="#_variant_post_processing">1.2.6. Variant Post-processing</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#_environment_setup">3. Environment Setup</a>
+<li><a href="#_environment_setup">2. Environment Setup</a>
 <ul class="sectlevel2">
-<li><a href="#_launch_and_connect_to_the_ec2_virtual_machine">3.1. Launch and connect to the EC2 virtual machine</a></li>
-<li><a href="#_installing_nextflow">3.2. Installing Nextflow</a></li>
-<li><a href="#_getting_the_data">3.3. Getting the data</a></li>
-<li><a href="#_pulling_the_docker_image">3.4. Pulling the Docker image</a></li>
+<li><a href="#_launch_and_connect_to_the_ec2_virtual_machine">2.1. Launch and connect to the EC2 virtual machine</a></li>
+<li><a href="#_installing_nextflow">2.2. Installing Nextflow</a></li>
+<li><a href="#_getting_the_data">2.3. Getting the data</a></li>
+<li><a href="#_pulling_the_docker_image">2.4. Pulling the Docker image</a></li>
 </ul>
 </li>
-<li><a href="#_pipeline_implementaton">4. Pipeline Implementaton</a>
+<li><a href="#_pipeline_implementaton">3. Pipeline Implementaton</a>
 <ul class="sectlevel2">
-<li><a href="#_data_preparation">4.1. Data preparation</a></li>
-<li><a href="#_input_parameters">4.2. Input parameters</a>
+<li><a href="#_data_preparation">3.1. Data preparation</a></li>
+<li><a href="#_input_parameters">3.2. Input parameters</a>
 <ul class="sectlevel3">
-<li><a href="#_problem_1">4.2.1. Problem #1</a></li>
+<li><a href="#_problem_1">3.2.1. Problem #1</a></li>
 </ul>
 </li>
-<li><a href="#_process_1a">4.3. Process 1A</a>
+<li><a href="#_process_1a">3.3. Process 1A</a>
 <ul class="sectlevel3">
-<li><a href="#_problem_2">4.3.1. Problem #2</a></li>
+<li><a href="#_problem_2">3.3.1. Problem #2</a></li>
 </ul>
 </li>
-<li><a href="#_process_1b">4.4. Process 1B</a>
+<li><a href="#_process_1b">3.4. Process 1B</a>
 <ul class="sectlevel3">
-<li><a href="#_problem_3">4.4.1. Problem #3</a></li>
+<li><a href="#_problem_3">3.4.1. Problem #3</a></li>
 </ul>
 </li>
-<li><a href="#_process_1c">4.5. Process 1C</a>
+<li><a href="#_process_1c">3.5. Process 1C</a>
 <ul class="sectlevel3">
-<li><a href="#_problem_4">4.5.1. Problem #4</a></li>
+<li><a href="#_problem_4">3.5.1. Problem #4</a></li>
 </ul>
 </li>
-<li><a href="#_process_1d">4.6. Process 1D</a>
+<li><a href="#_process_1d">3.6. Process 1D</a>
 <ul class="sectlevel3">
-<li><a href="#_problem_5">4.6.1. Problem #5</a></li>
+<li><a href="#_problem_5">3.6.1. Problem #5</a></li>
 </ul>
 </li>
-<li><a href="#_process_2">4.7. Process 2</a>
+<li><a href="#_process_2">3.7. Process 2</a>
 <ul class="sectlevel3">
-<li><a href="#_problem_6">4.7.1. Problem #6</a></li>
+<li><a href="#_problem_6">3.7.1. Problem #6</a></li>
 </ul>
 </li>
-<li><a href="#_process_3">4.8. Process 3</a>
+<li><a href="#_process_3">3.8. Process 3</a>
 <ul class="sectlevel3">
-<li><a href="#_problem_7">4.8.1. Problem #7</a></li>
+<li><a href="#_problem_7">3.8.1. Problem #7</a></li>
 </ul>
 </li>
-<li><a href="#_process_4">4.9. Process 4</a>
+<li><a href="#_process_4">3.9. Process 4</a>
 <ul class="sectlevel3">
-<li><a href="#_problem_8">4.9.1. Problem #8</a></li>
+<li><a href="#_problem_8">3.9.1. Problem #8</a></li>
 </ul>
 </li>
-<li><a href="#_process_5">4.10. Process 5</a>
+<li><a href="#_process_5">3.10. Process 5</a>
 <ul class="sectlevel3">
-<li><a href="#_problem_9">4.10.1. Problem #9</a></li>
+<li><a href="#_problem_9">3.10.1. Problem #9</a></li>
 </ul>
 </li>
-<li><a href="#_processes_6a_and_6b">4.11. Processes 6A and 6B</a>
+<li><a href="#_processes_6a_and_6b">3.11. Processes 6A and 6B</a>
 <ul class="sectlevel3">
-<li><a href="#_problem_10">4.11.1. Problem #10</a></li>
-<li><a href="#_problem_11">4.11.2. Problem #11</a></li>
+<li><a href="#_problem_10">3.11.1. Problem #10</a></li>
+<li><a href="#_problem_11">3.11.2. Problem #11</a></li>
 </ul>
 </li>
-<li><a href="#_process_6c">4.12. Process 6C</a>
+<li><a href="#_process_6c">3.12. Process 6C</a>
 <ul class="sectlevel3">
-<li><a href="#_problem_12">4.12.1. Problem #12</a></li>
+<li><a href="#_problem_12">3.12.1. Problem #12</a></li>
 </ul>
 </li>
-<li><a href="#_results_overview">4.13. Results overview</a></li>
-<li><a href="#_bonus_step">4.14. Bonus step</a></li>
+<li><a href="#_results_overview">3.13. Results overview</a></li>
+<li><a href="#_bonus_step">3.14. Bonus step</a></li>
 </ul>
 </li>
 </ul>
@@ -215,16 +214,12 @@ These variant calls were obtained by taking into account pedigree information an
 <p><code>blacklist.bed</code></p>
 <div class="paragraph">
 <p>Blacklisted regions are regions of the genomes with anomalous coverage. We use regions for the <span class="crg">hg19</span> assembly, taken from the <a href="https://www.encodeproject.org/annotations/ENCSR636HFF/">ENCODE project portal</a>.
-These regions were identified with DNAse and ChiP-seq samples over ~60 human tissues/cell types, and had a very high ratio of multi-mapping to unique-mapping reads and high variance in mappability.</p>
+These regions were identified with DNAse and ChiP-seq samples over ~60 human tissues/cell types, and had a very high ratio of multi-mapping to unique-mapping reads and high variance in mappability.
+= Worflow Description</p>
 </div>
 </dd>
 </dl>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_worflow_description">2. Worflow Description</h2>
-<div class="sectionbody">
 <div class="paragraph">
 <p>The aim of the pipeline is to process raw RNA-seq data (in FASTQ format) and obtain the list of small variants, SNVs (SNPs and INDELs) for the downstream analysis. The pipeline is based on the <a href="https://software.broadinstitute.org/gatk/guide/article?id=3891">GATK best practices for variant calling with RNAseq data</a> and includes all major steps. In addition the pipeline includes SNVs postprocessing and quantification for allele specific expression.</p>
 </div>
@@ -235,7 +230,7 @@ These regions were identified with DNAse and ChiP-seq samples over ~60 human tis
 <p>Variant calling is done <strong>simultaniously</strong> on bam files from <strong>all replicates</strong>. This allows to improve coverage of genomic regions and obtain more reliable results.</p>
 </div>
 <div class="sect2">
-<h3 id="_sofware_manuals">2.1. Sofware manuals</h3>
+<h3 id="_sofware_manuals">1.1. Sofware manuals</h3>
 <div class="paragraph">
 <p>Documentation for all software used in the workflow can be found at the following links:</p>
 </div>
@@ -282,12 +277,12 @@ These regions were identified with DNAse and ChiP-seq samples over ~60 human tis
 </div>
 </div>
 <div class="sect2">
-<h3 id="_pipeline_steps">2.2. Pipeline steps</h3>
+<h3 id="_pipeline_steps">1.2. Pipeline steps</h3>
 <div class="paragraph">
 <p>In order to get a general idea of the workflow, all the composing steps, together with the corresponding commands, are explained in the next sections.</p>
 </div>
 <div class="sect3">
-<h4 id="_preparing_data">2.2.1. Preparing data</h4>
+<h4 id="_preparing_data">1.2.1. Preparing data</h4>
 <div class="paragraph">
 <p>This step prepares input files for the analysis. Genome indexes are created and variants overlapping blacklisted regions are filtered out.</p>
 </div>
@@ -325,7 +320,7 @@ java -jar picard.jar CreateSequenceDictionary R= genome.fa O= genome.dict</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_mapping_rna_seq_reads_to_the_reference">2.2.2. Mapping RNA-seq reads to the reference</h4>
+<h4 id="_mapping_rna_seq_reads_to_the_reference">1.2.2. Mapping RNA-seq reads to the reference</h4>
 <div class="paragraph">
 <p>To align RNA-seq reads to the genome we&#8217;re using STAR 2-pass approach. The first alignment creates a table with splice-junctions that is used to guide final alignments. The alignments at both steps are done with default parameters.</p>
 </div>
@@ -387,7 +382,7 @@ java -jar picard.jar CreateSequenceDictionary R= genome.fa O= genome.dict</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_split_n_trim_and_reassign_mapping_qualities">2.2.3. Split&#8217;N&#8217;Trim and reassign mapping qualities</h4>
+<h4 id="_split_n_trim_and_reassign_mapping_qualities">1.2.3. Split&#8217;N&#8217;Trim and reassign mapping qualities</h4>
 <div class="paragraph">
 <p>The RNA-seq reads overlapping exon-intron junctions can produce false positive variants due to inaccurate splicing. To solve this problem the GATK team recommend to hard-clip any sequence that overlap intronic regions and developed a speciall tool for this purpose: <code>SplitNCigarReads</code>. The tool identifies Ns in the CIGAR string of the alignment and split reads at this position so that few new reads are created.</p>
 </div>
@@ -410,7 +405,7 @@ java -jar picard.jar CreateSequenceDictionary R= genome.fa O= genome.dict</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_base_recalibration">2.2.4. Base Recalibration</h4>
+<h4 id="_base_recalibration">1.2.4. Base Recalibration</h4>
 <div class="paragraph">
 <p>The proposed worflow does not include an indel realigment step, which is an optional step in the GATK best practices. We excluded that since it is quite time-intensive and does not really improve variant calling.</p>
 </div>
@@ -440,7 +435,7 @@ java -jar picard.jar CreateSequenceDictionary R= genome.fa O= genome.dict</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_variant_calling_and_variant_filtering">2.2.5. Variant Calling and Variant filtering</h4>
+<h4 id="_variant_calling_and_variant_filtering">1.2.5. Variant Calling and Variant filtering</h4>
 <div class="paragraph">
 <p>The variant calling is done on the uniquely aligned reads only in order to reduce the number of false positive variants called:</p>
 </div>
@@ -493,7 +488,7 @@ java -jar GenomeAnalysisTK.jar -T HaplotypeCaller \
 </div>
 </div>
 <div class="sect3">
-<h4 id="_variant_post_processing">2.2.6. Variant Post-processing</h4>
+<h4 id="_variant_post_processing">1.2.6. Variant Post-processing</h4>
 <div class="paragraph">
 <p>For downstream analysis we&#8217;re considering only sites that pass all filters and are covered with at least 8 reads:</p>
 </div>
@@ -572,11 +567,11 @@ gghist.R -i AF.4R -o AF.histogram.pdf</pre>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_environment_setup">3. Environment Setup</h2>
+<h2 id="_environment_setup">2. Environment Setup</h2>
 <div class="sectionbody">
 <div class="paragraph">
 <p>We are going to use Amazon Elastic Compute Cloud (Amazon EC2) virtual machines to work on the practical part
-of the workshop. Each attendee will run a <code>t2.xlarge</code> instance based on a prepared image with the following
+of the workshop. Each attendee will run a AWS EC2 instance based on a prepared image with the following
 tools already installed:</p>
 </div>
 <div class="ulist">
@@ -596,13 +591,13 @@ tools already installed:</p>
 </ul>
 </div>
 <div class="sect2">
-<h3 id="_launch_and_connect_to_the_ec2_virtual_machine">3.1. Launch and connect to the EC2 virtual machine</h3>
+<h3 id="_launch_and_connect_to_the_ec2_virtual_machine">2.1. Launch and connect to the EC2 virtual machine</h3>
 <div class="paragraph">
 <p>Connect to the AWS cloud login instance by using the following command:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cmd hljs" data-lang="cmd">ssh login@34.252.30.18</code></pre>
+<pre class="highlightjs highlight"><code class="language-cmd hljs" data-lang="cmd">ssh login@52.30.76.104</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -611,15 +606,15 @@ the instructions on screen:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-cmd hljs" data-lang="cmd">curl -L https://goo.gl/1C3abb | bash</code></pre>
+<pre class="highlightjs highlight"><code class="language-cmd hljs" data-lang="cmd">ec2-launch.sh</code></pre>
 </div>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>~~ N E X T F L O W  '1 7  -  W O R K S H O P ~~
+<pre>~~ N E X T F L O W  '1 8  -  W O R K S H O P ~~
 
 Launching EC2 virtual machine
-- type  : t2.xlarge
+- type  : t2.large
 - ami   : ami-61d0ec07
 - disk  : 8 GB
 - subnet: subnet-05222a43
@@ -653,7 +648,7 @@ command printed.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_installing_nextflow">3.2. Installing Nextflow</h3>
+<h3 id="_installing_nextflow">2.2. Installing Nextflow</h3>
 <div class="paragraph">
 <p>Nextflow can be installed with the following command:</p>
 </div>
@@ -709,7 +704,7 @@ Nextflow installation completed. Please note:
 </div>
 </div>
 <div class="sect2">
-<h3 id="_getting_the_data">3.3. Getting the data</h3>
+<h3 id="_getting_the_data">2.3. Getting the data</h3>
 <div class="paragraph">
 <p>All the files needed for the workshop are stored in a git repository on GitHub. In order to get the data run the following command:</p>
 </div>
@@ -766,7 +761,7 @@ Checking connectivity... done.</pre>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_pulling_the_docker_image">3.4. Pulling the Docker image</h3>
+<h3 id="_pulling_the_docker_image">2.4. Pulling the Docker image</h3>
 <div class="paragraph">
 <p>Nextflow can pull Docker images at runtime, but let&#8217;s just download it manually to see how Docker works:</p>
 </div>
@@ -804,10 +799,10 @@ Status: Downloaded newer image for cbcrg/callings-nf@sha256:b65a7d721b9dd2da07d6
 </div>
 </div>
 <div class="sect1">
-<h2 id="_pipeline_implementaton">4. Pipeline Implementaton</h2>
+<h2 id="_pipeline_implementaton">3. Pipeline Implementaton</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_data_preparation">4.1. Data preparation</h3>
+<h3 id="_data_preparation">3.1. Data preparation</h3>
 <div class="paragraph">
 <p>A first step in any pipeline is to prepare the input data. You will find
 all the data required to run the pipeline in the folder <code>data</code>
@@ -863,7 +858,7 @@ within the <code>ngs2017-nf</code> repository directory.</p>
 <hr>
 </div>
 <div class="sect2">
-<h3 id="_input_parameters">4.2. Input parameters</h3>
+<h3 id="_input_parameters">3.2. Input parameters</h3>
 <div class="paragraph">
 <p>We can begin writing the pipeline by creating and editing a text file called <code>main.nf</code>
 from the <code>ngs2017-nf</code> repository directory with your favourite text editor. In this example we are using <code>nano</code>:</p>
@@ -960,7 +955,7 @@ Launching `main.nf` [nauseous_wright] - revision: 83a0a5415a</pre>
 </div>
 <hr>
 <div class="sect3">
-<h4 id="_problem_1">4.2.1. Problem #1</h4>
+<h4 id="_problem_1">3.2.1. Problem #1</h4>
 <div class="paragraph">
 <p>Great, now we need to transform the parameters into proper file handlers and <a href="https://www.nextflow.io/docs/latest/channel.html">channel</a> variables.
 To do that open the <code>main.nf</code> file and copy the lines below at the end of the file.</p>
@@ -1038,7 +1033,7 @@ details about using the <code>resume</code> option.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_process_1a">4.3. Process 1A</h3>
+<h3 id="_process_1a">3.3. Process 1A</h3>
 <h3 id="_create_a_fasta_genome_index" class="discrete">Create a FASTA genome index</h3>
 <div class="paragraph">
 <p>Now we have our inputs set up we can move onto the processes. In our first process we will
@@ -1068,7 +1063,7 @@ create a genome index using <a href="http://www.htslib.org/">samtools</a>.</p>
 </dl>
 </div>
 <div class="sect3">
-<h4 id="_problem_2">4.3.1. Problem #2</h4>
+<h4 id="_problem_2">3.3.1. Problem #2</h4>
 <div class="paragraph">
 <p>Copy the code below and paste it at the end of <code>main.nf</code>.</p>
 </div>
@@ -1143,7 +1138,7 @@ Launching `main.nf` [adoring_wilson] - revision: 89dbc97b8e
 </div>
 </div>
 <div class="sect2">
-<h3 id="_process_1b">4.4. Process 1B</h3>
+<h3 id="_process_1b">3.4. Process 1B</h3>
 <h3 id="_create_a_fasta_genome_sequence_dictionary_with_picard_for_gatk" class="discrete">Create a FASTA genome sequence dictionary with Picard for GATK</h3>
 <div class="paragraph">
 <p>Our first process created the genome index for GATK using samtools. For the next process we must do something very similar, this time creating a genome sequence dictionary using <a href="https://broadinstitute.github.io/picard/">Picard</a>.</p>
@@ -1172,7 +1167,7 @@ Launching `main.nf` [adoring_wilson] - revision: 89dbc97b8e
 </dl>
 </div>
 <div class="sect3">
-<h4 id="_problem_3">4.4.1. Problem #3</h4>
+<h4 id="_problem_3">3.4.1. Problem #3</h4>
 <div class="paragraph">
 <p>Fill in the <code>BLANK</code> words for both the input and output sections.</p>
 </div>
@@ -1236,7 +1231,7 @@ process '1B_prepare_genome_picard' {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_process_1c">4.5. Process 1C</h3>
+<h3 id="_process_1c">3.5. Process 1C</h3>
 <h3 id="_create_star_genome_index_file" class="discrete">Create STAR genome index file</h3>
 <div class="paragraph">
 <p>Next we must create a genome index for the <a href="https://github.com/alexdobin/STAR">STAR</a> mapping software.</p>
@@ -1265,7 +1260,7 @@ process '1B_prepare_genome_picard' {
 </dl>
 </div>
 <div class="sect3">
-<h4 id="_problem_4">4.5.1. Problem #4</h4>
+<h4 id="_problem_4">3.5.1. Problem #4</h4>
 <div class="paragraph">
 <p>This is a similar exercise as problem 3, except this time both <code>input</code> and <code>output</code> lines have been left <code>BLANK</code> and must be completed.</p>
 </div>
@@ -1314,7 +1309,7 @@ The output of the STAR genomeGenerate command is specified here as <code>genome_
 </div>
 </div>
 <div class="sect2">
-<h3 id="_process_1d">4.6. Process 1D</h3>
+<h3 id="_process_1d">3.6. Process 1D</h3>
 <h3 id="_filtered_and_recoded_set_of_variants" class="discrete">Filtered and recoded set of variants</h3>
 <div class="paragraph">
 <p>Next on to something a little more tricky. The next process takes two inputs: the variants
@@ -1360,7 +1355,7 @@ the blacklisted regions file</p>
 </dl>
 </div>
 <div class="sect3">
-<h4 id="_problem_5">4.6.1. Problem #5</h4>
+<h4 id="_problem_5">3.6.1. Problem #5</h4>
 <div class="paragraph">
 <p>You must fill in the two <code>BLANK_LINES</code> in the input and the two <code>BLANK</code> output files.</p>
 </div>
@@ -1432,7 +1427,7 @@ process '1D_prepare_vcf_file' {
 </div>
 </div>
 <div class="sect2">
-<h3 id="_process_2">4.7. Process 2</h3>
+<h3 id="_process_2">3.7. Process 2</h3>
 <h3 id="_star_mapping" class="discrete">STAR Mapping</h3>
 <div class="paragraph">
 <p>In this process, for each sample, we align the reads to our genome using the STAR index we created previously.</p>
@@ -1463,7 +1458,7 @@ a set containing the replicate id and paired read files</p>
 </dl>
 </div>
 <div class="sect3">
-<h4 id="_problem_6">4.7.1. Problem #6</h4>
+<h4 id="_problem_6">3.7.1. Problem #6</h4>
 <div class="paragraph">
 <p>Copy the code below and paste it at the end of <code>main.nf</code>.</p>
 </div>
@@ -1548,7 +1543,7 @@ N characters in their <a href="http://genome.sph.umich.edu/wiki/SAM#What_is_a_CI
 </div>
 </div>
 <div class="sect2">
-<h3 id="_process_3">4.8. Process 3</h3>
+<h3 id="_process_3">3.8. Process 3</h3>
 <h3 id="_gatk_split_on_n" class="discrete">GATK Split on N</h3>
 <div class="paragraph">
 <p>The process creates k+1 new reads (where k is the number of N cigar elements)
@@ -1582,7 +1577,7 @@ a set containg replicate id, aligned bam file and aligned bam file index from th
 </dl>
 </div>
 <div class="sect3">
-<h4 id="_problem_7">4.8.1. Problem #7</h4>
+<h4 id="_problem_7">3.8.1. Problem #7</h4>
 <div class="paragraph">
 <p>Copy the code below and paste it at the end of <code>main.nf</code>.</p>
 </div>
@@ -1654,7 +1649,7 @@ The GATK command above automatically creates a bam index (.bai) of the split.bam
 </div>
 </div>
 <div class="sect2">
-<h3 id="_process_4">4.9. Process 4</h3>
+<h3 id="_process_4">3.9. Process 4</h3>
 <h3 id="_gatk_recalibrate" class="discrete">GATK Recalibrate</h3>
 <div class="paragraph">
 <p>This step uses GATK to detect systematic errors in the base quality scores, select unique alignments and then index the resulting bam file with samtools. You can find details of the specific GATK BaseRecalibrator parameters <a href="https://software.broadinstitute.org/gatk/gatkdocs/3.6-0/org_broadinstitute_gatk_tools_walkers_bqsr_BaseRecalibrator.php">here</a>.</p>
@@ -1687,7 +1682,7 @@ a set containing the filtered/recoded VCF file and the tab index (TBI) file from
 </dl>
 </div>
 <div class="sect3">
-<h4 id="_problem_8">4.9.1. Problem #8</h4>
+<h4 id="_problem_8">3.9.1. Problem #8</h4>
 <div class="paragraph">
 <p>Copy the code below and paste it at the end of <code>main.nf</code>.</p>
 </div>
@@ -1767,7 +1762,7 @@ a set containing the filtered/recoded VCF file and the tab index (TBI) file from
 </div>
 </div>
 <div class="sect2">
-<h3 id="_process_5">4.10. Process 5</h3>
+<h3 id="_process_5">3.10. Process 5</h3>
 <h3 id="_gatk_variant_calling" class="discrete">GATK Variant Calling</h3>
 <div class="paragraph">
 <p>This steps call variants with GATK HaplotypeCaller. You can find details of the specific
@@ -1800,7 +1795,7 @@ a set containg replicate id, aligned bam file and aligned bam file index from pr
 </dl>
 </div>
 <div class="sect3">
-<h4 id="_problem_9">4.10.1. Problem #9</h4>
+<h4 id="_problem_9">3.10.1. Problem #9</h4>
 <div class="paragraph">
 <p>In this problem we will introduce the use of a channel operator in the input section.
 The <a href="https://www.nextflow.io/docs/latest/operator.html#grouptuple">groupTuple</a> operator
@@ -1866,7 +1861,7 @@ It follows from this that process 4 is run one time per replicate and process 5 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_processes_6a_and_6b">4.11. Processes 6A and 6B</h3>
+<h3 id="_processes_6a_and_6b">3.11. Processes 6A and 6B</h3>
 <h3 id="_ase_rna_editing" class="discrete">ASE &amp; RNA Editing</h3>
 <div class="paragraph">
 <p>In the final steps we will create processes for Allele-Specific Expression and RNA Editing Analysis.</p>
@@ -1922,7 +1917,7 @@ a figure of the SNPs generated in R as a PDF file</p>
 </dl>
 </div>
 <div class="sect3">
-<h4 id="_problem_10">4.11.1. Problem #10</h4>
+<h4 id="_problem_10">3.11.1. Problem #10</h4>
 <div class="paragraph">
 <p>Here we introduce the <code>publishDir</code> directive. This allows us to specifiy a location for the outputs of the process. See <a href="https://www.nextflow.io/docs/latest/process.html#publishdir">here</a> for more details.</p>
 </div>
@@ -1987,7 +1982,7 @@ process '6B_prepare_vcf_for_ase' {
 </div>
 </div>
 <div class="sect3">
-<h4 id="_problem_11">4.11.2. Problem #11</h4>
+<h4 id="_problem_11">3.11.2. Problem #11</h4>
 <div class="paragraph">
 <p>We have seen the basics of using processes in Nextflow. Yet one of the standout
 features of Nextflow is the operations that can be performed on
@@ -2103,7 +2098,7 @@ for details on the specific operators.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_process_6c">4.12. Process 6C</h3>
+<h3 id="_process_6c">3.12. Process 6C</h3>
 <h3 id="_allele_specific_expression_analysis_with_gatk_asereadcounter" class="discrete">Allele-Specific Expression analysis with GATK ASEReadCounter</h3>
 <div class="paragraph">
 <p>Now we are ready for the final process.</p>
@@ -2135,7 +2130,7 @@ the `grouped_vcf_bam_bai_ch`channel</p>
 </dl>
 </div>
 <div class="sect3">
-<h4 id="_problem_12">4.12.1. Problem #12</h4>
+<h4 id="_problem_12">3.12.1. Problem #12</h4>
 <div class="paragraph">
 <p>You should construct the process and run the pipeline in its entirety.</p>
 </div>
@@ -2160,7 +2155,7 @@ the `grouped_vcf_bam_bai_ch`channel</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_results_overview">4.13. Results overview</h3>
+<h3 id="_results_overview">3.13. Results overview</h3>
 <div class="paragraph">
 <p>For each processed sample the pipeline stores results into a folder named after the sample identifier. These folders are created in the directory specified as a parameter in <code>params.results</code>.</p>
 </div>
@@ -2339,7 +2334,7 @@ the `grouped_vcf_bam_bai_ch`channel</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_bonus_step">4.14. Bonus step</h3>
+<h3 id="_bonus_step">3.14. Bonus step</h3>
 <div class="paragraph">
 <p>Until now the pipeline has been executed using just a single sample (<code>ENCSR000COQ1</code>).</p>
 </div>
@@ -2406,7 +2401,8 @@ depending on the specified pipeline input dataset.</p>
 </div>
 <div class="paragraph">
 <p>A fully functional version of this pipeline is available at the following GitHub repository:
-<a href="https://github.com/CRG-CNAG/CalliNGS-NF">CalliNGS-NF</a>.</p>
+<a href="https://github.com/CRG-CNAG/CalliNGS-NF">CalliNGS-NF</a>.
+:leveloffset: -1</p>
 </div>
 </div>
 </div>
