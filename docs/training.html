@@ -214,9 +214,9 @@ means that it does not require any special installation procedure.</p>
 <li>
 <p>Download the executable package by using the command shown below.
 It will create the <code>nextflow</code> main executable file in the current directory.</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>curl https://get.nextflow.io | bash</pre>
+<pre class="CodeRay highlight"><code data-lang="cmd">curl https://get.nextflow.io | bash</code></pre>
 </div>
 </div>
 </li>
@@ -224,17 +224,17 @@ It will create the <code>nextflow</code> main executable file in the current dir
 <p>Finally, move the <code>nextflow</code> file to a directory accessible by
 your <code>$PATH</code> variable (this is only required to avoid remembering and
 typing the full path to <code>nextflow</code> each time you need to run it).</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>mv nextflow ~/bin</pre>
+<pre class="CodeRay highlight"><code data-lang="cmd">mv nextflow ~/bin</code></pre>
 </div>
 </div>
 </li>
 <li>
 <p>Check everything is fine running the command:</p>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>nextflow info</pre>
+<pre class="CodeRay highlight"><code data-lang="cmd">nextflow info</code></pre>
 </div>
 </div>
 </li>
@@ -247,16 +247,18 @@ typing the full path to <code>nextflow</code> each time you need to run it).</p>
 <i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-Alternatively Nextflow can also be installed using Conda package managed
-using the command:
+<div class="paragraph">
+<p>Alternatively Nextflow can also be installed using Conda package managed
+using the command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="cmd">conda install nextflow</code></pre>
+</div>
+</div>
 </td>
 </tr>
 </table>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>conda install nextflow</pre>
-</div>
 </div>
 </div>
 </div>
@@ -309,17 +311,17 @@ println &quot;reads: $params.reads&quot;</pre></td>
 <p>Run it by using the
 following command:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>nextflow run script1.nf</pre>
+<pre class="CodeRay highlight"><code data-lang="cmd">nextflow run script1.nf</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Try to specify a different input parameter, for example:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>nextflow run script1.nf --reads this/and/that</pre>
+<pre class="CodeRay highlight"><code data-lang="cmd">nextflow run script1.nf --reads this/and/that</code></pre>
 </div>
 </div>
 <div class="sect3">
@@ -480,9 +482,9 @@ that it is used in the command script to reference that file in the Salmon comma
 <div class="paragraph">
 <p>Try to run it by using the command:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>nextflow run script2.nf</pre>
+<pre class="CodeRay highlight"><code data-lang="cmd">nextflow run script2.nf</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -492,9 +494,9 @@ that it is used in the command script to reference that file in the Salmon comma
 <p>Add the command line option <code>-with-docker</code> to launch the execution through a Docker container
 as shown below:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>nextflow run script2.nf -with-docker</pre>
+<pre class="CodeRay highlight"><code data-lang="cmd">nextflow run script2.nf -with-docker</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -504,9 +506,9 @@ as shown below:</p>
 <div class="paragraph">
 <p>In order to avoid to add the option <code>-with-docker</code> add the following line in the <code>nextflow.config</code> file:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>docker.enabled = true</pre>
+<pre class="CodeRay highlight"><code data-lang="config">docker.enabled = true</code></pre>
 </div>
 </div>
 <div class="sect3">
@@ -562,17 +564,17 @@ operator (do not confuse it with the <code>println</code> statement seen previou
 <div class="paragraph">
 <p>Edit the script <code>script3.nf</code> and add the following statement as the last line:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>read_pairs_ch.println()</pre>
+<pre class="CodeRay highlight"><code data-lang="nextflow">read_pairs_ch.println()</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Save it and execute it with the following command:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>nextflow run script3.nf</pre>
+<pre class="CodeRay highlight"><code data-lang="cmd">nextflow run script3.nf</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -591,9 +593,9 @@ representing the actual files.</p>
 <div class="paragraph">
 <p>Try it again specifying different read files by using a glob pattern:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>nextflow run script3.nf --reads 'data/ggal/*_{1,2}.fq'</pre>
+<pre class="CodeRay highlight"><code data-lang="cmd">nextflow run script3.nf --reads 'data/ggal/*_{1,2}.fq'</code></pre>
 </div>
 </div>
 <div class="admonitionblock important">
@@ -660,9 +662,9 @@ by the <code>read_pairs_ch</code> channel.</p>
 <div class="paragraph">
 <p>Execute it by using the following command:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>nextflow run script4.nf -resume</pre>
+<pre class="CodeRay highlight"><code data-lang="cmd">nextflow run script4.nf -resume</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -674,9 +676,9 @@ by the <code>read_pairs_ch</code> channel.</p>
 <div class="paragraph">
 <p>Try to execute it with more read files as shown below:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>nextflow run script4.nf -resume --reads 'data/ggal/*_{1,2}.fq'</pre>
+<pre class="CodeRay highlight"><code data-lang="cmd">nextflow run script4.nf -resume --reads 'data/ggal/*_{1,2}.fq'</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -733,9 +735,9 @@ read pairs which are provided to the <code>quantification</code> steps</p>
 <div class="paragraph">
 <p>You can run it by using the following command:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>nextflow run script5.nf -resume</pre>
+<pre class="CodeRay highlight"><code data-lang="cmd">nextflow run script5.nf -resume</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -743,7 +745,7 @@ read pairs which are provided to the <code>quantification</code> steps</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code>Channel `read_pairs_ch` has been used twice as an input by process `fastqc` and process `quantification`</code></pre>
+<pre>Channel `read_pairs_ch` has been used twice as an input by process `fastqc` and process `quantification`</pre>
 </div>
 </div>
 <div class="sect3">
@@ -788,9 +790,9 @@ a final report by using the <a href="http://multiqc.info/">MultiQC</a> tool.</p>
 <div class="paragraph">
 <p>Execute the script with the following command:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>nextflow run script6.nf -resume --reads 'data/ggal/*_{1,2}.fq'</pre>
+<pre class="CodeRay highlight"><code data-lang="cmd">nextflow run script6.nf -resume --reads 'data/ggal/*_{1,2}.fq'</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -839,9 +841,9 @@ when the script completes.</p>
 <div class="paragraph">
 <p>Try to run it by using the following command:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>nextflow run script7.nf -resume --reads 'data/ggal/*_{1,2}.fq'</pre>
+<pre class="CodeRay highlight"><code data-lang="cmd">nextflow run script7.nf -resume --reads 'data/ggal/*_{1,2}.fq'</code></pre>
 </div>
 </div>
 </div>
@@ -882,9 +884,9 @@ file. For the sake of this tutorial add the following setting in your <code>next
 <div class="paragraph">
 <p>Then execute again the previous example specifying your email address:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>nextflow run script7.nf -resume --reads 'data/ggal/*_{1,2}.fq' -N &lt;your email&gt;</pre>
+<pre class="CodeRay highlight"><code data-lang="cmd">nextflow run script7.nf -resume --reads 'data/ggal/*_{1,2}.fq' -N &lt;your email&gt;</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -933,7 +935,7 @@ fastqc -o fastqc_${sample_id}_logs -f fastq -q ${reads}</pre></td>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="bash"><table class="CodeRay"><tr>
+<pre class="CodeRay highlight"><code data-lang="cmd"><table class="CodeRay"><tr>
   <td class="line-numbers"><pre>1
 2
 3
@@ -956,19 +958,19 @@ the following code:</p>
 3
 4
 </pre></td>
-  <td class="code"><pre>  script:
-  &quot;&quot;&quot;
-  fastqc.sh &quot;$sample_id&quot; &quot;$reads&quot;
-  &quot;&quot;&quot;</pre></td>
+  <td class="code"><pre>script:
+&quot;&quot;&quot;
+fastqc.sh &quot;$sample_id&quot; &quot;$reads&quot;
+&quot;&quot;&quot;</pre></td>
 </tr></table></code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Run it as before:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>nextflow run script7.nf -resume --reads 'data/ggal/*_{1,2}.fq'</pre>
+<pre class="CodeRay highlight"><code data-lang="cmd">nextflow run script7.nf -resume --reads 'data/ggal/*_{1,2}.fq'</code></pre>
 </div>
 </div>
 <div class="sect3">
@@ -998,9 +1000,9 @@ and execution information.</p>
 <p>Run the <a href="https://github.com/nextflow-io/rnaseq-nf">rnaseq-nf</a> pipeline
 previously introduced as shown below:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>nextflow run rnaseq-nf -with-docker -with-report -with-trace -with-timeline -with-dag dag.png</pre>
+<pre class="CodeRay highlight"><code data-lang="cmd">nextflow run rnaseq-nf -with-docker -with-report -with-trace -with-timeline -with-dag dag.png</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1064,9 +1066,9 @@ See <a href="https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation"
 <div class="paragraph">
 <p>You can run it by specifying the project name as shown below:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>nextflow run nextflow-io/rnaseq-nf -with-docker</pre>
+<pre class="CodeRay highlight"><code data-lang="cmd">nextflow run nextflow-io/rnaseq-nf -with-docker</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1075,17 +1077,17 @@ See <a href="https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation"
 <div class="paragraph">
 <p>Use the command info to show the project information, e.g.:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>nextflow info nextflow-io/rnaseq-nf</pre>
+<pre class="CodeRay highlight"><code data-lang="cmd">nextflow info nextflow-io/rnaseq-nf</code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Nextflow allows the execution of a specific revision of your project by using the <code>-r</code> command line option. For Example:</p>
 </div>
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
-<pre>nextflow run nextflow-io/rnaseq-nf -r dev</pre>
+<pre class="CodeRay highlight"><code data-lang="cmd">nextflow run nextflow-io/rnaseq-nf -r dev</code></pre>
 </div>
 </div>
 <div class="paragraph">
