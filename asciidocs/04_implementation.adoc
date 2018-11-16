@@ -38,6 +38,7 @@ Edit this file to specify the input files as script parameters. Using this notat
 allows you to override them by specifying different values when launching the
 pipeline execution.
 
+[source,nextflow,linenums]
 ----
 /*
  * Define the default parameters <1>
@@ -90,6 +91,7 @@ TIP: In `nano` you can move to the end of the file using kbd:[Ctrl+W] and then k
 
 This time you must fill the `BLANK` spaces with the correct function and parameter.
 
+[source,nextflow,linenums]
 ----
 /*
  *  Parse the input parameters
@@ -152,6 +154,7 @@ Copy the code below and paste it at the end of `main.nf`.
 Your aim is to replace `BLANK` placeholder with the  the correct
 variable name of the genome file that you have defined in previous problem.
 
+[source,nextflow,linenums]
 ----
 /*
  * Process 1A: Create a FASTA genome index with samtools
@@ -231,6 +234,8 @@ Your aim is to insert the correct input name from into
 the input step (written as `BLANK`) of the process and run the pipeline.
 
 TIP: You can choose any channel output name that makes sense to you.
+
+[source,nextflow,linenums]
 ----
 /*
  * Process 1B: Create a FASTA genome sequence dictionary with Picard for GATK
@@ -283,6 +288,7 @@ a directory containing the STAR genome index
 
 This is a similar exercise as problem 3, except this time both `input` and `output` lines have been left `BLANK` and must be completed.
 
+[source,nextflow,linenums]
 ----
 /*
  * Process 1C: Create the genome index file for STAR
@@ -345,6 +351,7 @@ a set containing the filtered/recoded VCF file and the tab index (TBI) file.
 
 You must fill in the two `BLANK_LINES` in the input and the two `BLANK` output files.
 
+[source,nextflow,linenums]
 ----
 /*
  * Process 1D: Create a file containing the filtered and recoded set of variants
@@ -419,6 +426,7 @@ Copy the code below and paste it at the end of `main.nf`.
 
 You must fill in the three `BLANK_LINE` lines in the input and the one `BLANK_LINE` line in the output.
 
+[source,nextflow,linenums]
 ----
 /*
  * Process 2: Align RNA-Seq reads to the genome with STAR
@@ -519,7 +527,7 @@ to the start of this process. The https://www.nextflow.io/docs/latest/process.ht
 allows you to assign a name to a specific task (single execution of a process).
 This is particularly useful when there are many samples/replicates which pass through the same process.
 
-
+[source,nextflow,linenums]
 ----
 process '3_rnaseq_gatk_splitNcigar' {
   tag OPTIONAL_BLANK
@@ -586,6 +594,7 @@ Copy the code below and paste it at the end of `main.nf`.
 
 You must fill in the five `BLANK_LINE` lines in the input and the one `BLANK_LINE` line in the output.
 
+[source,nextflow,linenums]
 ----
 process '4_rnaseq_gatk_recalibrate' {
   tag "$replicateId"
@@ -681,6 +690,7 @@ It follows from this that process 4 is run one time per replicate and process 5 
 
 Fill in the `BLANKS` as before.
 
+[source,nextflow,linenums]
 ----
 process '5_rnaseq_call_variants' {
   tag BLANK
@@ -766,6 +776,7 @@ Here we introduce the `publishDir` directive. This allows us to specifiy a locat
 
 You must have the output of process 6A become the input of process 6B.
 
+[source,nextflow,linenums]
 ----
 process '6A_post_process_vcf' {
   tag BLANK
@@ -856,6 +867,7 @@ We must take the merged channel and creates a channel named `grouped_vcf_bam_bai
 
 Your aim is to fill in the `BLANKS` below.
 
+[source,nextflow,linenums]
 ----
 bam_for_ASE_ch
   .BLANK                            <1>
@@ -912,6 +924,7 @@ the allele specific expression file (`ASE.tsv`)
 
 You should construct the process and run the pipeline in its entirety.
 
+[source,nextflow,linenums]
 ----
   echo "${bam.join('\n')}" > bam.list
 
