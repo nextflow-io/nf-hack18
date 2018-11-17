@@ -4,11 +4,16 @@
 <meta charset="UTF-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.6.2">
+<meta name="generator" content="Asciidoctor 1.5.7.1">
 <title>Nextflow Workshop 2018</title>
 <link rel="stylesheet" href="./css/crg.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="./css/coderay-asciidoctor.css">
+<!-- fixes nowrap line numbers https://github.com/asciidoctor/asciidoctor/issues/1706#issuecomment-314601209 -->
+<style>
+    table.CodeRay { display: block; overflow-x: auto; }
+    td.code > pre { white-space: pre; }
+</style>
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
@@ -65,17 +70,21 @@
 </ul>
 </li>
 <li><a href="#_handle_completion_event">2.7. Handle completion event</a></li>
-<li><a href="#_bonus">2.8. Bonus!</a></li>
-<li><a href="#_custom_scripts">2.9. Custom scripts</a>
+<li><a href="#_custom_scripts">2.8. Custom scripts</a>
 <ul class="sectlevel3">
-<li><a href="#_recap_7">2.9.1. Recap</a></li>
+<li><a href="#_recap_7">2.8.1. Recap</a></li>
 </ul>
 </li>
-<li><a href="#_metrics_and_reports">2.10. Metrics and reports</a></li>
-<li><a href="#_more_resources">2.11. More resources</a></li>
+<li><a href="#_mail_notification">2.9. Mail notification</a></li>
+<li><a href="#_more_resources">2.10. More resources</a></li>
 </ul>
 </li>
-<li><a href="#_run_a_pipeline_from_a_github_repository">3. Run a pipeline from a GitHub repository</a></li>
+<li><a href="#_bonus">3. Bonus</a>
+<ul class="sectlevel2">
+<li><a href="#_run_a_pipeline_from_a_github_repository">3.1. Run a pipeline from a GitHub repository</a></li>
+<li><a href="#_metrics_and_reports">3.2. Metrics and reports</a></li>
+</ul>
+</li>
 <li><a href="#_basic_language_structures_and_commands">4. Basic language structures and commands</a>
 <ul class="sectlevel2">
 <li><a href="#_printing_values">4.1. Printing values</a></li>
@@ -285,6 +294,14 @@ using the command:</p>
 </li>
 </ol>
 </div>
+<div class="paragraph">
+<p>Change in the course directory with the following command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="cmd">cd ~/nf-hack18/course</code></pre>
+</div>
+</div>
 <div class="sect2">
 <h3 id="_define_the_pipeline_parameters">2.1. Define the pipeline parameters</h3>
 <div class="paragraph">
@@ -467,8 +484,7 @@ process index {
     &quot;&quot;&quot;
     salmon index --threads $task.cpus -t $transcriptome -i index
     &quot;&quot;&quot;
-}
-</pre></td>
+}</pre></td>
 </tr></table></code></pre>
 </div>
 </div>
@@ -838,6 +854,19 @@ common <strong>imperative</strong> programming language.</p>
 <p>The script uses the <code>workflow.onComplete</code> event handler to print a confirmation message
 when the script completes.</p>
 </div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="nextflow"><table class="CodeRay"><tr>
+  <td class="line-numbers"><pre>1
+2
+3
+</pre></td>
+  <td class="code"><pre>workflow.onComplete {
+    println ( workflow.success ? &quot;\nDone! Open the following report in your browser --&gt;  $params.outdir/multiqc_report.html\n&quot; : &quot;Oops .. something went wrong&quot; )
+}</pre></td>
+</tr></table></code></pre>
+</div>
+</div>
 <div class="paragraph">
 <p>Try to run it by using the following command:</p>
 </div>
@@ -848,54 +877,7 @@ when the script completes.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_bonus">2.8. Bonus!</h3>
-<div class="paragraph">
-<p>Send a notification email when the workflow execution complete using the <code>-N &lt;email address&gt;</code>
-command line option. Note: this requires the configuration of a SMTP server in nextflow config
-file. For the sake of this tutorial add the following setting in your <code>nextflow.config</code> file:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="config"><table class="CodeRay"><tr>
-  <td class="line-numbers"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-</pre></td>
-  <td class="code"><pre>mail {
-  from = 'info@nextflow.io'
-  smtp.host = 'email-smtp.eu-west-1.amazonaws.com'
-  smtp.port = 587
-  smtp.user = &quot;AKIAIDY3I32PYKDTFK6A&quot;
-  smtp.password = &quot;Aj/Y2fo0s7uo1vs+Ffb+JTLVBw2p5Hk9FRMLvQx5U/+E&quot;
-  smtp.auth = true
-  smtp.starttls.enable = true
-  smtp.starttls.required = true
-}</pre></td>
-</tr></table></code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Then execute again the previous example specifying your email address:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="cmd">nextflow run script7.nf -resume --reads 'data/ggal/*_{1,2}.fq' -N &lt;your email&gt;</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>See <a href="https://www.nextflow.io/docs/latest/mail.html#mail-configuration">mail documentation</a>
-for details.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_custom_scripts">2.9. Custom scripts</h3>
+<h3 id="_custom_scripts">2.8. Custom scripts</h3>
 <div class="paragraph">
 <p>Real world pipelines use a lot of custom user scripts (BASH, R, Python, etc). Nextflow
 allows you to use and manage all these scripts in consistent manner. Simply put them
@@ -974,7 +956,7 @@ fastqc.sh &quot;$sample_id&quot; &quot;$reads&quot;
 </div>
 </div>
 <div class="sect3">
-<h4 id="_recap_7">2.9.1. Recap</h4>
+<h4 id="_recap_7">2.8.1. Recap</h4>
 <div class="paragraph">
 <p>In this step you have learned:</p>
 </div>
@@ -991,44 +973,35 @@ fastqc.sh &quot;$sample_id&quot; &quot;$reads&quot;
 </div>
 </div>
 <div class="sect2">
-<h3 id="_metrics_and_reports">2.10. Metrics and reports</h3>
+<h3 id="_mail_notification">2.9. Mail notification</h3>
 <div class="paragraph">
-<p>Nextflow is able to produce multiple reports and charts providing several runtime metrics
-and execution information.</p>
-</div>
-<div class="paragraph">
-<p>Run the <a href="https://github.com/nextflow-io/rnaseq-nf">rnaseq-nf</a> pipeline
-previously introduced as shown below:</p>
+<p>Send a notification email when the workflow execution complete using the <code>-N &lt;email address&gt;</code>
+command line option. Execute again the previous example specifying your email address:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code data-lang="cmd">nextflow run rnaseq-nf -with-docker -with-report -with-trace -with-timeline -with-dag dag.png</code></pre>
+<pre class="CodeRay highlight"><code data-lang="cmd">nextflow run script7.nf -resume --reads 'data/ggal/*_{1,2}.fq' -N &lt;your email&gt;</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>The <code>-with-report</code> option enables the creation of the workflow execution report. Open
-the file <code>report.html</code> with a browser to see the report created with the above command.</p>
-</div>
-<div class="paragraph">
-<p>The <code>-with-trace</code> option enables the create of a tab separated file containing runtime
-information for each executed task. Check the content of the file <code>trace.txt</code> for an example.</p>
-</div>
-<div class="paragraph">
-<p>The <code>-with-timeline</code> option enables the creation of the workflow timeline report showing
-how processes where executed along time. This may be useful to identify most time consuming
-tasks and bottlenecks. See an example at <a href="https://www.nextflow.io/docs/latest/tracing.html#timeline-report">this link</a>.</p>
-</div>
-<div class="paragraph">
-<p>Finally the <code>-with-dag</code> option enables to rendering of the workflow execution direct acyclic graph
-representation. Note: this feature requires the installation of <a href="http://www.graphviz.org/">Graphviz</a> in your computer.
-See <a href="https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation">here</a> for details.</p>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Your computer must have installed a pre-configured mail tool, such as <code>mail</code> or <code>sendmail</code>.
+</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
-<p>Note: runtime metrics may be incomplete for run short running tasks as in the case of this tutorial.</p>
+<p>Alternatively you can provide the settings of the STMP server needed to send the mail notification
+in the Nextflow config file. See <a href="https://www.nextflow.io/docs/latest/mail.html#mail-configuration">mail documentation</a> for details.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_more_resources">2.11. More resources</h3>
+<h3 id="_more_resources">2.10. More resources</h3>
 <div class="ulist">
 <ul>
 <li>
@@ -1049,8 +1022,10 @@ See <a href="https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation"
 </div>
 </div>
 <div class="sect1">
-<h2 id="_run_a_pipeline_from_a_github_repository">3. Run a pipeline from a GitHub repository</h2>
+<h2 id="_bonus">3. Bonus</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_run_a_pipeline_from_a_github_repository">3.1. Run a pipeline from a GitHub repository</h3>
 <div class="paragraph">
 <p>Nextflow allows the execution of a pipeline project directly from a GitHub repository (or similar services eg. BitBucket and GitLab).</p>
 </div>
@@ -1095,6 +1070,56 @@ See <a href="https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation"
 </div>
 <div class="paragraph">
 <p>This allows a precise control of the changes in your project files and dependencies over time.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_metrics_and_reports">3.2. Metrics and reports</h3>
+<div class="paragraph">
+<p>Nextflow is able to produce multiple reports and charts providing several runtime metrics
+and execution information.</p>
+</div>
+<div class="paragraph">
+<p>Run the <a href="https://github.com/nextflow-io/rnaseq-nf">rnaseq-nf</a> pipeline
+previously introduced as shown below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="cmd">nextflow run rnaseq-nf -with-docker -with-report -with-trace -with-timeline -with-dag dag.png</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>-with-report</code> option enables the creation of the workflow execution report. Open
+the file <code>report.html</code> with a browser to see the report created with the above command.</p>
+</div>
+<div class="paragraph">
+<p>The <code>-with-trace</code> option enables the create of a tab separated file containing runtime
+information for each executed task. Check the content of the file <code>trace.txt</code> for an example.</p>
+</div>
+<div class="paragraph">
+<p>The <code>-with-timeline</code> option enables the creation of the workflow timeline report showing
+how processes where executed along time. This may be useful to identify most time consuming
+tasks and bottlenecks. See an example at <a href="https://www.nextflow.io/docs/latest/tracing.html#timeline-report">this link</a>.</p>
+</div>
+<div class="paragraph">
+<p>Finally the <code>-with-dag</code> option enables to rendering of the workflow execution direct acyclic graph
+representation. Note: this feature requires the installation of <a href="http://www.graphviz.org/">Graphviz</a> in your computer.
+See <a href="https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation">here</a> for details.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+The public IP address of your computer can be obtained with the command <code>myip</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Note: runtime metrics may be incomplete for run short running tasks as in the case of this tutorial.</p>
+</div>
 </div>
 </div>
 </div>
@@ -2164,7 +2189,7 @@ Two asterisks, i.e. <code>**</code>, works like <code>*</code> but crosses direc
 </tr>
 </table>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 1. Available options</caption>
 <colgroup>
 <col style="width: 15%;">
@@ -2260,7 +2285,7 @@ The glob pattern must contain at least a star wildcard character.
 </tr>
 </table>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 2. Available options</caption>
 <colgroup>
 <col style="width: 15%;">

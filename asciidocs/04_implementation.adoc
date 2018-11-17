@@ -1004,4 +1004,5 @@ This shows the ability of Nextflow to implicitly handle multiple parallel task e
 depending on the specified pipeline input dataset.
 
 A fully functional version of this pipeline is available at the following GitHub repository:
-https://github.com/CRG-CNAG/CalliNGS-NF[CalliNGS-NF].   
+https://github.com/CRG-CNAG/CalliNGS-NF[CalliNGS-NF]. 
+

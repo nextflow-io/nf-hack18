@@ -18,12 +18,12 @@
 :leveloffset: +1
 // training basic (1)
 include::01_installation.adoc[]
-include::06_rnaseq_pipeline.adoc[]
-include::07_run_from_github.adoc[]
+include::02_rnaseq_pipeline.adoc[]
+include::03_run_from_github.adoc[]
 
 // training basic (2)
-include::02_data_structures.adoc[]
-include::03_channels.adoc[]
-include::04_operators.adoc[]
-include::05_processes.adoc[]
+include::04_data_structures.adoc[]
+include::05_channels.adoc[]
+include::06_operators.adoc[]
+include::07_processes.adoc[]
 :leveloffset: -1

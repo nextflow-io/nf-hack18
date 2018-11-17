@@ -26,5 +26,5 @@ endif::draft[]
 == Material
 
 * [big]##link:cloud.html[Cloud setup]##
-* [big]##link:training.html[Beginner training]##
-* [big]##link:handson.html[Beginner hands-on]##
+* [big]##link:training.html[Beginner course]##
+* [big]##link:handson.html[Practical hands-on]##

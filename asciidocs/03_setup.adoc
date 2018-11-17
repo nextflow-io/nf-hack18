@@ -46,6 +46,7 @@ If you don't have the above directory, clone it with the following command:
 
 [source,cmd]
 ----
+cd $HOME
 git clone https://github.com/nextflow-io/nf-hack18/
 cd nf-hack18/hands-on
 ----
@@ -89,3 +90,4 @@ and the following message when the pull is completed:
 Digest: sha256:b65a7d721b9dd2da07d6bdd7f868b04039860f14fa514add975c59e68614c310
 Status: Downloaded newer image for cbcrg/callings-nf@sha256:b65a7d721b9dd2da07d6bdd7f868b04039860f14fa514add975c59e68614c310
 ----
+

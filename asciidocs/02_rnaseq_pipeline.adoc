@@ -7,13 +7,24 @@ During this tutorial you will implement a proof of concept of a RNA-Seq pipeline
 3. Performs quantification.
 4. Create a MultiqQC report. 
 
+Change in the course directory with the following command: 
+
+[source,cmd]
+----
+cd ~/nf-hack18/course
+----
+
 == Define the pipeline parameters 
 
 The script `script1.nf` defines the pipeline input parameters. 
 
 [source,nextflow,linenums]
 ----
-include::../course/script1.nf[]
+params.reads = "$baseDir/data/ggal/*_{1,2}.fq"
+params.transcriptome = "$baseDir/data/ggal/transcriptome.fa"
+params.multiqc = "$baseDir/multiqc"
+
+println "reads: $params.reads"
 ----
 
 Run it by using the 
@@ -65,7 +76,45 @@ The second example adds the `index` process.
 
 [source,nextflow,linenums]
 ----
-include::../course/script2.nf[]
+/* 
+ * pipeline input parameters 
+ */
+params.reads = "$baseDir/data/ggal/*_{1,2}.fq"
+params.transcriptome = "$baseDir/data/ggal/transcriptome.fa"
+params.multiqc = "$baseDir/multiqc"
+params.outdir = "results"
+
+println """\
+         R N A S E Q - N F   P I P E L I N E    
+         ===================================
+         transcriptome: ${params.transcriptome}
+         reads        : ${params.reads}
+         outdir       : ${params.outdir}
+         """
+         .stripIndent()
+
+/* 
+ * create a transcriptome file object given then transcriptome string parameter
+ */
+transcriptome_file = file(params.transcriptome)
+ 
+/* 
+ * define the `index` process that create a binary index 
+ * given the transcriptome file
+ */
+process index {
+    
+    input:
+    file transcriptome from transcriptome_file
+     
+    output:
+    file 'index' into index_ch
+
+    script:       
+    """
+    salmon index --threads $task.cpus -t $transcriptome -i index
+    """
+}
 ----
 
 It takes the transcriptome file as input and creates the transcriptome index by using the `salmon` tool. 
@@ -290,7 +339,6 @@ and https://www.nextflow.io/docs/latest/operator.html#collect[collect] operators
 together to get all the outputs of the `quantification` and `fastqc` process as a single
 input. 
 
-
 === Recap 
 
 In this step you have learned: 
@@ -311,6 +359,13 @@ common *imperative* programming language.
 The script uses the `workflow.onComplete` event handler to print a confirmation message 
 when the script completes. 
 
+[source,nextflow,linenums]
+----
+workflow.onComplete { 
+    println ( workflow.success ? "\nDone! Open the following report in your browser -->  $params.outdir/multiqc_report.html\n" : "Oops .. something went wrong" )
+}
+----
+
 Try to run it by using the following command: 
 
 [source,cmd]
@@ -318,36 +373,6 @@ Try to run it by using the following command:
 nextflow run script7.nf -resume --reads 'data/ggal/*_{1,2}.fq'
 ----
 
-== Bonus! 
-
-Send a notification email when the workflow execution complete using the `-N <email address>` 
-command line option. Note: this requires the configuration of a SMTP server in nextflow config
-file. For the sake of this tutorial add the following setting in your `nextflow.config` file:
-
-[source,config,linenums]
-----
-mail {
-  from = 'info@nextflow.io'
-  smtp.host = 'email-smtp.eu-west-1.amazonaws.com'
-  smtp.port = 587  
-  smtp.user = "AKIAIDY3I32PYKDTFK6A"
-  smtp.password = "Aj/Y2fo0s7uo1vs+Ffb+JTLVBw2p5Hk9FRMLvQx5U/+E"
-  smtp.auth = true
-  smtp.starttls.enable = true
-  smtp.starttls.required = true
-}
-----
-
-Then execute again the previous example specifying your email address: 
-
-[source,cmd]
-----
-nextflow run script7.nf -resume --reads 'data/ggal/*_{1,2}.fq' -N <your email>
-----
-    
-
-See https://www.nextflow.io/docs/latest/mail.html#mail-configuration[mail documentation] 
-for details.
 
 == Custom scripts
 
@@ -405,36 +430,20 @@ In this step you have learned:
 1. How to write or use existing custom script in your Nextflow pipeline.
 2. How to avoid the use of absolute paths having your scripts in the `bin/` project folder.
 
+== Mail notification 
 
-== Metrics and reports 
-
-Nextflow is able to produce multiple reports and charts providing several runtime metrics 
-and execution information. 
-
-Run the https://github.com/nextflow-io/rnaseq-nf[rnaseq-nf] pipeline
-previously introduced as shown below: 
+Send a notification email when the workflow execution complete using the `-N <email address>` 
+command line option. Execute again the previous example specifying your email address: 
 
 [source,cmd]
 ----
-nextflow run rnaseq-nf -with-docker -with-report -with-trace -with-timeline -with-dag dag.png
+nextflow run script7.nf -resume --reads 'data/ggal/*_{1,2}.fq' -N <your email>
 ----
+    
+WARNING: Your computer must have installed a pre-configured mail tool, such as `mail` or `sendmail`. 
 
-The `-with-report` option enables the creation of the workflow execution report. Open 
-the file `report.html` with a browser to see the report created with the above command. 
-
-The `-with-trace` option enables the create of a tab separated file containing runtime 
-information for each executed task. Check the content of the file `trace.txt` for an example.
-
-The `-with-timeline` option enables the creation of the workflow timeline report showing 
-how processes where executed along time. This may be useful to identify most time consuming 
-tasks and bottlenecks. See an example at https://www.nextflow.io/docs/latest/tracing.html#timeline-report[this link]. 
-
-Finally the `-with-dag` option enables to rendering of the workflow execution direct acyclic graph 
-representation. Note: this feature requires the installation of http://www.graphviz.org/[Graphviz] in your computer. 
-See https://www.nextflow.io/docs/latest/tracing.html#dag-visualisation[here] for details.
-
-Note: runtime metrics may be incomplete for run short running tasks as in the case of this tutorial.
-
+Alternatively you can provide the settings of the STMP server needed to send the mail notification 
+in the Nextflow config file. See https://www.nextflow.io/docs/latest/mail.html#mail-configuration[mail documentation] for details.
 
 == More resources 
 
