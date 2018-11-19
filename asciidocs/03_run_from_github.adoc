@@ -49,7 +49,7 @@ previously introduced as shown below:
 
 [source,cmd]
 ----
-nextflow run rnaseq-nf -with-docker -with-report -with-trace -with-timeline -with-dag dag.png
+nextflow run -r master rnaseq-nf -with-docker -with-report -with-trace -with-timeline -with-dag dag.png
 ----
 
 The `-with-report` option enables the creation of the workflow execution report. Open 
