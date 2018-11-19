@@ -78,8 +78,8 @@ nextflow run main.nf
 You should see the script execute, print Nextflow version and pipeline revision and then exit.
 
 ----
-N E X T F L O W  ~  version 0.24.1
-Launching `main.nf` [nauseous_wright] - revision: 83a0a5415a
+N E X T F L O W  ~  version 18.10.1
+Launching `main.nf` [romantic_snyder] - revision: 83a0a5415a
 ----
 
 ***
