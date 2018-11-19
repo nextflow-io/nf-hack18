@@ -47,7 +47,6 @@ If you don't have the above directory, clone it with the following command:
 ----
 cd $HOME
 git clone https://github.com/nextflow-io/nf-hack18/
-cd nf-hack18/hands-on
 ----
 
 ----
@@ -58,6 +57,12 @@ Unpacking objects: 100% (71/71), done.
 Checking connectivity... done.
 ----
 
+Then move to the folder:
+
+[source,cmd]
+----
+cd $HOME/nf-hack18/hands-on
+----
 
 == Pulling the Docker image
 
