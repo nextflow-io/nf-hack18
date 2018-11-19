@@ -35,7 +35,6 @@ $HOME/nf-hack18/hands-on
 │       ├── ENCSR000CPO1_2.fastq.gz
 │       ├── ENCSR000CPO2_1.fastq.gz
 │       └── ENCSR000CPO2_2.fastq.gz
-├── launch-ec2.sh
 ├── nextflow.config
 └── README.md
 
