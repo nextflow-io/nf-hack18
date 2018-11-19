@@ -57,13 +57,6 @@ Unpacking objects: 100% (71/71), done.
 Checking connectivity... done.
 ----
 
-Then move to the folder:
-
-[source,cmd]
-----
-cd $HOME/nf-hack18/hands-on
-----
-
 == Pulling the Docker image
 
 Nextflow can pull Docker images at runtime, but let's just download it manually to see how Docker works:
