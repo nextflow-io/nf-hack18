@@ -555,7 +555,9 @@ process '3_rnaseq_gatk_splitNcigar' {
 }
 ----
 
-TIP: The GATK command above automatically creates a bam index (.bai) of the split.bam output file
+TIP: The GATK command above automatically creates a bam index (`.bai`) of the `split.bam` output file
+
+TIP: A `tag` line would also be useful in <<Process 2>>
 
 <<solutions/gentle_garden.adoc#, Solution>>
 
