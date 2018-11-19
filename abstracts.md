@@ -141,7 +141,7 @@ I'm a bioinformatician by training and am currently in the second year of my PhD
 
 **Paolo Di Tommaso**, *Research Software engineer, Center for Genomic Regulation (CRG), Spain*
 
-This presentation will give an overview of the current state of Nextflow technology, the achived 
+This presentation will give an overview of the current state of Nextflow technology, the achieved 
 milestones, the upcoming changes and the open challenges facing the reproducibility of 
 of in-silico genomic data analysis. 
 
