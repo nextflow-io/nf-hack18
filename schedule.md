@@ -10,7 +10,7 @@
 | 11.00 - 11.30 | Coffee break              |
 | 11.30 - 13.00 | Nextflow for beginners (2)|
 | 13.00 - 14.15 | Lunch                     |
-| 14.15 - 14.50 | [Cedric Notreme, Paolo Di Tommaso: The state of Nextflow](https://www.nextflow.io/nfhack/2018/paolo.html) | 
+| 14.15 - 14.50 | [Paolo Di Tommaso: The state of Nextflow](https://www.nextflow.io/nfhack/2018/paolo.html) | 
 | 14.50 - 15.20 | [Luke Goodsell: Industrial Personalised Immunotherapy Pipeline Development with Nextflow](https://www.nextflow.io/nfhack/2018/luke-goodsell.html) | 
 | 15.20 - 15.50 | [Philip Ewels: NF-Core, A community effort to collect curated Nextflow pipelines](https://www.nextflow.io/nfhack/2018/phil.html) |
 | 15.50 - 16.00 | [Alessia Visconti: Nextflow on the go](https://www.nextflow.io/nfhack/2018/alessia.html) |
