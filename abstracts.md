@@ -139,7 +139,7 @@ I'm a bioinformatician by training and am currently in the second year of my PhD
 
 ## The state of Nextflow 
 
-**Paolo Di Tommaso**, *Research Software engineer, Center for Genomic Regulation (CRG), Spain*
+**Paolo Di Tommaso**, *Research Software engineer, Centre for Genomic Regulation (CRG), Spain*
 
 This presentation will give an overview of the current state of Nextflow technology, the achieved 
 milestones, the upcoming changes and the open challenges facing the reproducibility of 
@@ -148,3 +148,13 @@ of in-silico genomic data analysis.
 #### Bio 
 
 Paolo Di Tommaso is a computer scientist and bioinformaticians. He has 20 years long experience as software developer and architect. His main interests are parallel programming, HPC, cloud computing and containerisation technologies. He is an open source advocate and he is the creator and project leader of the Nextflow workflow framework.
+
+## Evan Floden: Nextflow support and enhancements
+
+**Evan Floden**, *PhD Student, Centre for Genomic Regulation (CRG), Spain*
+
+A brief introduction to the commercial support and training available for Nextflow users. The focus is on those organisations running mission critical applications and teams who want to learn about the technology in-depth, starting from basic through to advanced concepts. 
+
+#### Bio 
+
+Evan Floden is about to complete his PhD in the Comparative Bioinformatics group at the CRG. He has been actively involved in the Nextflow project for the past three years and recently co-founded Seqera Labs (http://www.seqera.io) to provide commercial support, training and enhancements for Nextflow users. Prior to his PhD, he worked as a bioinformatician at Rfam at the Sanger Institute and as a development scientist at Aroa Biosurgery.
