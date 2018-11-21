@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 1.5.6.2">
+<meta name="generator" content="Asciidoctor 1.5.7.1">
 <title>Nextflow Workshop 2018</title>
 <link rel="stylesheet" href="./css/crg.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="./css/coderay-asciidoctor.css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
 <!-- fixes nowrap line numbers https://github.com/asciidoctor/asciidoctor/issues/1706#issuecomment-314601209 -->
@@ -29,7 +29,7 @@
 <ul class="sectlevel3">
 <li><a href="#_preparing_data">1.2.1. Preparing data</a></li>
 <li><a href="#_mapping_rna_seq_reads_to_the_reference">1.2.2. Mapping RNA-seq reads to the reference</a></li>
-<li><a href="#_split_n_trim_and_reassign_mapping_qualities">1.2.3. Split&#8217;N&#8217;Trim and reassign mapping qualities</a></li>
+<li><a href="#_splitntrim_and_reassign_mapping_qualities">1.2.3. Split&#8217;N&#8217;Trim and reassign mapping qualities</a></li>
 <li><a href="#_base_recalibration">1.2.4. Base Recalibration</a></li>
 <li><a href="#_variant_calling_and_variant_filtering">1.2.5. Variant Calling and Variant filtering</a></li>
 <li><a href="#_variant_post_processing">1.2.6. Variant Post-processing</a></li>
@@ -147,7 +147,7 @@
 <div class="paragraph">
 <p>Only reads mapped to the <a href="http://genome-euro.ucsc.edu/cgi-bin/hgTracks?db=hg19&amp;lastVirtModeType=default&amp;lastVirtModeExtraState=&amp;virtModeType=default&amp;virtMode=0&amp;nonVirtPosition=&amp;position=chr22%3A14700001-25900000&amp;hgsid=221945779_QucOFSFGagd1cn9uVki0TFjrxSBU" target="_blank" rel="noopener">22q11</a> locus of the human genome (<code>chr22:16000000-18000000</code>) are used.</p>
 </div>
-<table class="tableblock frame-all grid-all spread">
+<table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -386,7 +386,7 @@ java -jar picard.jar CreateSequenceDictionary R= genome.fa O= genome.dict</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_split_n_trim_and_reassign_mapping_qualities">1.2.3. Split&#8217;N&#8217;Trim and reassign mapping qualities</h4>
+<h4 id="_splitntrim_and_reassign_mapping_qualities">1.2.3. Split&#8217;N&#8217;Trim and reassign mapping qualities</h4>
 <div class="paragraph">
 <p>The RNA-seq reads overlapping exon-intron junctions can produce false positive variants due to inaccurate splicing. To solve this problem the GATK team recommend to hard-clip any sequence that overlap intronic regions and developed a speciall tool for this purpose: <code>SplitNCigarReads</code>. The tool identifies Ns in the CIGAR string of the alignment and split reads at this position so that few new reads are created.</p>
 </div>
@@ -2417,7 +2417,7 @@ the `grouped_vcf_bam_bai_ch`channel</p>
 <div class="paragraph">
 <p>The file is sorted by genomic position and contains 8 fields:</p>
 </div>
-<table class="tableblock frame-all grid-all">
+<table class="tableblock frame-all grid-all fit-content">
 <colgroup>
 <col>
 <col>
@@ -2486,7 +2486,7 @@ the `grouped_vcf_bam_bai_ch`channel</p>
 <div class="paragraph">
 <p>The file is sorted by coordinates and contains 13 fields:</p>
 </div>
-<table class="tableblock frame-all grid-all">
+<table class="tableblock frame-all grid-all fit-content">
 <colgroup>
 <col>
 <col>
