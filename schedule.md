@@ -29,7 +29,7 @@
 | 10.00 - 10.30 | [Simone Coughlan: Using Nextflow to create scalable and reproducible pipelines at Genomics Medicine Ireland](https://www.nextflow.io/nfhack/2018/simone.html) | 
 | 10.30 - 10.40 | [Roger Olivella: QCloud, A web-based quality control system for mass spectrometry-based proteomics laboratories](https://www.nextflow.io/nfhack/2018/roger.html)<br>[[deck]](https://www.nextflow.io/misc/nfhack18/roger.pdf) |
 | 10.40 - 10.50 | [Francesco Strozzi: Agile pipelines with Nextflow: how to go from development to production without pain](https://www.nextflow.io/nfhack/2018/francesco.html)<br>[[deck]](https://www.nextflow.io/misc/nfhack18/francesco.pdf) |
-| 10.50 - 11.00 | [Evan Floden: Nextflow support and enhancements](https://www.nextflow.io/nfhack/2018/evan.html) |
+| 10.50 - 11.00 | [Evan Floden: Nextflow support and enhancements](https://www.nextflow.io/nfhack/2018/evan.html)<br>[[deck]](https://www.nextflow.io/misc/nfhack18/evan.pdf) |
 | 11.00 - 11.30 | Coffee break              |
 | 11.30 - 13.00 | Hackathon                 |
 | 13.00 - 14.00 | Lunch                     |
