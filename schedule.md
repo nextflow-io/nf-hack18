@@ -25,7 +25,7 @@
 
 |<img width=150/>|                            |
 |---------------|---------------------------|
-| 9.30 - 10.00  | [Vladimir Kiselev: Nextflow at the heart of UK genomics](https://www.nextflow.io/nfhack/2018/vladimir-kiselev.html) |
+| 9.30 - 10.00  | [Vladimir Kiselev: Nextflow at the heart of UK genomics](https://www.nextflow.io/nfhack/2018/vladimir-kiselev.html)<br>[[slides]](https://speakerdeck.com/wikiselev/nextflow-at-the-heart-of-uk-genomics) |
 | 10.00 - 10.30 | [Simone Coughlan: Using Nextflow to create scalable and reproducible pipelines at Genomics Medicine Ireland](https://www.nextflow.io/nfhack/2018/simone.html) | 
 | 10.30 - 10.40 | [Roger Olivella: QCloud, A web-based quality control system for mass spectrometry-based proteomics laboratories](https://www.nextflow.io/nfhack/2018/roger.html) |
 | 10.40 - 10.50 | [Francesco Strozzi: Agile pipelines with Nextflow: how to go from development to production without pain](https://www.nextflow.io/nfhack/2018/francesco.html) |
