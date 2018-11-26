@@ -11,11 +11,11 @@
 | 11.30 - 13.00 | Nextflow for beginners (2)|
 | 13.00 - 14.15 | Lunch                     |
 | 14.15 - 14.50 | [Paolo Di Tommaso: The state of Nextflow](https://www.nextflow.io/nfhack/2018/paolo.html)<br>[[deck]](https://speakerdeck.com/pditommaso/the-state-of-nextflow) | 
-| 14.50 - 15.20 | [Luke Goodsell: Industrial Personalised Immunotherapy Pipeline Development with Nextflow](https://www.nextflow.io/nfhack/2018/luke-goodsell.html)<br>[[slides]](https://www.nextflow.io/misc/nfhack18/luke.pdf) | 
+| 14.50 - 15.20 | [Luke Goodsell: Industrial Personalised Immunotherapy Pipeline Development with Nextflow](https://www.nextflow.io/nfhack/2018/luke-goodsell.html)<br>[[deck]](https://www.nextflow.io/misc/nfhack18/luke.pdf) | 
 | 15.20 - 15.50 | [Philip Ewels: NF-Core, A community effort to collect curated Nextflow pipelines](https://www.nextflow.io/nfhack/2018/phil.html) |
 | 15.50 - 16.00 | [Alessia Visconti: Nextflow on the go](https://www.nextflow.io/nfhack/2018/alessia.html)<br>[[deck]](https://github.com/alesssia/talks/blob/master/NextflowWorkshop18/ViscontiNextflow18.pdf) |
 | 16.00 - 16.10 | [Julia Soellner: Exploiting orthology and de novo transcriptome assembly to refine target sequence information](https://www.nextflow.io/nfhack/2018/julia.html) | 
-| 16.10 - 16.20 | [Tiffany Delhomme: IARC nextflow pipelines: towards efficient cancer genomics analyses](https://www.nextflow.io/nfhack/2018/tiffany.html)<br>[[slides]](https://www.nextflow.io/misc/nfhack18/tiffany.pdf) | 
+| 16.10 - 16.20 | [Tiffany Delhomme: IARC nextflow pipelines: towards efficient cancer genomics analyses](https://www.nextflow.io/nfhack/2018/tiffany.html)<br>[[deck]](https://www.nextflow.io/misc/nfhack18/tiffany.pdf) | 
 | 16.20 - 16.30 | [Diogo Nuno Silva: FlowCraft, A modular, extensible and flexible tool to build, monitor and report nextflow pipelines](https://www.nextflow.io/nfhack/2018/diogo.html)<br>[[deck]](https://slides.com/diogosilva-1/nextflow-workshop-2018#/) | 
 | 16.30 - 17.00 | Coffee break              |
 | 17.00 - open  | Hackathon                 |
