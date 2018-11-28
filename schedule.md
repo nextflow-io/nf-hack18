@@ -34,7 +34,7 @@
 | 11.30 - 13.00 | Hackathon                 |
 | 13.00 - 14.00 | Lunch                     |
 | 14.00 - 14.10 | [Antonio Puertas Gallardo: Supporting the European Reference Laboratory for GMO Food and Feed](https://www.nextflow.io/nfhack/2018/antonio.html)<br>[[deck]](https://www.nextflow.io/misc/nfhack18/antonio.pdf)  |
-| 14.10 - 14.40 | [Luca Carrogu: Scaling genomics in the AWS cloud](https://www.nextflow.io/nfhack/2018/luca.html) | 
+| 14.10 - 14.40 | [Luca Carrogu: Scaling genomics in the AWS cloud](https://www.nextflow.io/nfhack/2018/luca.html)<br>[[deck]](https://www.nextflow.io/misc/nfhack18/luca.pdf) | 
 | 14.40 - 18.00 | Hackathon                 |
 | 18.00 - 18.30 | Final remarks & Farewell  |
 | 18.30 - open  | Visit of the Brewery      |
